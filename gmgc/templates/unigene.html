@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<unigene-data></unigene-data>
+{% endblock %}
+
+{% block variables %}
+<!-- Variables for Vue components -->
+<script>
+  var unigene_data = {{ unigene_data| safe }};
+  var csrf_token = '{{ csrf_token }}';
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+
+## CPCantalapiedra 2019
+##
+
+## This was generated from JSON data with a custom "create_class.py" script
+
+class samples_b:
+	DB_FIELD__id = "_id"
+	DB_FIELD_access_status = "access_status"
+	DB_FIELD_after_QC_insert_count = "after_QC_insert_count"
+	DB_FIELD_age_years = "age_years"
+	DB_FIELD_aliases = "aliases"
+	DB_FIELD_available_info = "available_info"
+	DB_FIELD_birth_year = "birth_year"
+	DB_FIELD_bmi = "bmi"
+	DB_FIELD_collection_date = "collection_date"
+	DB_FIELD_diet = "diet"
+	DB_FIELD_ena_ers_sample_id = "ena_ers_sample_id"
+	DB_FIELD_environment_biome = "environment_biome"
+	DB_FIELD_environment_feature = "environment_feature"
+	DB_FIELD_environment_material = "environment_material"
+	DB_FIELD_environmental_package = "environmental_package"
+	DB_FIELD_gender = "gender"
+	DB_FIELD_geographic_location = "geographic_location"
+	DB_FIELD_height_cm = "height_cm"
+	DB_FIELD_host_tax_id = "host_tax_id"
+	DB_FIELD_input_insert_count = "input_insert_count"
+	DB_FIELD_intervention = "intervention"
+	DB_FIELD_investigation_type = "investigation_type"
+	DB_FIELD_latitude = "latitude"
+	DB_FIELD_longitude = "longitude"
+	DB_FIELD_publications = "publications"
+	DB_FIELD_sample_alias = "sample_alias"
+	DB_FIELD_singleton_count = "singleton_count"
+	DB_FIELD_smoker = "smoker"
+	DB_FIELD_studies = "studies"
+	DB_FIELD_study = "study"
+	DB_FIELD_study_acc = "study_acc"
+	DB_FIELD_subject_disease_status = "subject_disease_status"
+	DB_FIELD_subject_id = "subject_id"
+	DB_FIELD_tax_id = "tax_id"
+	DB_FIELD_tax_scientific_name = "tax_scientific_name"
+	DB_FIELD_timepoint = "timepoint"
+	DB_FIELD_weight_kg = "weight_kg"
+## END
