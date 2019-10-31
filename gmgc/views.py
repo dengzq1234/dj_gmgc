@@ -17,6 +17,9 @@ MONGO_CONFIG = "mongo.cnf"
 def index(request):
     return render(request, "index.html", {})
 
+def index_unigene(request):
+    return render(request, "index_unigene.html", {})
+
 def cluster(request, cluster_id):
 
     ## 1. Retrieve parameters
@@ -58,7 +61,7 @@ def unigene(request, unigene_id):
     unigene_data = gmgc_queries.get_unigene_data(unigene_id)
 
     print(unigene_data)
-    
+
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 
 ## END
