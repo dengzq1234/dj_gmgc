@@ -7,6 +7,9 @@ from pymongo import MongoClient
 ### globals
 
 client = None
+gmgcdb = None
+sprotdb = None
+metadb = None
 
 ### functions
 
@@ -15,10 +18,13 @@ def connectdb(MONGO_HOST, MONGO_PORT):
         Creates a MongoClient and 
         connects to the gmgc and sprot databases
         '''
-        
-        global client
+
+        global client, gmgcdb, sprotdb, metadb
         if not client:
                 client = MongoClient(MONGO_HOST, MONGO_PORT)
+                gmgcdb = client.gmgc
+                sprotdb = client.sprot
+                metadb = client.meta
 
         return
 

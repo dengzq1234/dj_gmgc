@@ -5,8 +5,8 @@ class Clusters:
     
 	# ID_PREFIX is a string, not a field.
 	ID_PREFIX = "GMGC10"
-	DB_FIELD_CL = "cl"
-	DB_FIELD_SFX = "sfx"
+	DB_FIELD_CL = "cl" # clusterID
+	DB_FIELD_SFX = "sfx" # suffixes
 	# Full ID of a cluster is:
 	# ID_PREFIX+"."+cl[DB_FIELD_CL]+"."+cl[DB_FIELD_SFX]
 	DB_FIELD_NU = "nu"

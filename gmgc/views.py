@@ -38,7 +38,7 @@ def cluster(request, cluster_id):
     
     cluster_data = gmgc_queries.get_cluster_data(cluster_id)
 
-    print(cluster_data)
+    print("this is cluster data", cluster_data)
     
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 

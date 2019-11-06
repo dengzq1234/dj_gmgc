@@ -1,4 +1,30 @@
 // CPCantalapiedra 2019
+var cluster_features = {
+    members: {
+        cl: "Cluster ID",
+        clm: "Members",
+        al: "al",
+        hu: "hu",
+        avl: "avl",
+        hk: "hk",
+        avi: "avi",
+        mds: "mds",
+        nh: "ng",
+        lg: "lg",
+        naa: "naa",
+        mup: "mup",
+        mrp: "mrp",
+        sm: "sm",
+        nu: "nu"
+        },
+    paths:{
+        psd: "psd"
+        },
+    suffixes:{
+        sfx: "suffixes"
+        }
+    };
+
 
 // LOCAL REGISTRATION
 var ClusterForm = {
@@ -73,21 +99,29 @@ var ClusterData = {
     data: function(){
 	return {
 	    cluster:cluster_data,
+        cluster_features
 	}
     },
     props: ['csrf'],
     template:`
   <div>
-    <div>cluster data</div>
-    <div>Cluster: {{ cluster.cl }}</div>
+
+    <div>{{ cluster_features.members.cl }}</div>
+    <div>{{ cluster.cl }}</div>
+    
     <div>
-      Members
+      {{cluster_features.members.clm}}
       <ul id="example-1">
 	<li v-for="member in cluster.clm">
 	  {{ member }}
 	</li>
       </ul>
     </div>
+    
+    <li v-for="(value, key) in cluster">
+        <div v-if=" key !== 'cl' & key !== 'clm' ">{{ cluster_features.members[key] }} : {{ value }}</div>
+    </li>
+    
   </div>
 `}
 
