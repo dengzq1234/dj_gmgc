@@ -23,8 +23,10 @@ def index_unigene(request):
 def cluster(request, cluster_id):
 
     ## 1. Retrieve parameters
-
-    print("Cluster ID: "+cluster_id)
+    if cluster_id != "null":
+        print("Cluster ID: "+cluster_id)
+    else:
+        return render(request, 'null.html')
 
     ## 2. init mongo
     
@@ -39,14 +41,16 @@ def cluster(request, cluster_id):
     cluster_data = gmgc_queries.get_cluster_data(cluster_id)
 
     print("this is cluster data", cluster_data)
-    
+
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
 def unigene(request, unigene_id):
 
     ## 1. Retrieve parameters
-
-    print("Unigene ID: "+unigene_id)
+    if unigene_id != "null":
+        print("Unigene ID: "+unigene_id)
+    else:
+        return render(request, 'null.html')
 
     ## 2. init mongo
     
@@ -60,7 +64,7 @@ def unigene(request, unigene_id):
     
     unigene_data = gmgc_queries.get_unigene_data(unigene_id)
 
-    print(unigene_data)
+    print("this is cluster data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 

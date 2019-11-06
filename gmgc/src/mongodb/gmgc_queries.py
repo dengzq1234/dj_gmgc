@@ -22,33 +22,32 @@ def init(config_fn):
 
 #
 def load_mongo_config(config_fn):
-	host = None
-	port = None
+        host = None
+        port = None
 
-	with open(config_fn, 'r') as mongo_config:
+        with open(config_fn, 'r') as mongo_config:
                 config_data = json.load(mongo_config)
                 if "MONGO_HOST" in config_data:
                         host = config_data["MONGO_HOST"]
                 if "MONGO_PORT" in config_data:
                         port = config_data["MONGO_PORT"]
-	
-	sys.stderr.write("gmgc_mongodb "+str(host)+":"+str(port)+"\n")
-	
-	return host, port
+
+        sys.stderr.write("gmgc_mongodb "+str(host)+":"+str(port)+"\n")
+
+        return host, port
 
 #
 def get_cluster_data(cluster_id):
-        
-        ret = None
 
         query = {"cl":cluster_id}
-        #print(" I use get_cluster_data")
-        ret = gmgc_mongodb.gmgcdb_clusters_find_one(query)
 
-        if "_id" in ret:
-                del ret["_id"]
-        return ret
+        results = gmgc_mongodb.gmgcdb_clusters_find_one(query)
 
+        for ret in results:
+                if "_id" in ret:
+                        del ret["_id"]
+
+        return results[0], results[1], results[2]
 #
 def get_unigene_data(unigene_id):
 

@@ -92,37 +92,58 @@ var UnigeneForm = {
       </div>
     </form>
   </div>
-  
+  cluster_paths
 `}
 
 var ClusterData = {
     data: function(){
 	return {
-	    cluster:cluster_data,
+	    cluster_members:cluster_data[0],
+        cluster_paths:cluster_data[1],
+        cluster_suffixes:cluster_data[2],
         cluster_features
 	}
     },
     props: ['csrf'],
     template:`
-  <div>
 
-    <div>{{ cluster_features.members.cl }}</div>
-    <div>{{ cluster.cl }}</div>
-    
-    <div>
-      {{cluster_features.members.clm}}
-      <ul id="example-1">
-	<li v-for="member in cluster.clm">
-	  {{ member }}
-	</li>
-      </ul>
+  <div>
+    <div class="row">
+        <div class="block">
+            {{ cluster_features.members.cl }}
+            <ul>{{ cluster_members.cl }}</ul>
+        </div>
+        
+        <div class="block">
+          {{cluster_features.members.clm}}
+          <ul id="example-1">
+            <li v-for="member in cluster_members.clm">
+                {{ member }}
+            </li>
+          </ul>
+        </div>
     </div>
     
-    <li v-for="(value, key) in cluster">
-        <div v-if=" key !== 'cl' & key !== 'clm' ">{{ cluster_features.members[key] }} : {{ value }}</div>
-    </li>
     
+    <div class="row">
+        <li v-for="(value, key) in cluster_members">
+            <div v-if=" key !== 'cl' & key !== 'clm' " class="block">{{ cluster_features.members[key] }}
+                <ul v-if=" key !== 'cl' & key !== 'clm' " >{{ value }}</ul>
+            </div>
+        </li>
+        
+        <div class="block">
+            psd
+            <ul>{{ cluster_paths.psd }}</ul>
+        </div>
+        
+        <div class="block">
+            sfx
+            <ul>{{ cluster_suffixes.sfx }}</ul>
+        </div>
+    </div>
   </div>
+  
 `}
 
 var UnigeneData = {

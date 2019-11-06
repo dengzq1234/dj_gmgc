@@ -26,6 +26,17 @@ body, html {
 	font-family: Ubuntu-Bold, sans-serif;
 }
 
+.row {
+  width: 100%;
+  display: flex;
+  text-align: center; // center the content of the container
+}
+
+.block {
+  width: 100px;
+  display: inline-block; // display inline with ability to provide width/height
+}​
+
 /*---------------------------------------------*/
 a {
 	font-family: Ubuntu-Bold;
