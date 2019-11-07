@@ -35,11 +35,13 @@ def gmgcdb_clusters_find_one(query):
         global client
         gmgc_clusters = client.gmgc_clusters
 
-        gmgc_clusters_members = gmgc_clusters.members.find_one(query)
-        gmgc_clusters_paths = gmgc_clusters.paths.find_one(query)
-        gmgc_clusters_suffixes = gmgc_clusters.suffixes.find_one(query)
+        members = gmgc_clusters.members.find_one(query) # in members collection
+        paths = gmgc_clusters.paths.find_one(query) # in paths collection
+        suffixes = gmgc_clusters.suffixes.find_one(query) # in suffixes collection
 
-        return gmgc_clusters_members, gmgc_clusters_paths, gmgc_clusters_suffixes
+        results = [members, paths, suffixes]
+
+        return results
 
 def gmgcdb_unigenes_find_one(query):
         '''

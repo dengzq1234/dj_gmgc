@@ -13,7 +13,6 @@ from .src.mongodb import gmgc_queries
 MONGO_CONFIG = "mongo.cnf"
 
 # Create your views here.
-
 def index(request):
     return render(request, "index.html", {})
 
@@ -39,9 +38,9 @@ def cluster(request, cluster_id):
     ## 3. retrieve data
     
     cluster_data = gmgc_queries.get_cluster_data(cluster_id)
+    cluster_data = merge_dicts(cluster_data) # merge all result in a dictionary
 
     print("this is cluster data", cluster_data)
-
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
 def unigene(request, unigene_id):
@@ -67,5 +66,15 @@ def unigene(request, unigene_id):
     print("this is cluster data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
+
+def merge_dicts(dict_args):
+    """
+    Given any number of dicts, shallow copy and merge into a new dict,
+    precedence goes to key value pairs in latter dicts.
+    """
+    result = {}
+    for dictionary in dict_args:
+        result.update(dictionary)
+    return result
 
 ## END

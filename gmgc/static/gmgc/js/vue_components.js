@@ -1,6 +1,5 @@
 // CPCantalapiedra 2019
 var cluster_features = {
-    members: {
         cl: "Cluster ID",
         clm: "Members",
         al: "al",
@@ -15,14 +14,9 @@ var cluster_features = {
         mup: "mup",
         mrp: "mrp",
         sm: "sm",
-        nu: "nu"
-        },
-    paths:{
-        psd: "psd"
-        },
-    suffixes:{
+        nu: "nu",
+        psd: "psd",
         sfx: "suffixes"
-        }
     };
 
 
@@ -51,6 +45,7 @@ var ClusterForm = {
 	<div class="form-group">
 	  <input v-model="cluster_id" class="form-control" id="cluster_id" name="cluster_id" placeholder="Cluster ID (xxx_xxx_xxx)"/>
 	</div>
+	
 	<div class="text-center">
 	  <button type="submit" class="btn btn-primary">Send</button>
 	</div>
@@ -92,15 +87,12 @@ var UnigeneForm = {
       </div>
     </form>
   </div>
-  cluster_paths
 `}
 
 var ClusterData = {
     data: function(){
 	return {
-	    cluster_members:cluster_data[0],
-        cluster_paths:cluster_data[1],
-        cluster_suffixes:cluster_data[2],
+	    cluster_data:cluster_data,
         cluster_features
 	}
     },
@@ -110,14 +102,14 @@ var ClusterData = {
   <div>
     <div class="row">
         <div class="block">
-            {{ cluster_features.members.cl }}
-            <ul>{{ cluster_members.cl }}</ul>
+            {{ cluster_features.cl }}
+            <ul>{{ cluster_data.cl }}</ul>
         </div>
         
         <div class="block">
-          {{cluster_features.members.clm}}
+          {{cluster_features.clm}}
           <ul id="example-1">
-            <li v-for="member in cluster_members.clm">
+            <li v-for="member in cluster_data.clm">
                 {{ member }}
             </li>
           </ul>
@@ -126,22 +118,25 @@ var ClusterData = {
     
     
     <div class="row">
-        <li v-for="(value, key) in cluster_members">
-            <div v-if=" key !== 'cl' & key !== 'clm' " class="block">{{ cluster_features.members[key] }}
+        <li v-for="(value, key) in cluster_data">
+            <div v-if=" key !== 'cl' & key !== 'clm' " class="block">{{ cluster_features[key] }}
                 <ul v-if=" key !== 'cl' & key !== 'clm' " >{{ value }}</ul>
             </div>
         </li>
-        
-        <div class="block">
-            psd
-            <ul>{{ cluster_paths.psd }}</ul>
-        </div>
-        
-        <div class="block">
-            sfx
-            <ul>{{ cluster_suffixes.sfx }}</ul>
-        </div>
     </div>
+    
+    <!--
+    <div>
+        Path way
+        <ul>{{ cluster_data.psd }}</ul>
+    </div>
+    
+    <div>
+        Suffiexes
+        <ul>{{ cluster_data.sfx }}</ul>
+    </div>
+    -->
+    
   </div>
   
 `}

@@ -42,19 +42,20 @@ def get_cluster_data(cluster_id):
         query = {"cl":cluster_id}
 
         results = gmgc_mongodb.gmgcdb_clusters_find_one(query)
+        results = [result for result in results if result is not None]
 
         for ret in results:
                 if "_id" in ret:
                         del ret["_id"]
 
-        return results[0], results[1], results[2]
+        return results
 #
 def get_unigene_data(unigene_id):
 
         ret = None
 
         query = {"u":unigene_id}
-        #print(" I use get_unigene_data")
+
         ret = gmgc_mongodb.gmgcdb_unigenes_find_one(query)
 
         if "_id" in ret:
