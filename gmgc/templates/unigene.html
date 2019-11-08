@@ -2,6 +2,9 @@
 
 {% block content %}
 <unigene-data></unigene-data>
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="psw">Back <a href="/gmgc/unigene" class="psw">Home</a></button>
+    </div>
 {% endblock %}
 
 {% block variables %}
@@ -11,3 +14,4 @@
   var csrf_token = '{{ csrf_token }}';
 </script>
 {% endblock %}
+

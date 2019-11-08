@@ -36,11 +36,14 @@ def cluster(request, cluster_id):
     gmgc_queries.init(MONGO_CONFIG_PATH)
 
     ## 3. retrieve data
-    
-    cluster_data = gmgc_queries.get_cluster_data(cluster_id)
-    cluster_data = merge_dicts(cluster_data) # merge all result in a dictionary
+    cluster_data = dict()
+    cluster_data_raw = gmgc_queries.get_cluster_data(cluster_id)
+    cluster_data['members'] = cluster_data_raw[0]
+    cluster_data['paths'] = cluster_data_raw[1]
+    cluster_data['suffixes'] = cluster_data_raw[2]
 
-    print("this is cluster data", cluster_data)
+    print("this is cluster data", json.dumps(cluster_data))
+
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
 def unigene(request, unigene_id):
@@ -60,10 +63,24 @@ def unigene(request, unigene_id):
     gmgc_queries.init(MONGO_CONFIG_PATH)
 
     ## 3. retrieve data
-    
-    unigene_data = gmgc_queries.get_unigene_data(unigene_id)
+    unigene_data = dict()
+    keys = [
+        "clusters",
+        "sequences",
+        "suffixes",
+        "emapper_v2",
+        "pfam",
+        "sprot_best",
+        "sprot_exact",
+        "trembl_best",
+        "neighbour"
+    ]
+    unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 
-    print("this is cluster data", unigene_data)
+    for index, value in enumerate(unigene_data_raw):
+        unigene_data[keys[index]] = value
+
+    print("this is unigene data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 

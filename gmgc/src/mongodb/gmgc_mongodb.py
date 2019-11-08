@@ -48,6 +48,34 @@ def gmgcdb_unigenes_find_one(query):
         '''
         global client
         gmgc_unigenes = client.gmgc_unigenes
-        return gmgc_unigenes.clusters.find_one(query)
+
+        clusters = gmgc_unigenes.clusters.find_one(query)
+        sequences = gmgc_unigenes.sequences.find_one(query)
+        suffixes = gmgc_unigenes.suffixes.find_one(query)
+
+        emapper_v2 = gmgc_unigenes.emapper_v2.find_one(query)
+        pfam = gmgc_unigenes.pfam.find_one(query)
+        sprot_best = gmgc_unigenes.sprot_best.find_one(query)
+        sprot_exact = gmgc_unigenes.sprot_exact.find_one(query)
+        trembl_best = gmgc_unigenes.trembl_best.find_one(query)
+
+        neighbour = gmgc_unigenes.neighbour.find_one(query)
+
+        results = [
+            clusters,
+            sequences,
+            suffixes,
+            emapper_v2,
+            pfam,
+            sprot_best,
+            sprot_exact,
+            trembl_best,
+            neighbour
+        ]
+
+        return results
+
+
+
 
 ## END

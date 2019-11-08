@@ -2,6 +2,9 @@
 
 {% block content %}
 <cluster-data></cluster-data>
+    <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="psw">Back <a href="/gmgc/cluster" class="psw">Home</a></button>
+    </div>
 {% endblock %}
 
 {% block variables %}
@@ -11,3 +14,5 @@
   var csrf_token = '{{ csrf_token }}';
 </script>
 {% endblock %}
+
+<a href="/">HOME</a>

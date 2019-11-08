@@ -1,5 +1,6 @@
 // CPCantalapiedra 2019
 var cluster_features = {
+    members: {
         cl: "Cluster ID",
         clm: "Members",
         al: "al",
@@ -14,9 +15,14 @@ var cluster_features = {
         mup: "mup",
         mrp: "mrp",
         sm: "sm",
-        nu: "nu",
-        psd: "psd",
+        nu: "nu"
+        },
+    paths:{
+        psd: "psd"
+        },
+    suffixes:{
         sfx: "suffixes"
+        }
     };
 
 
@@ -102,40 +108,49 @@ var ClusterData = {
   <div>
     <div class="row">
         <div class="block">
-            {{ cluster_features.cl }}
-            <ul>{{ cluster_data.cl }}</ul>
+            {{ cluster_features.members.cl }}
+            <ul v-if="cluster_data.members">{{ cluster_data.members.cl }}</ul>
+            <ul v-else>No item</ul>
         </div>
         
         <div class="block">
-          {{cluster_features.clm}}
+          {{cluster_features.members.clm}}
           <ul id="example-1">
-            <li v-for="member in cluster_data.clm">
-                {{ member }}
-            </li>
+            <ul v-if="cluster_data.members">
+                <ul v-if="cluster_data.members.clm">
+                    <li v-for="member in cluster_data.members.clm">
+                        {{member}}
+                    </li>
+                </ul>
+                <ul v-else>{{cluster_data.members.cl}}</ul>
+            </ul>
+            <li v-else>No item</li>
           </ul>
         </div>
     </div>
     
-    
     <div class="row">
-        <li v-for="(value, key) in cluster_data">
-            <div v-if=" key !== 'cl' & key !== 'clm' " class="block">{{ cluster_features[key] }}
+        <li v-if="!cluster_data.members">No item found</li>
+        <li v-else
+            v-for="(value, key) in cluster_data.members">
+            <div v-if=" key !== 'cl' & key !== 'clm' " class="block">{{ cluster_features.members[key]}}
                 <ul v-if=" key !== 'cl' & key !== 'clm' " >{{ value }}</ul>
             </div>
         </li>
     </div>
     
-    <!--
     <div>
         Path way
-        <ul>{{ cluster_data.psd }}</ul>
+        <li v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</li>
+        <ul v-else>No item found</ul>
     </div>
     
     <div>
         Suffiexes
-        <ul>{{ cluster_data.sfx }}</ul>
+        <li v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</li>
+        <ul v-else>No item found</ul>
     </div>
-    -->
+
     
   </div>
   
@@ -144,7 +159,7 @@ var ClusterData = {
 var UnigeneData = {
     data: function(){
 	return {
-	    unigene:unigene_data,
+	    unigene:unigene_data[0],
 	}
     },
     props: ['csrf'],
