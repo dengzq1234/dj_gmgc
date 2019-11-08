@@ -25,6 +25,9 @@ var cluster_features = {
         }
     };
 
+var unigene_features = {
+
+}
 
 // LOCAL REGISTRATION
 var ClusterForm = {
@@ -106,28 +109,28 @@ var ClusterData = {
     template:`
 
   <div>
-    <div class="row">
-        <div class="block">
-            {{ cluster_features.members.cl }}
-            <ul v-if="cluster_data.members">{{ cluster_data.members.cl }}</ul>
-            <ul v-else>No item</ul>
-        </div>
-        
-        <div class="block">
-          {{cluster_features.members.clm}}
-          <ul id="example-1">
-            <ul v-if="cluster_data.members">
-                <ul v-if="cluster_data.members.clm">
-                    <li v-for="member in cluster_data.members.clm">
-                        {{member}}
-                    </li>
-                </ul>
-                <ul v-else>{{cluster_data.members.cl}}</ul>
-            </ul>
-            <li v-else>No item</li>
-          </ul>
-        </div>
+
+    <div>
+        {{ cluster_features.members.cl }}
+        <ul v-if="cluster_data.members">{{ cluster_data.members.cl }}</ul>
+        <ul v-else>No item</ul>
     </div>
+    
+    <div>
+      {{cluster_features.members.clm}}
+      <ul id="example-1">
+        <ul v-if="cluster_data.members">
+            <ul v-if="cluster_data.members.clm">
+                <li v-for="member in cluster_data.members.clm">
+                    {{member}}
+                </li>
+            </ul>
+            <ul v-else>{{cluster_data.members.cl}}</ul>
+        </ul>
+        <li v-else>No item</li>
+      </ul>
+    </div>
+
     
     <div class="row">
         <li v-if="!cluster_data.members">No item found</li>
@@ -149,9 +152,7 @@ var ClusterData = {
         Suffiexes
         <li v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</li>
         <ul v-else>No item found</ul>
-    </div>
-
-    
+    </div>   
   </div>
   
 `}
@@ -159,16 +160,40 @@ var ClusterData = {
 var UnigeneData = {
     data: function(){
 	return {
-	    unigene:unigene_data[0],
+	    unigene:unigene_data,
 	}
     },
     props: ['csrf'],
     template:`
   <div>
     <div>Unigene data</div>
-    <div>Unigene: {{ unigene.u }}</div>
+    <div>Unigene: {{ unigene.clusters.u }}</div>
     <div>
-      Cluster: {{ unigene.cl }}
+      Cluster: {{ unigene.clusters.cl }}
+    </div>
+    <div>
+      Sequence: {{ unigene.sequences.sq }}
+    </div>
+    <div>
+      Suffixes: {{ unigene.suffixes.sfx }}
+    </div>
+    <div>
+      emapper_v2: {{ unigene.emapper_v2 }}
+    </div>
+    <div>
+      pfam: {{ unigene.pfam }}
+    </div>
+    <div>
+      sprot_best: {{ unigene.sprot_best }}
+    </div>
+    <div>
+      sprot_exact: {{ unigene.sprot_exact }}
+    </div>
+    <div>
+      trembl_best: {{ unigene.trembl_best }}
+    </div>
+    <div>
+      neighbour: {{ unigene.neighbour }}
     </div>
   </div>
 `}
