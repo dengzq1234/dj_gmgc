@@ -4,18 +4,18 @@ var cluster_features = {
         cl: "Cluster ID",
         clm: "Gene Members",
         al: "Alignment length",
-        hu: "Number of genes with unknown function in pfam",
-        avl: "Average length of cluster members",
-        hk: "Number of genes with known function in pfam",
-        avi: "Average identity of cluster members",
-        mds: "Identity of the member more distant to the cluster",
-        nh: "Number of genes with no pfam hit in the cluster",
-        lg: "Largest sequence of a member",
-        naa: "Num of amino acids in cluster members",
+        hu: "Num of unknown function genes",
+        avl: "Average length of Cluster",
+        hk: "Num of known function genes",
+        avi: "Average identity of Cluster",
+        mds: "Identity of the member more distant",
+        nh: "Num of genes with no hit",
+        lg: "Longest sequence",
+        naa: "Num of amino acids in Cluster",
         mup: "Identity of most unrelated pair",
         mrp: "Identity of most related pair",
-        sm: "Smallest sequence of a member",
-        nu: "Num cluster members"
+        sm: "Shortest sequence of a member",
+        nu: "Num of Cluster members"
         },
     paths:{
         psd: "psd"
@@ -141,11 +141,22 @@ var ClusterData = {
             <div  v-if="cluster_data.members">
                 <font color="blue" style="border-bottom:solid 1px #000000;">Cluster Members Annotation</font>
             </div>
-            <li v-if="!cluster_data.members" class="block">No item</li>
-                <li v-else
-                    v-for="(value, key) in cluster_data.members">      
-                    <tr v-if=" key !== 'cl' & key !== 'clm'" ><th width="500px" height="30px" nowrap><font face="Arial">{{ cluster_features.members[key]}}</font></th><td class="block">{{ value }}</td></tr>
-                </li>
+                <div v-if="!cluster_data.members" class="block">No item</div>
+                <div v-else>      
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.nu}}</font></th><td class="block">{{cluster_data.members.nu}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.hk}}</font></th><td class="block">{{cluster_data.members.hk}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.hu}}</font></th><td class="block">{{cluster_data.members.hu}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.nh}}</font></th><td class="block">{{cluster_data.members.nh}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.naa}}</font></th><td class="block">{{cluster_data.members.naa}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.al}}</font></th><td class="block">{{cluster_data.members.al}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.avl}}</font></th><td class="block">{{cluster_data.members.avl}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.lg}}</font></th><td class="block">{{cluster_data.members.lg}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.sm}}</font></th><td class="block">{{cluster_data.members.sm}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mds}}</font></th><td class="block">{{cluster_data.members.mds}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.avi}}</font></th><td class="block">{{cluster_data.members.avi}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mup}}</font></th><td class="block">{{cluster_data.members.mup}}</td></tr>
+                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mrp}}</font></th><td class="block">{{cluster_data.members.mrp}}</td></tr>
+                </div>
     </div>
   </div>
   
