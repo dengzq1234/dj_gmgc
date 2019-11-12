@@ -42,7 +42,7 @@ def cluster(request, cluster_id):
     cluster_data['paths'] = cluster_data_raw[1]
     cluster_data['suffixes'] = cluster_data_raw[2]
 
-    print("this is cluster data", json.dumps(cluster_data))
+    print("this is cluster data", cluster_data)
 
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
@@ -83,15 +83,4 @@ def unigene(request, unigene_id):
     print("this is unigene data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
-
-def merge_dicts(dict_args):
-    """
-    Given any number of dicts, shallow copy and merge into a new dict,
-    precedence goes to key value pairs in latter dicts.
-    """
-    result = {}
-    for dictionary in dict_args:
-        result.update(dictionary)
-    return result
-
 ## END

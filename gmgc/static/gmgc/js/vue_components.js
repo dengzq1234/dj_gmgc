@@ -121,42 +121,57 @@ var ClusterData = {
         <tr><th class="block">Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
         </font>
         <div>
-             <tr><th><font face="Arial">Members</font></th></tr>
-                <div v-if="cluster_data.members">
+             <tr>
+                 <font face="Arial">
+                 <th class="block">Members</th>
+                 <div v-if="cluster_data.members">
                     <div v-if="cluster_data.members.clm">
-                        <li v-for="member in cluster_data.members.clm">
-                            <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
-                        </li>
-                    </div>
-                    <div v-else>
-                        <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
+                        <td>{{cluster_data.members.nu}} Members</td>
                     </div>
                  </div>
-                 <tr v-else><th class="block"></th><td class="block">No item</td></tr>
+                 </font>
+              </tr>
+              
+              
+              <div v-if="cluster_data.members">
+                <div v-if="cluster_data.members.clm">
+                    <li v-for="member in cluster_data.members.clm">
+                        <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
+                    </li>
+                </div>
+                <div v-else>
+                    <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
+                </div>
+              <tr v-else><th class="block"></th><td class="block">No item</td></tr>
+              </div>
         </div>
     </div>
     
     <div class="annoBlock col">
         <h3>Functional Annoation</h3>
-            <div  v-if="cluster_data.members">
-                <font color="blue" style="border-bottom:solid 1px #000000;">Cluster Members Annotation</font>
-            </div>
-                <div v-if="!cluster_data.members" class="block">No item</div>
-                <div v-else>      
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.nu}}</font></th><td class="block">{{cluster_data.members.nu}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.hk}}</font></th><td class="block">{{cluster_data.members.hk}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.hu}}</font></th><td class="block">{{cluster_data.members.hu}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.nh}}</font></th><td class="block">{{cluster_data.members.nh}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.naa}}</font></th><td class="block">{{cluster_data.members.naa}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.al}}</font></th><td class="block">{{cluster_data.members.al}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.avl}}</font></th><td class="block">{{cluster_data.members.avl}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.lg}}</font></th><td class="block">{{cluster_data.members.lg}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.sm}}</font></th><td class="block">{{cluster_data.members.sm}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mds}}</font></th><td class="block">{{cluster_data.members.mds}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.avi}}</font></th><td class="block">{{cluster_data.members.avi}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mup}}</font></th><td class="block">{{cluster_data.members.mup}}</td></tr>
-                    <tr><th width="300px" height="25px" nowrap><font face="Arial">{{ cluster_features.members.mrp}}</font></th><td class="block">{{cluster_data.members.mrp}}</td></tr>
-                </div>
+        <div  v-if="cluster_data.members">
+            <font color="blue"">Cluster Members Annotation</font>
+        </div>
+            <div v-if="!cluster_data.members" class="block">No item</div>
+            <div v-else>      
+                <table style="border-bottom:solid 1px #000000;border-top:solid 1px #000000">
+                <font face="Arial">
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.naa}}</th><td class="block">{{cluster_data.members.naa}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.al}}</th><td class="block">{{cluster_data.members.al}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.avl}}</th><td class="block">{{cluster_data.members.avl}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.lg}}</th><td class="block">{{cluster_data.members.lg}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.sm}}</th><td class="block">{{cluster_data.members.sm}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mds}}</th><td class="block">{{cluster_data.members.mds}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.avi}}</th><td class="block">{{cluster_data.members.avi}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mup}}</th><td class="block">{{cluster_data.members.mup}}</td></tr>
+                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mrp}}</th><td class="block">{{cluster_data.members.mrp}}</td></tr>
+                </font>
+                </table>
+             </div>
     </div>
   </div>
   
@@ -190,7 +205,7 @@ var UnigeneData = {
           <font color="blue">eggNOG_v2 Annotation</font>
           <!--<div>{{ unigene.emapper_v2 }}</div>-->
           <div>
-          <table rules="rows " style="border-top:solid 1px #000000;">
+          <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
               <font face="Arial">
               <tr><th width="225px" height="30px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
               <tr><th width="225px" height="30px" nowrap>Seed_ortholog_score</th><td class="block">{{unigene.emapper_v2.s_o_s}}</td></tr>
@@ -223,7 +238,7 @@ var UnigeneData = {
           <!--<div>{{ unigene.pfam.pf }}</div>-->
           <div>
           <li v-for="object in unigene.pfam.pf">
-                <table rules="rows " style="border-top:solid 1px #000000;">
+                <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
                 <font face="Arial">
                 <tr><th width="225px" height="30px" nowrap>Domain</th><td>{{ object.n }}</td></tr>
                 <tr><th width="225px" height="30px" nowrap>Start</th><td>{{ object.s }}</td></tr>
@@ -240,7 +255,7 @@ var UnigeneData = {
           <font color="blue">SwissProt best hit</font>
           <!-- <div>{{ unigene.sprot_best.spb }}</div> -->
           <div> 
-            <table rules="rows " style="border-top:solid 1px #000000;">
+            <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
             <font face="Arial">
             <tr><th width="225px" height="30px" nowra>AC</th><td>{{ unigene.sprot_best.spb.n }}</td></tr>
             <tr><th width="225px" height="30px" nowra>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
@@ -258,7 +273,7 @@ var UnigeneData = {
           <font color="blue">Trembl best hit</font>
           <!-- <div>{{ unigene.trembl_best }}</div> -->
           <div>
-            <table style="border-top:solid 1px #000000;">   
+            <table style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">   
             <font face="Arial">
             <tr><th width="225px" height="30px" nowra>ID</th><td>{{ unigene.trembl_best.trb.n }}</td></tr>
             <tr><th width="225px" height="30px" nowra>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
@@ -276,7 +291,7 @@ var UnigeneData = {
           <font color="blue">Neighbourhood</font>
           <!--<div>{{ unigene.neighbour }}</div>-->
           <div>
-          <table rules="rows " style="border-bottom:solid 1px #000000;">
+          <table rules="rows " style="border-bottom:solid 1px #000000;border-top:solid 1px #000000;">
             <tr><th width="300px" height="30px" nowrap> orf_name </th><td class="block">start</td><td class="block">end</td><td class="block">strand</td></tr>
           </table>
           <li v-for="object in unigene.neighbour.o">
