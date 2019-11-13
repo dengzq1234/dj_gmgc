@@ -79,7 +79,8 @@ ul, li {
 }
 
 <style>
-        table,table tr th, table tr td {border: 1px solid #151515}
+        table,table tr th, table tr td {border: 1px solid #151515; padding: 15px; border-top: 1px solid #ddd;}
+        gene_table table{border: 1px solid #151515;}
 </style>
 
 /*---------------------------------------------*/

@@ -115,63 +115,66 @@ var ClusterData = {
     </div>
     <div class="annoBlock col">
         <h3>Basic information</h3>
+        <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr><th class="block">{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
-        <tr><th class="block">Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
-        <tr><th class="block">Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
         </font>
+        
         <div>
-             <tr>
+             <tr style="border-bottom: 1px solid #ccc;">
                  <font face="Arial">
-                 <th class="block">Members</th>
-                 <div v-if="cluster_data.members">
-                    <div v-if="cluster_data.members.clm">
+                 <th width="225px" height="30px" nowrap>Members</th>
+                 <td v-if="cluster_data.members">
+                    <td v-if="cluster_data.members.clm">
                         <td>{{cluster_data.members.nu}} Members</td>
-                    </div>
-                 </div>
+                    </td>
+                 </td>
                  </font>
               </tr>
-              
+        
               
               <div v-if="cluster_data.members">
                 <div v-if="cluster_data.members.clm">
                     <li v-for="member in cluster_data.members.clm">
-                        <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
+                         <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
                     </li>
                 </div>
                 <div v-else>
-                    <tr><th class="block"></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
+                     <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
                 </div>
               <tr v-else><th class="block"></th><td class="block">No item</td></tr>
               </div>
         </div>
+        </table>
     </div>
     
     <div class="annoBlock col">
         <h3>Functional Annoation</h3>
-        <div  v-if="cluster_data.members">
-            <font color="blue"">Cluster Members Annotation</font>
-        </div>
+        <table width="1250" style="border: 1px solid #ccc">   
+            <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members Annotation</font></th></tr>
             <div v-if="!cluster_data.members" class="block">No item</div>
-            <div v-else>      
-                <table style="border-bottom:solid 1px #000000;border-top:solid 1px #000000">
+            <div v-else>
+                   
                 <font face="Arial">
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.naa}}</th><td class="block">{{cluster_data.members.naa}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.al}}</th><td class="block">{{cluster_data.members.al}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.avl}}</th><td class="block">{{cluster_data.members.avl}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.lg}}</th><td class="block">{{cluster_data.members.lg}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.sm}}</th><td class="block">{{cluster_data.members.sm}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mds}}</th><td class="block">{{cluster_data.members.mds}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.avi}}</th><td class="block">{{cluster_data.members.avi}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mup}}</th><td class="block">{{cluster_data.members.mup}}</td></tr>
-                <tr><th width="300px" height="25px" nowrap>{{ cluster_features.members.mrp}}</th><td class="block">{{cluster_data.members.mrp}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.naa}}</th><td class="block">{{cluster_data.members.naa}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.al}}</th><td class="block">{{cluster_data.members.al}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.avl}}</th><td class="block">{{cluster_data.members.avl}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.lg}}</th><td class="block">{{cluster_data.members.lg}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.sm}}</th><td class="block">{{cluster_data.members.sm}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mds}}</th><td class="block">{{cluster_data.members.mds}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.avi}}</th><td class="block">{{cluster_data.members.avi}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mup}}</th><td class="block">{{cluster_data.members.mup}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mrp}}</th><td class="block">{{cluster_data.members.mrp}}</td></tr>
                 </font>
-                </table>
-             </div>
+                
+            </div>
+        </table>
     </div>
   </div>
   
@@ -191,115 +194,120 @@ var UnigeneData = {
     </div>
     <div class="annoBlock col">
         <h3>Basic information</h3>
+        <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr><th class="block">Unigene</th><td v-if="unigene.clusters">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
-        <tr><th class="block">Cluster</th><td v-if="unigene.clusters"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
-        <tr><th class="block">Sequence</th><td v-if="unigene.sequences">{{ unigene.sequences.sq }} </td><td v-else>No item</td></tr>
-        <tr><th class="block">Suffixes</th><td v-if="unigene.suffixes">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Sequence</th><td v-if="unigene.sequences" class="block">{{ unigene.sequences.sq }} </td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
         </font>
+        </table>
     </div>
     
     <div class="annoBlock col">
     <h3>Functional annotation</h3>
-        <div  v-if="unigene.emapper_v2">
-          <font color="blue">eggNOG_v2 Annotation</font>
-          <!--<div>{{ unigene.emapper_v2 }}</div>-->
-          <div>
-          <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
-              <font face="Arial">
-              <tr><th width="225px" height="30px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
-              <tr><th width="225px" height="30px" nowrap>Seed_ortholog_score</th><td class="block">{{unigene.emapper_v2.s_o_s}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>Seed_ortholog_evalue</th><td class="block">{{unigene.emapper_v2.s_o_e}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>seed_eggNOG_ortholog</th><td class="block">{{unigene.emapper_v2.s_e_o}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>COG</th><td class="block">{{unigene.emapper_v2.COG}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_ko</th><td class="block">{{unigene.emapper_v2.K_ko}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>Best_tax_level</th><td class="block">{{unigene.emapper_v2.b_tax_l}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>Annot_level_max</th><td class="block">{{unigene.emapper_v2.an_l_max}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_Pathway</th><td class="block">{{unigene.emapper_v2.K_P}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_Reaction</th><td class="block">{{unigene.emapper_v2.K_R}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_rclass</th><td class="block">{{unigene.emapper_v2.K_rc}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>BiGG_Reaction</th><td class="block">{{unigene.emapper_v2.BiGG}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_Module</th><td class="block">{{unigene.emapper_v2.K_M}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>bestOG</th><td class="block">{{unigene.emapper_v2.bOGs}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>KEGG_TC</th><td class="block">{{unigene.emapper_v2.K_TC}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>matching_OGs</th><td class="block">{{unigene.emapper_v2.OGs}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>EC</th><td class="block">{{unigene.emapper_v2.EC}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>BRITE</th><td class="block">{{unigene.emapper_v2.BRITE}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>CAZy</th><td class="block">{{unigene.emapper_v2.CAZy}}</td></tr>
-              <tr><th width="225px" height="30px" nowrap>GOs</th><td class="block">{{unigene.emapper_v2.GOs}}</td></tr>
-              </font>
-          </table>
-          </div><div v-else>No emapper hit</div> 
-        </div>
+          <div  v-if="unigene.emapper_v2">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">eggNOG_v2 Annotation</font></th></tr>
+              <div>    
+                  <font face="Arial">
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Seed_ortholog_score</th><td class="block">{{unigene.emapper_v2.s_o_s}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Seed_ortholog_evalue</th><td class="block">{{unigene.emapper_v2.s_o_e}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>seed_eggNOG_ortholog</th><td class="block">{{unigene.emapper_v2.s_e_o}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>COG</th><td class="block">{{unigene.emapper_v2.COG}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_ko</th><td class="block">{{unigene.emapper_v2.K_ko}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Best_tax_level</th><td class="block">{{unigene.emapper_v2.b_tax_l}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Annot_level_max</th><td class="block">{{unigene.emapper_v2.an_l_max}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Pathway</th><td class="block">{{unigene.emapper_v2.K_P}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Reaction</th><td class="block">{{unigene.emapper_v2.K_R}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_rclass</th><td class="block">{{unigene.emapper_v2.K_rc}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>BiGG_Reaction</th><td class="block">{{unigene.emapper_v2.BiGG}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Module</th><td class="block">{{unigene.emapper_v2.K_M}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>bestOG</th><td class="block">{{unigene.emapper_v2.bOGs}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_TC</th><td class="block">{{unigene.emapper_v2.K_TC}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>matching_OGs</th><td class="block">{{unigene.emapper_v2.OGs}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>EC</th><td class="block">{{unigene.emapper_v2.EC}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>BRITE</th><td class="block">{{unigene.emapper_v2.BRITE}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>CAZy</th><td class="block">{{unigene.emapper_v2.CAZy}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>GOs</th><td class="block">{{unigene.emapper_v2.GOs}}</td></tr>
+                  </font>
+                  </table>
+              </div>
+          <div v-else><font color="blue">No emapper hit</font></div> 
+          
     
         <div v-if="unigene.pfam">
-          <font color="blue">Pfam annotation</font>
-          <!--<div>{{ unigene.pfam.pf }}</div>-->
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Pfam annotation</font></th></tr>
           <div>
-          <li v-for="object in unigene.pfam.pf">
-                <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
+                <li v-for="object in unigene.pfam.pf">
                 <font face="Arial">
-                <tr><th width="225px" height="30px" nowrap>Domain</th><td>{{ object.n }}</td></tr>
-                <tr><th width="225px" height="30px" nowrap>Start</th><td>{{ object.s }}</td></tr>
-                <tr><th width="225px" height="30px" nowrap>End</th><td>{{ object.e }}</td></tr>
-                <tr><th width="225px" height="30px" nowrap>E-value</th><td>{{ object.ev }}</td></tr>
-                <tr><th width="225px" height="30px" nowrap>Hit score</th><td>{{ object.sc }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Domain</th><td>{{ object.n }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Start</th><td>{{ object.s }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>End</th><td>{{ object.e }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ object.ev }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Hit score</th><td>{{ object.sc }}</td></tr>
                 </font>
-                <table>
-          </li>
+                
+                </li>
           </div>
+          </table>
         </div><div v-else><font color="blue">No Pfam hit</font></div>
     
         <div v-if="unigene.sprot_best">
-          <font color="blue">SwissProt best hit</font>
-          <!-- <div>{{ unigene.sprot_best.spb }}</div> -->
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">SwissProt best hit</font></th></tr>
+          
           <div> 
-            <table rules="rows " style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">
             <font face="Arial">
-            <tr><th width="225px" height="30px" nowra>AC</th><td>{{ unigene.sprot_best.spb.n }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>AC</th><td>{{ unigene.sprot_best.spb.n }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
             </font>
-            <table>
           </div>
+          </table>
+          
         </div><div v-else><font color="blue">No SwissProt hit</font></div>
     
         <div v-if="unigene.trembl_best">
-          <font color="blue">Trembl best hit</font>
-          <!-- <div>{{ unigene.trembl_best }}</div> -->
-          <div>
-            <table style="border-top:solid 1px #000000;border-bottom:solid 1px #000000;">   
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Trembl best hit</font></th></tr>
+
+          <div> 
             <font face="Arial">
-            <tr><th width="225px" height="30px" nowra>ID</th><td>{{ unigene.trembl_best.trb.n }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
-            <tr><th width="225px" height="30px" nowra>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
-            <tr><th width="225px" height="30px" nowra>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>ID</th><td>{{ unigene.trembl_best.trb.n }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
             </font>
-            <table>
           </div>
+          </table>
         </div><div v-else><font color="blue">No Trembl hit</font></div>
     
     
         <div  v-if="unigene.neighbour">
-          <font color="blue">Neighbourhood</font>
-          <!--<div>{{ unigene.neighbour }}</div>-->
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood</font></th></tr>
+          
           <div>
-          <table rules="rows " style="border-bottom:solid 1px #000000;border-top:solid 1px #000000;">
-            <tr><th width="300px" height="30px" nowrap> orf_name </th><td class="block">start</td><td class="block">end</td><td class="block">strand</td></tr>
-          </table>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> orf_name </th><td class="block">start</td><td class="block">end</td><td class="block">strand</td></tr>
+          
           <li v-for="object in unigene.neighbour.o">
             <font face="Arial">
-            <tr><th width="300px" height="30px" nowrap>{{object.g}}</th><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap>{{object.g}}</th><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
             </font>
           </li>
           </div>
+          </table>
+          
         </div><div v-else><font color="blue">No Neighbourhood hit</font></div>
     </div>
   </div>
