@@ -25,10 +25,6 @@ var cluster_features = {
         }
     };
 
-var unigene_features = {
-
-}
-
 // LOCAL REGISTRATION
 var ClusterForm = {
     data: function(){
@@ -198,14 +194,16 @@ var UnigeneData = {
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Sequence</th><td v-if="unigene.sequences" class="block">{{ unigene.sequences.sq }} </td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Sequence</th><td v-if="unigene.sequences"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}</font></div></td><td v-else>No item</td></tr>
+        
         </font>
         </table>
     </div>
     
     <div class="annoBlock col">
     <h3>Functional annotation</h3>
+
           <div  v-if="unigene.emapper_v2">
               <table width="1250" style="border: 1px solid #ccc">
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">eggNOG_v2 Annotation</font></th></tr>
@@ -237,25 +235,6 @@ var UnigeneData = {
               </div>
           <div v-else><font color="blue">No emapper hit</font></div> 
           
-    
-        <div v-if="unigene.pfam">
-          <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Pfam annotation</font></th></tr>
-          <div>
-                <li v-for="object in unigene.pfam.pf">
-                <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Domain</th><td>{{ object.n }}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Start</th><td>{{ object.s }}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>End</th><td>{{ object.e }}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ object.ev }}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Hit score</th><td>{{ object.sc }}</td></tr>
-                </font>
-                
-                </li>
-          </div>
-          </table>
-        </div><div v-else><font color="blue">No Pfam hit</font></div>
-    
         <div v-if="unigene.sprot_best">
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">SwissProt best hit</font></th></tr>
@@ -291,18 +270,33 @@ var UnigeneData = {
           </div>
           </table>
         </div><div v-else><font color="blue">No Trembl hit</font></div>
-    
+        
+        <div v-if="unigene.pfam">
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Pfam annotation</font></th></tr>
+          <div>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">E-value</th><th class="block">Hit score</th></tr>
+                <li v-for="object in unigene.pfam.pf">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap>{{ object.n }}</td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block" >{{ object.ev }}</td><td class="block">{{ object.sc }}</td></tr>
+
+                </font>
+
+                </li>
+          </div>
+          </table>
+        </div><div v-else><font color="blue">No Pfam hit</font></div>
     
         <div  v-if="unigene.neighbour">
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood</font></th></tr>
           
           <div>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> orf_name </th><td class="block">start</td><td class="block">end</td><td class="block">strand</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> ORF_name </th><th class="block">start</th><th class="block">end</th><th class="block">strand</th></tr>
           
           <li v-for="object in unigene.neighbour.o">
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap>{{object.g}}</th><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><td width="350px" height="35px" nowrap>{{object.g}}</td><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
             </font>
           </li>
           </div>
