@@ -110,9 +110,12 @@ var ClusterData = {
     <div id='main' class="container">
         <h2>Cluster data</h2>
     </div>
+    
     <div class="annoBlock col">
         <h3>Basic information</h3>
+        
         <table width="1250" style="border: 1px solid #ccc">
+
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
@@ -120,17 +123,16 @@ var ClusterData = {
         </font>
         
         <div>
+
              <tr style="border-bottom: 1px solid #ccc;">
                  <font face="Arial">
                  <th width="225px" height="30px" nowrap>Members</th>
                  <td v-if="cluster_data.members">
-                    <td v-if="cluster_data.members.clm">
-                        <td>{{cluster_data.members.nu}} Members</td>
-                    </td>
-                 </td>
+                        {{cluster_data.members.nu}} Members
+                 </td><td v-else>No item</td>
                  </font>
               </tr>
-        
+
               
               <div v-if="cluster_data.members">
                 <div v-if="cluster_data.members.clm">
@@ -147,8 +149,9 @@ var ClusterData = {
         </table>
     </div>
     
+
     <div class="annoBlock col">
-        <h3>Functional Annoation</h3>
+        <h3>Cluster stats</h3>
         <table width="1250" style="border: 1px solid #ccc">   
             <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members Annotation</font></th></tr>
             <div v-if="!cluster_data.members" class="block">No item</div>
@@ -174,6 +177,7 @@ var ClusterData = {
             </div>
         </table>
     </div>
+
   </div>
   
 `}
@@ -207,6 +211,7 @@ var UnigeneData = {
     <div class="annoBlock col">
     <h3>Gene count</h3>
         <!-- title -->
+        <div v-if="unigene.gene_count">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
@@ -228,6 +233,8 @@ var UnigeneData = {
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>ISOLATE</th><td class="block">{{ unigene.gene_count.iso}}</td></tr>
         <!-- data -->
         </font>
+        </div>
+        <div v-else>No item</div>
         </table>
         <!-- for the taxo_map -->
     </div>
@@ -235,16 +242,19 @@ var UnigeneData = {
     <div class="annoBlock col">
     <h3>Taxonomic rank</h3>
         <!-- title -->
+        <div v-if="unigene.taxo_map">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.taxo_map.u }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Name </th><td class="block">{{ unigene.taxo_map.n }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.taxo_map.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Name </th><td class="block" nowrap>{{ unigene.taxo_map.n }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Rank </th><td class="block">{{ unigene.taxo_map.r }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Taxid </th><td class="block">{{ unigene.taxo_map.txid }}</td></tr>
         <!-- data -->
         </font>
         </table>
         <!-- for the taxo_map -->
+        </div>
+        <div v-else>No item</div>
     </div>
     
     <div class="annoBlock col">
