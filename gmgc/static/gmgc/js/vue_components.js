@@ -123,7 +123,6 @@ var ClusterData = {
         </font>
         
         <div>
-
              <tr style="border-bottom: 1px solid #ccc;">
                  <font face="Arial">
                  <th width="225px" height="30px" nowrap>Members</th>
@@ -133,7 +132,6 @@ var ClusterData = {
                  </font>
               </tr>
 
-              
               <div v-if="cluster_data.members">
                 <div v-if="cluster_data.members.clm">
                     <li v-for="member in cluster_data.members.clm">
@@ -148,8 +146,6 @@ var ClusterData = {
         </div>
         </table>
     </div>
-    
-
     <div class="annoBlock col">
         <h3>Cluster stats</h3>
         <table width="1250" style="border: 1px solid #ccc">   
