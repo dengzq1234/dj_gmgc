@@ -119,11 +119,6 @@ var ClusterData = {
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
         </font>
         
-        
-        <! for the gene_count-->
-        <! for the taxo_map -->
-        
-        
         <div>
              <tr style="border-bottom: 1px solid #ccc;">
                  <font face="Arial">
@@ -207,6 +202,49 @@ var UnigeneData = {
         
         </font>
         </table>
+    </div>
+    
+    <div class="annoBlock col">
+    <h3>Gene count</h3>
+        <!-- title -->
+        <table width="1250" style="border: 1px solid #ccc">
+        <font face="Arial">
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>AMPLICON</th><td class="block">{{ unigene.gene_count.am }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ unigene.gene_count.or }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ unigene.gene_count.nos }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ unigene.gene_count.skin }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ unigene.gene_count.vag }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ unigene.gene_count.gut}}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ unigene.gene_count.cat }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th> <td class="block">{{ unigene.gene_count.dog }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ unigene.gene_count.mous }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ unigene.gene_count.pig }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ unigene.gene_count.bu }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ unigene.gene_count.soil }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ unigene.gene_count.mar }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ unigene.gene_count.fw }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ unigene.gene_count.was }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>ISOLATE</th><td class="block">{{ unigene.gene_count.iso}}</td></tr>
+        <!-- data -->
+        </font>
+        </table>
+        <!-- for the taxo_map -->
+    </div>
+   
+    <div class="annoBlock col">
+    <h3>Taxonomic rank</h3>
+        <!-- title -->
+        <table width="1250" style="border: 1px solid #ccc">
+        <font face="Arial">
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.taxo_map.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Name </th><td class="block">{{ unigene.taxo_map.n }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Rank </th><td class="block">{{ unigene.taxo_map.r }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Taxid </th><td class="block">{{ unigene.taxo_map.txid }}</td></tr>
+        <!-- data -->
+        </font>
+        </table>
+        <!-- for the taxo_map -->
     </div>
     
     <div class="annoBlock col">

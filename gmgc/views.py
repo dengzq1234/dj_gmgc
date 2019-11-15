@@ -74,7 +74,8 @@ def unigene(request, unigene_id):
         "sprot_exact",
         "trembl_best",
         "neighbour",
-        "gene_count"
+        "gene_count",
+        "taxo_map"
     ]
     unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 

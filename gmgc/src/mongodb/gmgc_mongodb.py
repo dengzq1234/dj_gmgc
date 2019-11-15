@@ -59,6 +59,7 @@ def gmgcdb_unigenes_find_one(query):
         trembl_best = gmgc_unigenes.trembl_best.find_one(query)
         neighbour = gmgc_unigenes.neighbour.find_one(query)
         gene_count = gmgc_unigenes.gene_count.find_one(query)
+        taxo_map = gmgc_unigenes.taxo_map.find_one(query)
 
         results = [
             clusters,
@@ -70,7 +71,8 @@ def gmgcdb_unigenes_find_one(query):
             sprot_exact,
             trembl_best,
             neighbour,
-            gene_count
+            gene_count,
+            taxo_map
         ]
 
         return results
