@@ -48,4 +48,23 @@ class Unigenes:
 	# key: ORF name (sample.contig...)
 	# values: list of ["S"|"R", start, end, strand, contig]
 
+	# gene_count
+	UNIGENE="u"
+	AMPLICON="am"
+	BUILT="bu" # built environment
+	CAT_GUT="cat"
+	DOG_GUT="dog"
+	FRESHWATER="fw"
+	HUMAN_GUT="gut"
+	ISOLATE="iso"
+	MARINE="mar"
+	MOUSE_GUT="mous"
+	HUMAN_ORAL="or"
+	HUMAN_NOSE="nos"
+	PIG_GUT="pig"
+	HUMAN_SKIN = "skin"
+	SOIL = "soil"
+	HUMAN_VAGINA = "vag"
+	WASTEWATER="was"
+
 ## END

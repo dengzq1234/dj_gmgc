@@ -15,7 +15,8 @@ var cluster_features = {
         mup: "Identity of most unrelated pair",
         mrp: "Identity of most related pair",
         sm: "Shortest sequence of a member",
-        nu: "Num of Cluster members"
+        nu: "Num of Cluster members",
+        nup: "Num of genes in Uniprot"
         },
     paths:{
         psd: "psd"
@@ -118,6 +119,11 @@ var ClusterData = {
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
         </font>
         
+        
+        <! for the gene_count-->
+        <! for the taxo_map -->
+        
+        
         <div>
              <tr style="border-bottom: 1px solid #ccc;">
                  <font face="Arial">
@@ -155,6 +161,7 @@ var ClusterData = {
                    
                 <font face="Arial">
                 <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nup}}</th><td class="block">{{cluster_data.members.nup}}</td></tr>
                 <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
                 <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
                 <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
