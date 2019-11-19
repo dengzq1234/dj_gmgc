@@ -293,7 +293,7 @@ var UnigeneData = {
           
           <div> 
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>AC</th><td>{{ unigene.sprot_best.spb.n }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
@@ -312,7 +312,7 @@ var UnigeneData = {
 
           <div> 
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>ID</th><td>{{ unigene.trembl_best.trb.n }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
             <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
@@ -330,7 +330,7 @@ var UnigeneData = {
                 <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">E-value</th><th class="block">Hit score</th></tr>
                 <li v-for="object in unigene.pfam.pf">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap>{{ object.n }}</td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block" >{{ object.ev }}</td><td class="block">{{ object.sc }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block" >{{ object.ev }}</td><td class="block">{{ object.sc }}</td></tr>
 
                 </font>
 
