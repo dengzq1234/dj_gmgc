@@ -1,4 +1,4 @@
-
+import Clipboard from 'clipboard';
 (function ($) {
     "use strict";
 

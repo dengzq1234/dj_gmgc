@@ -1,4 +1,5 @@
 // CPCantalapiedra 2019
+
 var cluster_features = {
     members: {
         cl: "Cluster ID",
@@ -192,7 +193,7 @@ var UnigeneData = {
         <h2>Unigene data</h2>
     </div>
     <div class="annoBlock col">
-        <h3>Basic information</h3>
+        
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
@@ -353,7 +354,6 @@ var UnigeneData = {
           </li>
           </div>
           </table>
-          
         </div><div v-else><font color="blue">No Neighbourhood hit</font></div>
     </div>
   </div>
