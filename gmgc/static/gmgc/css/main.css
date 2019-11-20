@@ -75,6 +75,21 @@ ul, li {
 	margin: 0px;
 	list-style-type: none;
 }
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#navigation ul li
+{
+    list-style-type: none;
+    display: inline;
+}
+
+#navigation li:not(:first-child):before {
+    content: " | ";
+}
 
 <style>
         table,table tr th, table tr td {border: 1px solid #151515; padding: 15px; border-top: 1px solid #ddd;}

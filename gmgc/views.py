@@ -75,14 +75,15 @@ def unigene(request, unigene_id):
         "trembl_best",
         "neighbour",
         "gene_count",
-        "taxo_map"
+        "taxo_map",
+        "gene_mgs"
     ]
     unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 
     for index, value in enumerate(unigene_data_raw):
         unigene_data[keys[index]] = value
 
-    print("this is unigene data", unigene_data)
+    # print("this is unigene data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 ## END

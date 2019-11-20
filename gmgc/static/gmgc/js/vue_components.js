@@ -206,12 +206,19 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h3>Gene count</h3>
+    <h3>Gene Source info</h3>
+        
         <!-- title -->
         <div v-if="unigene.gene_count">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;">
+            <th width="225px" height="30px" nowrap>MGS Source</th>
+            <td v-if="unigene.gene_mgs" class="block"><li v-for="object in unigene.gene_mgs.mgs" class="block">{{ object }}</li></td>
+            <td v-else>No item</td></td>
+        </tr>
+        
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>AMPLICON</th><td class="block">{{ unigene.gene_count.am }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ unigene.gene_count.or }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ unigene.gene_count.nos }}</td></tr>
@@ -235,7 +242,7 @@ var UnigeneData = {
         </table>
         <!-- for the taxo_map -->
     </div>
-   
+    
     <div class="annoBlock col">
     <h3>Taxonomic rank</h3>
         <!-- title -->

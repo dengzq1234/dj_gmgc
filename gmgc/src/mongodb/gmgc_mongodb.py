@@ -60,6 +60,15 @@ def gmgcdb_unigenes_find_one(query):
         neighbour = gmgc_unigenes.neighbour.find_one(query)
         gene_count = gmgc_unigenes.gene_count.find_one(query)
         taxo_map = gmgc_unigenes.taxo_map.find_one(query)
+        gene_mgs = gmgc_unigenes.gene_mgs.find_one(query)
+
+        # change file type of single result of gene_mgs to list
+        if gene_mgs is not None:
+            mgs = gene_mgs['mgs']
+            if type(mgs) == str:
+                mgs_l = []
+                mgs_l.append(mgs)
+                gene_mgs['mgs'] = mgs_l
 
         results = [
             clusters,
@@ -72,11 +81,20 @@ def gmgcdb_unigenes_find_one(query):
             trembl_best,
             neighbour,
             gene_count,
-            taxo_map
+            taxo_map,
+            gene_mgs
         ]
-
+        # print(gene_mgs['mgs'])
         return results
 
+def gmgcdb_unigenes_mgs_find_one(query):
+    '''
+    '''
+    global client
+    gmgc_unigenes = client.gmgc_unigenes
+    mgs_gene = gmgc_unigenes.mgs_gene.find_one(query)
+
+    return mgs_gene
 
 
 
