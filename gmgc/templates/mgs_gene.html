@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="psw">Back <a href="/gmgc/unigene" class="psw">Home</a></button>
+</div>
+<mgs-data></mgs-data>
+<div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="psw">Back <a href="/gmgc/unigene" class="psw">Home</a></button>
+</div>
+{% endblock %}
+
+{% block variables %}
+<!-- Variables for Vue components -->
+<script>
+  var mgs_data = {{ mgs_data| safe }};
+  var csrf_token = '{{ csrf_token }}';
+</script>
+
+{% endblock %}
