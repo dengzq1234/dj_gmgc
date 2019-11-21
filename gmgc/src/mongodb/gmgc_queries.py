@@ -65,4 +65,15 @@ def get_unigene_data(unigene_id):
 
         return results
 
+def get_mgs_gene_data(mgs_id):
+        ret = None
+
+        query = {"mgs": mgs_id}
+
+        result = gmgc_mongodb.gmgcdb_unigenes_mgs_find_one(query)
+
+        if result is not None and "_id" in result:
+                del result["_id"]
+
+        return result
 ## END

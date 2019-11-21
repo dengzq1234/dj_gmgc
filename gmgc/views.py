@@ -76,14 +76,38 @@ def unigene(request, unigene_id):
         "neighbour",
         "gene_count",
         "taxo_map",
-        "gene_mgs"
+        "gene_mgs",
+        "antipfam"
     ]
     unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 
     for index, value in enumerate(unigene_data_raw):
         unigene_data[keys[index]] = value
 
-    # print("this is unigene data", unigene_data)
+    print("this is unigene data", unigene_data)
 
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
+
+def mgs_gene(request, mgs_id):
+
+    ## 1. Retrieve parameters
+    if mgs_id != "null":
+        print("MGS id: " + mgs_id)
+    else:
+        return
+
+    ## 2. init mongo
+
+    # need to obtain full path to open file from django
+    module_dir = os.path.dirname(__file__)  # get current directory
+    MONGO_CONFIG_PATH = os.path.join(module_dir, MONGO_CONFIG)
+
+    gmgc_queries.init(MONGO_CONFIG_PATH)
+
+    ## 3. retrieve data
+
+    mgs_gene_data_raw = gmgc_queries.get_mgs_gene_data(mgs_id)
+    print("this is MGS data", mgs_gene_data_raw)
+
+    return render(request, "mgs_gene.html", {"mgs_data":json.dumps(mgs_gene_data_raw)})
 ## END

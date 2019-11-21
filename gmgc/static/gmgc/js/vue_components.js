@@ -192,13 +192,16 @@ var UnigeneData = {
     <div id='main' class="container">
         <h2>Unigene data</h2>
     </div>
+    
     <div class="annoBlock col">
+    <h3>Basic information</h3>
         
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else>No</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Sequence</th><td v-if="unigene.sequences"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}</font></div></td><td v-else>No item</td></tr>
         
         </font>
@@ -206,8 +209,7 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h3>Gene Source info</h3>
-        
+    <h4>Gene Source info</h4>
         <!-- title -->
         <div v-if="unigene.gene_count">
         <table width="1250" style="border: 1px solid #ccc">
@@ -215,7 +217,7 @@ var UnigeneData = {
         <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;">
             <th width="225px" height="30px" nowrap>MGS Source</th>
-            <td v-if="unigene.gene_mgs" class="block"><li v-for="object in unigene.gene_mgs.mgs" class="block">{{ object }}</li></td>
+            <td v-if="unigene.gene_mgs" class="block"><li v-for="object in unigene.gene_mgs.mgs" class="block"><a v-bind:href="'/gmgc/mgs_gene/'+ object">{{ object }}</a></li></td>
             <td v-else>No item</td></td>
         </tr>
         
@@ -244,7 +246,7 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h3>Taxonomic rank</h3>
+    <h4conda>Taxonomic rank</h4conda>
         <!-- title -->
         <div v-if="unigene.taxo_map">
         <table width="1250" style="border: 1px solid #ccc">
@@ -339,9 +341,7 @@ var UnigeneData = {
                 <li v-for="object in unigene.pfam.pf">
                 <font face="Arial">
                 <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block" >{{ object.ev }}</td><td class="block">{{ object.sc }}</td></tr>
-
                 </font>
-
                 </li>
           </div>
           </table>
@@ -366,6 +366,33 @@ var UnigeneData = {
   </div>
 `}
 
+var MgsData = {
+
+    data: function(){
+	return {
+	    mgs_data:mgs_data,
+	}
+    },
+    props: ['csrf'],
+    template:`
+
+  <div>
+    <div id='main' class="container">
+        <h2>MGS data</h2>
+    </div>
+    
+    <div class="annoBlock col">
+        <table width="1250" style="border: 1px solid #ccc">
+        <font face="Arial">
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>MGS ID</th><td v-if="mgs_data">{{ mgs_data.mgs }}</td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene members</th><td v-if="mgs_data"><li v-for="u in mgs_data.u"><a v-bind:href="'/gmgc/unigene/'+ u">{{ u }}</a></li></td><td v-else>No item</td></tr>
+        </font>
+        </table>
+    </div>
+  </div>
+  
+`}
+
 var app = new Vue({
     delimiters: ['[[', ']]'],
     el: '#gmgcVueApp',
@@ -374,6 +401,7 @@ var app = new Vue({
         "unigene-form":UnigeneForm,
 	"cluster-data":ClusterData,
 	"unigene-data":UnigeneData,
+        "mgs-data":MgsData,
     },
     data: {
         active_tool: "GMGC collection",
