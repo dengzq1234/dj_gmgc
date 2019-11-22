@@ -1,4 +1,11 @@
-import Clipboard from 'clipboard';
+import clipboard from 'clipboard';
+//register to prototype
+Vue.prototype.clipboard = clipboard;
+
+$( document ).ready(function() {
+  var clipboard = new Clipboard('.clipboard');
+});
+
 (function ($) {
     "use strict";
 

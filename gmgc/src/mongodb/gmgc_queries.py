@@ -76,4 +76,6 @@ def get_mgs_gene_data(mgs_id):
                 del result["_id"]
 
         return result
+
+
 ## END
