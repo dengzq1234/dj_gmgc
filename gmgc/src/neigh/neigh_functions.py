@@ -1,6 +1,9 @@
 ### Parseamos el fichero con las descripciones de los KEGGs pathways
 ### y generamos un diccionario para almacenarlos.
-kegg_pathways = open("KEGGs_pathways.txt","r")
+
+# import os
+# path = os.getcwd()
+# kegg_pathways = open(path+"/KEGGs_pathways.txt","r")
 
 def make_kegg_dict(kegg_pathways):
     """generate kegg pathway dictionary containning kegg descriptions"""
@@ -54,14 +57,6 @@ def mongo_orf_find(GMGC,maximum_neighbours_genes,coll_unigenes):
                         break
 
         return GMGC_dict
-
-
-
-
-
-
-
-
 
 
 def retrieve_gmgc(gene, coll_unigenes):

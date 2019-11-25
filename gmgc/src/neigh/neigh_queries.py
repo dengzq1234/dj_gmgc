@@ -4,24 +4,47 @@
 from __future__ import division
 from pymongo import MongoClient
 from collections import Counter
-import os,sys
+import os,sys,json
 
 ## self packages
-import mongo_client
-from neigh_functions import *
+from . import neigh_mongodb
+from .neigh_functions import *
+
+path = os.getcwd()
+
+# load mongo config
+def init(config_fn):
+
+	# DB connection
+
+	MONGO_HOST, MONGO_PORT = load_mongo_config(config_fn)
+
+	sys.stderr.write("neigh_queries: connecting to db...\n")
+
+	neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)
+
+	sys.stderr.write("neigh_queries: connected\n")
+
+	return
 
 
-### connection to mongo client using mongo_client.py ###
+#
+def load_mongo_config(config_fn):
+	# print("this is in load_mongo_config", config_fn)
+	host = None
+	port = None
+	with open(config_fn, 'r') as mongo_config:
+		config_data = json.load(mongo_config)
+		if "MONGO_HOST" in config_data:
+			host = config_data["MONGO_HOST"]
+		if "MONGO_PORT" in config_data:
+			port = config_data["MONGO_PORT"]
 
-coll_unigenes = mongo_client.mongo_connect()[0]
-coll_clusters = mongo_client.mongo_connect()[1]
+	sys.stderr.write("gmgc_mongodb " + str(host) + ":" + str(port) + "\n")
 
+	return host, port
 
-## data input
-
-gmgc_list = []
-
-
+"""
 if sys.argv[1] == "-f":
 	try:
 		input_gmgc_file= sys.argv[2]
@@ -41,7 +64,7 @@ if sys.argv[1] != "-f":
 	except:
 		sys.exit("\nError: please add a GMGC\nUsage: mongo_GMGC_neigh.py <gmgc> or \n mongo_GMGC_neigh.py -f <file.txt>")
 
-
+"""
 
 ###### Parametters for the analysis
 
@@ -52,7 +75,7 @@ percentage_cut_off = int(25) # percentage of keggs (porcentaje de keggs necesari
 
 ##### neigh analysis ####
 
-def neigh_analysis(gmgc_list):
+def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 
 	result_list = []
 	for gmgc in gmgc_list:
@@ -317,35 +340,56 @@ def neigh_analysis(gmgc_list):
 
 
 
-			print ("unigeneID"+"\t"+"query_keggs"+"\t"+"subject_keggs"+"\t"+"analysed_orfs"+"\t"+"neigh_genes"+"\t"+"neigh_with_keggs"+"\t"+"kegg_proportion"+"\t"+"presence_of_kegg"+"\t"+"hit_kegg_percentage"+"\t"+"kegg_description")
+			#print ("unigeneID"+"\t"+"query_keggs"+"\t"+"subject_keggs"+"\t"+"analysed_orfs"+"\t"+"neigh_genes"+"\t"+"neigh_with_keggs"+"\t"+"kegg_proportion"+"\t"+"presence_of_kegg"+"\t"+"hit_kegg_percentage"+"\t"+"kegg_description")
 			result =[gmgc,",".join(query_kegg_list),",".join(subject_kegg_list),str(analysed_orfs),str(number_neigh),str(neigh_with_keggs),str(kegg_proportion),str(kegg_dispersion),",".join(hit_kegg_percentage),";".join(description_list)]
 			result_list.append(result)
 		else:
-			result =[str(gmgc),"No Match"]
+			result = None
 			result_list.append(result)
 
 	return result_list
 
+def neigh_run(gmgc_list, coll_unigenes, coll_clusters):
+	# list_unigenes = False
+	global kegg_dict
+	module_dir = os.path.dirname(__file__)
 
-
-def main(kegg_pathways):
-	global kegg_dict,coll_unigenes,coll_clusters
-	kegg_pathways = open("KEGGs_pathways.txt","r")
+	kegg_pathways = open(module_dir + "/KEGGs_pathways.txt","r")
 	kegg_dict = make_kegg_dict(kegg_pathways)
 
 	### connection to mongo client using mongo_client.py ###
-	coll_unigenes = mongo_client.mongo_connect()[0]
-	coll_clusters = mongo_client.mongo_connect()[1]
+
+	result_list = neigh_analysis(gmgc_list, coll_unigenes, coll_clusters)
+	result_list = result_list[0]
+	if result_list != None:
+		return neigh_output(result_list)
+	else:
+		result_list
 
 
-	result_list = neigh_analysis(gmgc_list)
-	print_results(result_list,list_unigenes)
-	return result_list,list_unigenes
 
+def neigh_output(result_list):
+	result_output = {}
+	keys = [
+		"u",
+		"q_K",
+		"s_K",
+		"a_orfs",
+		"n_g",
+		"n_K",
+		"K_p",
+		"p_K",
+		"ht_K_p",
+		"K_d"
+	]
+	for index, result in enumerate(result_list):
+		result_output[keys[index]] = result
+	return result_output
 
+"""
 if __name__ == main(kegg_pathways):
 	main(kegg_pathways)
-
+"""
 
 
 

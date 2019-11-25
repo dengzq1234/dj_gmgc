@@ -9,7 +9,8 @@ from django.template import loader
 from django.forms.models import model_to_dict
 
 from .src.mongodb import gmgc_queries
-from .src.neigh import neigh
+from .src.neigh import neigh_queries
+from .src.neigh import neigh_mongodb
 
 MONGO_CONFIG = "mongo.cnf"
 
@@ -60,7 +61,6 @@ def unigene(request, unigene_id):
     # need to obtain full path to open file from django    
     module_dir = os.path.dirname(__file__)  # get current directory
     MONGO_CONFIG_PATH = os.path.join(module_dir, MONGO_CONFIG)
-    
     gmgc_queries.init(MONGO_CONFIG_PATH)
 
     ## 3. retrieve data
@@ -86,10 +86,9 @@ def unigene(request, unigene_id):
         unigene_data[keys[index]] = value
 
     # add neigh annotation data
-    # unigene_data['neigh_data'] = neigh(unigene_id)
+    unigene_data['neigh_data'] = neigh(unigene_id)
 
     print("this is unigene data", unigene_data)
-
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 
 def mgs_gene(request, mgs_id):
@@ -112,19 +111,17 @@ def mgs_gene(request, mgs_id):
 
     mgs_gene_data_raw = gmgc_queries.get_mgs_gene_data(mgs_id)
     print("this is MGS data", mgs_gene_data_raw)
-
     return render(request, "mgs_gene.html", {"mgs_data":json.dumps(mgs_gene_data_raw)})
 
 
 def neigh(unigene_id):
-    """
+    """gmgc_queries
     :param unigene_id:
     :return: annotation of neighbour, as object neigh_result, and return to part of unigene_data
     example :
     unigeneID       query_keggs     subject_keggs   analysed_orfs   neigh_genes     neigh_with_keggs        kegg_proportion presence_of_kegg        hit_kegg_percentage     kegg_description
     000_000_004     NA      03430,00900,00730       304     1216    839     0.69    2.94    03430@52.98,00900@155.44,00730@85.96    03430@Mismatch repair;00900@Terpenoid backbone biosynthesis;00730@Thiamine metabolism
     """
-
     ## 1. Retrieve parameters
     if unigene_id != "null":
         print("Unigene ID: " + unigene_id)
@@ -136,13 +133,20 @@ def neigh(unigene_id):
     # need to obtain full path to open file from django
     module_dir = os.path.dirname(__file__)  # get current directory
     MONGO_CONFIG_PATH = os.path.join(module_dir, MONGO_CONFIG)
-
-    gmgc_queries.init(MONGO_CONFIG_PATH)
+    neigh_queries.init(MONGO_CONFIG_PATH)
 
     ## 3. retrieve data
+    neigh_query = []
+    neigh_query.append(unigene_id)
 
-    neigh_data = gmgc_queries.get_neigh_data(unigene_id)
-    print("this is neighbour data", neigh_data)
+    MONGO_HOST, MONGO_PORT = neigh_queries.load_mongo_config(MONGO_CONFIG_PATH)
+    coll_unigenes = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[0]
+    coll_clusters = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[1]
+
+    neigh_data = neigh_queries.neigh_run(neigh_query,coll_unigenes,coll_clusters)
+    #print("this is neigh data", neigh_data)
     return neigh_data
+
+
 
 ## END

@@ -346,10 +346,33 @@ var UnigeneData = {
           </div>
           </table>
         </div><div v-else><font color="blue">No Pfam hit</font></div>
-    
+        
+        
+        <div v-if="unigene.neigh_data">
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbour Annotation</font></th></tr>
+          
+          <div> 
+            <font face="Arial">
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Unigene</th><td>{{ unigene.neigh_data.u }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>query_keggs</th><td>{{ unigene.neigh_data.q_K }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>subject_keggs</th><td>{{ unigene.neigh_data.s_K }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>analysed_orfs</th><td>{{ unigene.neigh_data.a_orfs }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>neigh_genes</th><td>{{ unigene.neigh_data.n_g }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>neigh_with_keggs</th><td>{{ unigene.neigh_data.n_K }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>kegg_proportion</th><td>{{ unigene.neigh_data.K_p }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>presence_of_kegg</th><td>{{ unigene.neigh_data.p_K }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>hit_kegg_percentage</th><td>{{ unigene.neigh_data.ht_K_p }}</td></tr>
+            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>kegg_description</th><td>{{ unigene.neigh_data.K_d }}</td></tr>
+            </font>
+          </div>
+          </table>
+          
+        </div><div v-else><font color="blue">No Neighbour Match</font></div>
+
         <div  v-if="unigene.neighbour">
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood ORFs info</font></th></tr>
           
           <div>
             <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> ORF_name </th><th class="block">start</th><th class="block">end</th><th class="block">strand</th></tr>
@@ -361,7 +384,7 @@ var UnigeneData = {
           </li>
           </div>
           </table>
-        </div><div v-else><font color="blue">No Neighbourhood hit</font></div>
+        </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
     </div>
   </div>
 `}

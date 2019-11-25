@@ -1,7 +1,7 @@
 #!/usr/bin/python
 ## CPCantalapiedra 2019
 
-import sys
+import os, sys
 import json
 
 from . import gmgc_mongodb
@@ -24,7 +24,6 @@ def init(config_fn):
 def load_mongo_config(config_fn):
         host = None
         port = None
-
         with open(config_fn, 'r') as mongo_config:
                 config_data = json.load(mongo_config)
                 if "MONGO_HOST" in config_data:
