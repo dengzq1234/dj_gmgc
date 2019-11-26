@@ -9,7 +9,7 @@ from django.template import loader
 from django.forms.models import model_to_dict
 
 from .src.mongodb import gmgc_queries
-from .src.neigh import neigh_queries
+from .src.neigh import neigh_queries,neigh_start
 from .src.neigh import neigh_mongodb
 
 MONGO_CONFIG = "mongo.cnf"
@@ -143,7 +143,8 @@ def neigh(unigene_id):
     coll_unigenes = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[0]
     coll_clusters = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[1]
 
-    neigh_data = neigh_queries.neigh_run(neigh_query,coll_unigenes,coll_clusters)
+    # neigh_data = neigh_queries.neigh_run(neigh_query,coll_unigenes,coll_clusters)
+    neigh_data = neigh_start.neigh_run(neigh_query, coll_unigenes, coll_clusters)
     #print("this is neigh data", neigh_data)
     return neigh_data
 

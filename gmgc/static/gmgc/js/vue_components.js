@@ -194,7 +194,7 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h3>Basic information</h3>
+    <h3><a name="basic">Basic information</a></h3>
         
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
@@ -209,7 +209,7 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h4>Gene Source info</h4>
+    <h4><a name="source">Gene Source info</a></h4>
         <!-- title -->
         <div v-if="unigene.gene_count">
         <table width="1250" style="border: 1px solid #ccc">
@@ -246,7 +246,7 @@ var UnigeneData = {
     </div>
     
     <div class="annoBlock col">
-    <h4conda>Taxonomic rank</h4conda>
+    <h4conda><a name="taxa">Taxonomic rank</a></h4conda>
         <!-- title -->
         <div v-if="unigene.taxo_map">
         <table width="1250" style="border: 1px solid #ccc">
@@ -268,7 +268,7 @@ var UnigeneData = {
 
           <div  v-if="unigene.emapper_v2">
               <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">eggNOG_v2 Annotation</font></th></tr>
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="eggnog">eggNOG_v2 Annotation</a></font></th></tr>
               <div>    
                   <font face="Arial">
                   <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
@@ -291,7 +291,7 @@ var UnigeneData = {
                   <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
                   <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>BRITE</th><td class="block">{{unigene.emapper_v2.BRITE}}</td></tr>
                   <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>CAZy</th><td class="block">{{unigene.emapper_v2.CAZy}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>GOs</th><td class="block">{{unigene.emapper_v2.GOs}}</td></tr>
+                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>GOs</th><td class="block" style='width: 1000px;word-wrap:break-word;'>{{unigene.emapper_v2.GOs}}</td></tr>
                   </font>
                   </table>
               </div>
@@ -299,7 +299,7 @@ var UnigeneData = {
           
         <div v-if="unigene.sprot_best">
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">SwissProt best hit</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="sprot">SwissProt best hit</a></font></th></tr>
           
           <div> 
             <font face="Arial">
@@ -318,7 +318,7 @@ var UnigeneData = {
     
         <div v-if="unigene.trembl_best">
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Trembl best hit</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="trembl">Trembl best hit</a></font></th></tr>
 
           <div> 
             <font face="Arial">
@@ -335,7 +335,7 @@ var UnigeneData = {
         
         <div v-if="unigene.pfam">
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Pfam annotation</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="pfam">Pfam annotation</a></font></th></tr>
           <div>
                 <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">E-value</th><th class="block">Hit score</th></tr>
                 <li v-for="object in unigene.pfam.pf">
@@ -349,8 +349,9 @@ var UnigeneData = {
         
         
         <div v-if="unigene.neigh_data">
+        
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbour Annotation</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="neigh">Neighbour Prediction</a></font></th></tr>
           
           <div> 
             <font face="Arial">
@@ -367,12 +368,13 @@ var UnigeneData = {
             </font>
           </div>
           </table>
-          
+
         </div><div v-else><font color="blue">No Neighbour Match</font></div>
 
         <div  v-if="unigene.neighbour">
+
           <table width="1250" style="border: 1px solid #ccc">
-          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood ORFs info</font></th></tr>
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue"><a name="orf">Neighbourhood ORFs info</a></font></th></tr>
           
           <div>
             <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> ORF_name </th><th class="block">start</th><th class="block">end</th><th class="block">strand</th></tr>
@@ -384,6 +386,7 @@ var UnigeneData = {
           </li>
           </div>
           </table>
+
         </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
     </div>
   </div>
