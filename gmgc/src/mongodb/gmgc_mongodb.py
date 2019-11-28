@@ -63,6 +63,9 @@ def gmgcdb_unigenes_find_one(query):
         gene_mgs = gmgc_unigenes.gene_mgs.find_one(query)
         antipfam = gmgc_unigenes.antipfam.find_one(query)
 
+        metaG_corr = get_meta_corr(gmgc_unigenes.metaG_abs_norm.find(query), 'mG_corr',query)
+        metaT_corr = get_meta_corr(gmgc_unigenes.metaT_abs_norm.find(query), 'mT_corr',query)
+
         # change file type of single result of gene_mgs to list
         if gene_mgs is not None:
             mgs = gene_mgs['mgs']
@@ -84,7 +87,9 @@ def gmgcdb_unigenes_find_one(query):
             gene_count,
             taxo_map,
             gene_mgs,
-            antipfam
+            antipfam,
+            metaG_corr,
+            metaT_corr
         ]
 
         return results
@@ -98,6 +103,22 @@ def gmgcdb_unigenes_mgs_find_one(query):
 
     return mgs_gene
 
+def get_meta_corr(cursor, key, query):
+    output = {}
+    corr = objects_to_array(cursor)
+    if len(corr) == 0:
+        output[key] = None
+    else:
+        output[key] = corr
+    output['u'] = query['u']
+    return output
 
+def objects_to_array(cursor):
+    find_all = []
+    for obj in cursor:
+        del obj['_id']
+        del obj['u']
+        find_all.append(obj)
+    return find_all
 
 ## END

@@ -150,7 +150,7 @@ var ClusterData = {
     <div class="annoBlock col">
         <h3>Cluster stats</h3>
         <table width="1250" style="border: 1px solid #ccc">   
-            <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members Annotation</font></th></tr>
+            <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members stats</font></th></tr>
             <div v-if="!cluster_data.members" class="block">No item</div>
             <div v-else>
                    
@@ -185,6 +185,13 @@ var UnigeneData = {
 	return {
 	    unigene:unigene_data,
 	}
+    },
+    filters: {
+        numFilter (value) {
+        // 3 digits
+        let realVal = parseFloat(value).toFixed(3)
+        return realVal
+        }
     },
     props: ['csrf'],
     template:`
@@ -260,6 +267,54 @@ var UnigeneData = {
         <!-- for the taxo_map -->
         </div>
         <div v-else>No item</div>
+    </div>
+    
+    <div class="annoBlock col">
+    <h3><a name="correlations">Gene Correlations</a></h3>
+        <div  v-if="unigene.metaG_corr.mG_corr">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <th width="225px" height="35px" nowrap>cond</th>
+                    <th class="block">num_c</th>
+                    <th  class="block">spv</th>
+                    <th  class="block">pc</th>
+                    <th  class="block">ppv</th>
+                    <th  class="block">sc</th>
+                </tr>
+                <li v-for="object in unigene.metaG_corr.mG_corr">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" nowrap>{{ object.cond }}</td>
+                    <td   class="block" >{{ object.num_c }} </td>
+                    <td   class="block">{{ object.spv }}</td>
+                    <td   class="block">{{ object.pc }}</td>
+                    <td   class="block">{{ object.ppv }}</td>
+                    <td   class="block">{{ object.sc }}</td>
+                </tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaG correlations data</div>
+        
+        <div  v-if="unigene.metaT_corr.mT_corr">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTranscriptomics Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> cond </th><th class="block">num_c</th><th class="block">spv</th><th class="block">pc</th><th class="block">ppv</th><th class="block">sc</th></tr>
+                <li v-for="object in unigene.metaT_corr.mT_corr">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap>{{ object.cond }}</td><td class="block" >{{ object.num_c }}</td><td class="block">{{ object.spv }}</td><td class="block">{{ object.pc }}</td><td class="block">{{ object.ppv }}</td><td class="block">{{ object.sc }}</td></tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaT correlations data</div>
+        
     </div>
     
     <div class="annoBlock col">
@@ -440,3 +495,4 @@ var app = new Vue({
 })
 
 // END
+

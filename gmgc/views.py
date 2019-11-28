@@ -78,7 +78,9 @@ def unigene(request, unigene_id):
         "gene_count",
         "taxo_map",
         "gene_mgs",
-        "antipfam"
+        "antipfam",
+        'metaG_corr',
+        'metaT_corr'
     ]
     unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 

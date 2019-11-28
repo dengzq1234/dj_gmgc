@@ -57,7 +57,6 @@ def get_unigene_data(unigene_id):
 
         results = gmgc_mongodb.gmgcdb_unigenes_find_one(query)
         #results = [result for result in results if result is not None]
-
         for ret in results:
                 if ret is not None and "_id" in ret:
                         del ret["_id"]
