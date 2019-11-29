@@ -276,22 +276,22 @@ var UnigeneData = {
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Correlations</font></th></tr>
               <div>
                 <tr style="border-bottom: 1px solid #ccc;">
-                    <th width="225px" height="35px" nowrap>cond</th>
-                    <th class="block">num_c</th>
-                    <th  class="block">spv</th>
-                    <th  class="block">pc</th>
-                    <th  class="block">ppv</th>
-                    <th  class="block">sc</th>
+                    <th width="225px" height="35px" nowrap>Condition</th>
+                    <th width="150px">Correlations obs_number</th>
+                    <th  width="225px">PEARSON</th>
+                    <th  width="225px">PEARSON_PVAL</th>
+                    <th  width="225px">SPEARMAN</th>
+                    <th  width="225px">SPEARMAN_PVAL</th>
                 </tr>
                 <li v-for="object in unigene.metaG_corr.mG_corr">
                 <font face="Arial">
                 <tr style="border-bottom: 1px solid #ccc;">
                     <td width="225px" height="35px" nowrap>{{ object.cond }}</td>
                     <td   class="block" >{{ object.num_c }} </td>
-                    <td   class="block">{{ object.spv }}</td>
-                    <td   class="block">{{ object.pc }}</td>
-                    <td   class="block">{{ object.ppv }}</td>
-                    <td   class="block">{{ object.sc }}</td>
+                    <td   width="225px" >{{ object.pc }}</td>
+                    <td   width="225px" >{{ object.ppv }}</td>
+                    <td   width="225px" >{{ object.sc }}</td>
+                    <td   width="225px" >{{ object.spv }}</td>
                 </tr>
                 </font>
                 </li>
@@ -304,10 +304,24 @@ var UnigeneData = {
               <table width="1250" style="border: 1px solid #ccc">
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTranscriptomics Correlations</font></th></tr>
               <div>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> cond </th><th class="block">num_c</th><th class="block">spv</th><th class="block">pc</th><th class="block">ppv</th><th class="block">sc</th></tr>
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <th width="225px" height="35px" nowrap>Condition</th>
+                    <th width="150px">Correlations obs_number</th>
+                    <th  width="225px">PEARSON</th>
+                    <th  width="225px">PEARSON_PVAL</th>
+                    <th  width="225px">SPEARMAN</th>
+                    <th  width="225px">SPEARMAN_PVAL</th>
+                </tr>
                 <li v-for="object in unigene.metaT_corr.mT_corr">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap>{{ object.cond }}</td><td class="block" >{{ object.num_c }}</td><td class="block">{{ object.spv }}</td><td class="block">{{ object.pc }}</td><td class="block">{{ object.ppv }}</td><td class="block">{{ object.sc }}</td></tr>
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" nowrap>{{ object.cond }}</td>
+                    <td   class="block" >{{ object.num_c }} </td>
+                    <td   width="225px" >{{ object.pc }}</td>
+                    <td   width="225px" >{{ object.ppv }}</td>
+                    <td   width="225px" >{{ object.sc }}</td>
+                    <td   width="225px" >{{ object.spv }}</td>
+                </tr>
                 </font>
                 </li>
                </div>
