@@ -113,7 +113,7 @@ var ClusterData = {
     </div>
     
     <div class="annoBlock col">
-        <h3>Basic information</h3>
+        <h3><a name="basic">Basic information</a></h3>
         
         <table width="1250" style="border: 1px solid #ccc">
 
@@ -148,7 +148,7 @@ var ClusterData = {
         </table>
     </div>
     <div class="annoBlock col">
-        <h3>Cluster stats</h3>
+        <h3><a name="stats">Cluster stats</a></h3>
         <table width="1250" style="border: 1px solid #ccc">   
             <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members stats</font></th></tr>
             <div v-if="!cluster_data.members" class="block">No item</div>
