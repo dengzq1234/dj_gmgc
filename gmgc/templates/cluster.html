@@ -16,10 +16,20 @@
 
 {% block variables %}
 <!-- Variables for Vue components -->
+
 <script>
   var cluster_data = {{ cluster_data| safe }};
   var csrf_token = '{{ csrf_token }}';
 </script>
+<!-- tree_plugin -->
+<script src="/static/ete/jquery-1.4.2.min.js"></script>
+
+<script src="/static/ete/jquery-ui-1.8.4.custom.min.js"></script>
+
+<script src="/static/ete/ete.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/static/ete/ete.css" >
+
 {% endblock %}
 
 <a href="/">HOME</a>

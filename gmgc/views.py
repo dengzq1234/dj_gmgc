@@ -88,7 +88,8 @@ def unigene(request, unigene_id):
         unigene_data[keys[index]] = value
 
     # add neigh annotation data
-    unigene_data['neigh_data'] = neigh(unigene_id)
+    unigene_data['neigh_data']  = neigh(unigene_id)
+
 
     print("this is unigene data", unigene_data)
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})

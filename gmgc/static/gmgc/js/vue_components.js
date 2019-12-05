@@ -174,7 +174,21 @@ var ClusterData = {
             </div>
         </table>
     </div>
+    
+    <div>                                                                                                                                                                                                   
+        <!-- Server status -->                                                                                                                                                                              
+        <h3>tree sdsds</h3>
+        <div id="popup"> hello </div>                                                                                                                                                                              
+        <div id='server_status'></div>                                                                                                                                                                      
+        <div id="highlighter"></div>                                                                                                                                                                        
+        <!-- List of genes -->                                                                                                                                                                              
+        <v-select label="name" :options="this.geneslist" @input="this.validateSelection"></v-select>                                                                                                        
+        <!-- ********** -->                                                                                                                                                                                         
 
+        <!-- ETE PLUGIN -->                                                                                                                                                                                 
+        <div class="ete_image" id="img1"></div>                                                                                                                                                             
+
+    </div>
   </div>
   
 `}
@@ -421,7 +435,6 @@ var UnigeneData = {
         
         <a name="neigh"></a>
         <div v-if="unigene.neigh_data">
-        
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbour Prediction</font></th></tr>
           
@@ -443,6 +456,22 @@ var UnigeneData = {
 
         </div><div v-else><font color="blue">No Neighbour Match</font></div>
         
+        <a name="neigh_genes"></a>
+        <div  v-if="unigene.neigh_data.predict_neighs">
+            <table width="1250" style="border: 1px solid #ccc">
+            <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood genes prediction</font></th></tr>
+            
+            <font face="Arial">
+            <div>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px">-2</th><th width="225px" height="35px">-1</th><th width="225px" height="35px">query unigene</th><th width="225px" height="35px">+1</th><th width="225px" height="35px">+2</th></tr>
+                <li v-for="object in unigene.neigh_data.predict_neighs">
+                    <tr style="border-bottom: 1px solid #ccc;"></td><td width="225px" >{{object.p_n[0][1]}}</td><td width="225px" >{{object.p_n[1][1]}}</td><td width="225px" >{{unigene.clusters.u}} </td><td width="225px" >{{object.p_n[2][1]}}</td><td width="225px" >{{object.p_n[3][1]}}</td></tr>
+                </li>
+            </div>
+            </font>
+            
+            </table>
+        </div><div v-else><font color="blue">No Neighbour Gene Match</font></div>
         
         <a name="orf"></a>
         <div  v-if="unigene.neighbour">

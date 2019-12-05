@@ -57,6 +57,7 @@ def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 		keggs_for_draw_list=[] #obtener los stats de los genes con Kegss
 		neigh_with_keggs_real = 0
 
+		predicted_neighs = [] # obtain predicted nighbour genes
 
 		gmgc_cluster = mongo_orf_find(gmgc,maximum_neighbours_genes,coll_unigenes)
 
@@ -71,12 +72,22 @@ def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 				query_gene = k
 				gene_list = v
 
-
 				minus2= retrieve_gmgc(gene_list[0],coll_unigenes)
 				minus1= retrieve_gmgc(gene_list[1],coll_unigenes)
 				plus1= retrieve_gmgc(gene_list[2],coll_unigenes)
 				plus2= retrieve_gmgc(gene_list[3],coll_unigenes)
 				gmgc_list = [minus2,minus1,plus1,plus2]
+
+				predicted_neigh = {}
+				predicted_neigh['g'] = query_gene
+				predicted_neigh['p_n'] = [
+					[gene_list[0], minus2],
+					[gene_list[1], minus1],
+					[gene_list[2], plus1],
+					[gene_list[3], plus2]
+				]
+				predicted_neighs.append(predicted_neigh)
+
 				#print gmgc_list
 
 
@@ -313,7 +324,7 @@ def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 			result = None
 			result_list.append(result)
 
-	return result_list
+	return result_list, predicted_neighs
 
 def neigh_run(gmgc_list, coll_unigenes, coll_clusters):
 	# list_unigenes = False
@@ -325,16 +336,16 @@ def neigh_run(gmgc_list, coll_unigenes, coll_clusters):
 
 	### connection to mongo client using mongo_client.py ###
 
-	result_list = neigh_analysis(gmgc_list, coll_unigenes, coll_clusters)
+	result_list, predicted_neighs = neigh_analysis(gmgc_list, coll_unigenes, coll_clusters)
 	result_list = result_list[0]
 	if result_list != None:
-		return neigh_output(result_list)
+		return neigh_output(result_list, predicted_neighs)
 	else:
 		result_list
 
 
 
-def neigh_output(result_list):
+def neigh_output(result_list, p_n):
 	result_output = {}
 	keys = [
 		"u",
@@ -350,6 +361,7 @@ def neigh_output(result_list):
 	]
 	for index, result in enumerate(result_list):
 		result_output[keys[index]] = result
+	result_output['predict_neighs'] = p_n
 	return result_output
 
 """
