@@ -105,6 +105,13 @@ var ClusterData = {
 	}
     },
     props: ['csrf'],
+    methods: {
+        get_tree_image(){
+            let treepath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
+            let msapath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
+            get_tree_image(treepath, msapath, "0", "#img1");
+        },
+    },
     template:`
 
   <div>
@@ -175,20 +182,26 @@ var ClusterData = {
         </table>
     </div>
     
+
     <div>                                                                                                                                                                                                   
         <!-- Server status -->                                                                                                                                                                              
-        <h3>tree sdsds</h3>
-        <div id="popup"> hello </div>                                                                                                                                                                              
-        <div id='server_status'></div>                                                                                                                                                                      
+        <h3>Tree visualization</h3>
+        <!-- this will be the popup window with actions when the user clicks in the tree -->
+        <div id="popup"></div>                                                       
+        <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
+        <div id='server_status'></div>                                             
+        <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
         <div id="highlighter"></div>                                                                                                                                                                        
-        <!-- List of genes -->                                                                                                                                                                              
-        <v-select label="name" :options="this.geneslist" @input="this.validateSelection"></v-select>                                                                                                        
-        <!-- ********** -->                                                                                                                                                                                         
+
+        <!-- in the new version you could be interested in the get_tree_from_paths function -->
+                                                                                      
+        <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>                                                                                                        
+                                                                                                                                                                                 
 
         <!-- ETE PLUGIN -->                                                                                                                                                                                 
-        <div class="ete_image" id="img1"></div>                                                                                                                                                             
-
+        <div class="ete_image" id="img1"></div>                                                                                                                              
     </div>
+
   </div>
   
 `}
@@ -456,22 +469,35 @@ var UnigeneData = {
 
         </div><div v-else><font color="blue">No Neighbour Match</font></div>
         
+
         <a name="neigh_genes"></a>
-        <div  v-if="unigene.neigh_data.predict_neighs">
+        <div  v-if="unigene.neigh_data">
             <table width="1250" style="border: 1px solid #ccc">
             <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood genes prediction</font></th></tr>
-            
             <font face="Arial">
             <div>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px">-2</th><th width="225px" height="35px">-1</th><th width="225px" height="35px">query unigene</th><th width="225px" height="35px">+1</th><th width="225px" height="35px">+2</th></tr>
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <th width="200px" height="35px">-2</th>
+                    <th width="200px" height="35px">-1</th>
+                    <th width="200px" height="35px">query unigene</th>
+                    <th width="200px" height="35px">+1</th>
+                    <th width="200px" height="35px">+2</th>
+                </tr>
                 <li v-for="object in unigene.neigh_data.predict_neighs">
-                    <tr style="border-bottom: 1px solid #ccc;"></td><td width="225px" >{{object.p_n[0][1]}}</td><td width="225px" >{{object.p_n[1][1]}}</td><td width="225px" >{{unigene.clusters.u}} </td><td width="225px" >{{object.p_n[2][1]}}</td><td width="225px" >{{object.p_n[3][1]}}</td></tr>
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[0][1]+ '/#eggnog'">{{object.p_n[0][1]}}</a></td>
+                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[1][1]+ '/#eggnog'">{{object.p_n[1][1]}}</a></td>
+                        <td width="200px" >{{unigene.clusters.u}}</td>
+                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[2][1]+ '/#eggnog'">{{object.p_n[2][1]}}</a></td>
+                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[3][1]+ '/#eggnog'">{{object.p_n[3][1]}}</a></td>
+                    </tr>
                 </li>
             </div>
             </font>
             
             </table>
         </div><div v-else><font color="blue">No Neighbour Gene Match</font></div>
+
         
         <a name="orf"></a>
         <div  v-if="unigene.neighbour">
