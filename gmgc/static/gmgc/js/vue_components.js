@@ -154,6 +154,36 @@ var ClusterData = {
         </div>
         </table>
     </div>
+    
+    <div class="annoBlock col">
+        <h3><a name="num_sam">Cluster Source info</a></h3>
+        
+        <!-- title -->
+        <div v-if="cluster_data.num_sam">
+        <table width="1250" style="border: 1px solid #ccc">
+        <font face="Arial">
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Cluster ID</th><td class="block">{{ cluster_data.num_sam.cl }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ cluster_data.num_sam.or }}</td></tr>      
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ cluster_data.num_sam.nos }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ cluster_data.num_sam.skin }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ cluster_data.num_sam.vag }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ cluster_data.num_sam.gut }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ cluster_data.num_sam.cat }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th><td class="block">{{ cluster_data.num_sam.dog }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ cluster_data.num_sam.mous }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ cluster_data.num_sam.pig }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ cluster_data.num_sam.bu }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ cluster_data.num_sam.soil }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ cluster_data.num_sam.mar }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ cluster_data.num_sam.fw }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ cluster_data.num_sam.was }}</td></tr>
+        <!-- data -->
+        </font>
+        </div>
+        <div v-else>No item</div>
+        </table>
+    </div>
+    
     <div class="annoBlock col">
         <h3><a name="stats">Cluster stats</a></h3>
         <table width="1250" style="border: 1px solid #ccc">   
@@ -181,17 +211,16 @@ var ClusterData = {
             </div>
         </table>
     </div>
-    
 
-    <div>                                                                                                                                                                                                   
+    <div class="annoBlock col">                                                                                                                                                                                                   
         <!-- Server status -->                                                                                                                                                                              
-        <h3>Tree visualization</h3>
+        <h3><a name="tree">Tree visualization</a></h3>
         <!-- this will be the popup window with actions when the user clicks in the tree -->
         <div id="popup"></div>                                                       
         <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
         <div id='server_status'></div>                                             
         <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
-        <div id="highlighter"></div>                                                                                                                                                                        
+        <!-- <div id="highlighter"></div> -->                                                                                                                                                                        
 
         <!-- in the new version you could be interested in the get_tree_from_paths function -->
                                                                                       
@@ -275,10 +304,11 @@ var UnigeneData = {
         </div>
         <div v-else>No item</div>
         </table>
-        <!-- for the taxo_map -->
+        
     </div>
     
     <div class="annoBlock col">
+    <!-- for the taxo_map -->
     <h4conda><a name="taxa">Taxonomic rank</a></h4conda>
         <!-- title -->
         <div v-if="unigene.taxo_map">

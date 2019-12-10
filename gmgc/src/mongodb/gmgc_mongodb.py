@@ -25,7 +25,6 @@ def connectdb(MONGO_HOST, MONGO_PORT):
                 gmgcdb = client.gmgc
                 sprotdb = client.sprot
                 metadb = client.meta
-
         return
 
 def gmgcdb_clusters_find_one(query):
@@ -38,8 +37,9 @@ def gmgcdb_clusters_find_one(query):
         members = gmgc_clusters.members.find_one(query) # in members collection
         paths = gmgc_clusters.paths.find_one(query) # in paths collection
         suffixes = gmgc_clusters.suffixes.find_one(query) # in suffixes collection
+        num_sam = gmgc_clusters.num_sam.find_one(query) # in num_sam collection
 
-        results = [members, paths, suffixes]
+        results = [members, paths, suffixes, num_sam]
 
         return results
 

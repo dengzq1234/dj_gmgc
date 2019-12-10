@@ -43,6 +43,7 @@ def cluster(request, cluster_id):
     cluster_data['members'] = cluster_data_raw[0]
     cluster_data['paths'] = cluster_data_raw[1]
     cluster_data['suffixes'] = cluster_data_raw[2]
+    cluster_data['num_sam'] = cluster_data_raw[3]
 
     print("this is cluster data", cluster_data)
 
