@@ -44,6 +44,8 @@ def cluster(request, cluster_id):
     cluster_data['paths'] = cluster_data_raw[1]
     cluster_data['suffixes'] = cluster_data_raw[2]
     cluster_data['num_sam'] = cluster_data_raw[3]
+    cluster_data['metaG_corr'] = cluster_data_raw[4]
+    cluster_data['metaT_corr'] = cluster_data_raw[5]
 
     print("this is cluster data", cluster_data)
 

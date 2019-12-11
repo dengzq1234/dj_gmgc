@@ -107,11 +107,24 @@ var ClusterData = {
     props: ['csrf'],
     methods: {
         get_tree_image(){
+            // "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw" tree
+            // "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa" alg
             let treepath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
             let msapath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
             get_tree_image(treepath, msapath, "0", "#img1");
         },
     },
+    filters: {
+          numFilter (value) {
+            let realVal = ''
+            if (value) {
+              realVal = parseFloat(value).toFixed(5)
+            } else {
+              realVal = '--'
+            }
+            return realVal
+          }
+        },
     template:`
 
   <div>
@@ -185,6 +198,152 @@ var ClusterData = {
     </div>
     
     <div class="annoBlock col">
+    <h3><a name="cluster_correlations">Cluster Correlations</a></h3>
+        <div  v-if="cluster_data.metaG_corr.mG_corr">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;">
+                
+                    <th width="150px" height="35px" nowrap>Condition</th>
+                    <th width="150px">num_c</th>
+                    <th width="150px">mndp</th>
+                    
+
+                    <th  width="200px">pcm</th>
+                    <th  width="200px">ppvm</th>
+                    
+                    <th  width="200px">scm</th>
+                    <th  width="200px">spvm</th>
+                    
+                    <th  width="200px">pcme</th>
+                    <th  width="200px">ppvme</th>
+                    
+                    <th  width="200px">scme</th>
+                    <th  width="200px">spvme</th>
+
+                    <th  width="200px">pcmax</th>
+                    <th  width="200px">scmax</th>
+                    
+                    <th  width="200px">pcmin</th>
+                    <th  width="200px">scmin</th>
+                    
+                    <th  width="200px">pcstd</th>
+                    <th  width="200px">scstd</th>
+
+                    
+                </tr>
+                <li v-for="object in cluster_data.metaG_corr.mG_corr">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
+                    <td   width="225px" >{{ object.num_c }} </td>
+                    <td   width="225px" >{{ object.mndp }} </td>
+                    
+                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scm |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scme |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+
+                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                    
+                </tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaG correlations data</div>
+        
+
+        <div  v-if="cluster_data.metaT_corr.mT_corr">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;">
+                
+                    <th width="150px" height="35px" nowrap>Condition</th>
+                    <th width="150px">num_c</th>
+                    <th width="150px">mndp</th>
+                    
+
+                    <th  width="200px">pcm</th>
+                    <th  width="200px">ppvm</th>
+                    
+                    <th  width="200px">scm</th>
+                    <th  width="200px">spvm</th>
+                    
+                    <th  width="200px">pcme</th>
+                    <th  width="200px">ppvme</th>
+                    
+                    <th  width="200px">scme</th>
+                    <th  width="200px">spvme</th>
+
+                    <th  width="200px">pcmax</th>
+                    <th  width="200px">scmax</th>
+                    
+                    <th  width="200px">pcmin</th>
+                    <th  width="200px">scmin</th>
+                    
+                    <th  width="200px">pcstd</th>
+                    <th  width="200px">scstd</th>
+
+                    
+                </tr>
+                <li v-for="object in cluster_data.metaT_corr.mT_corr">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" class="block">{{ object.cond }}</td>
+                    <td   width="225px" >{{ object.num_c }} </td>
+                    <td   width="225px" >{{ object.mndp }} </td>
+                    
+                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scm |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scme |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+
+                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                    
+                </tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaT correlations data</div>
+
+    </div>
+    
+    
+    <div class="annoBlock col">
         <h3><a name="stats">Cluster stats</a></h3>
         <table width="1250" style="border: 1px solid #ccc">   
             <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members stats</font></th></tr>
@@ -215,20 +374,21 @@ var ClusterData = {
     <div class="annoBlock col">                                                                                                                                                                                                   
         <!-- Server status -->                                                                                                                                                                              
         <h3><a name="tree">Tree visualization</a></h3>
+        
         <!-- this will be the popup window with actions when the user clicks in the tree -->
         <div id="popup"></div>                                                       
         <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
         <div id='server_status'></div>                                             
         <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
-        <!-- <div id="highlighter"></div> -->                                                                                                                                                                        
+        <div id="highlighter"></div>                                                                                                                                                     
 
         <!-- in the new version you could be interested in the get_tree_from_paths function -->
                                                                                       
         <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>                                                                                                        
-                                                                                                                                                                                 
-
+                                                                                                                                                                               
         <!-- ETE PLUGIN -->                                                                                                                                                                                 
-        <div class="ete_image" id="img1"></div>                                                                                                                              
+        <div class="ete_image" id="img1"></div>          
+                                                                                                                            
     </div>
 
   </div>

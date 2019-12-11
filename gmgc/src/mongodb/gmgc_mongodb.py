@@ -33,13 +33,20 @@ def gmgcdb_clusters_find_one(query):
         
         global client
         gmgc_clusters = client.gmgc_clusters
-
         members = gmgc_clusters.members.find_one(query) # in members collection
         paths = gmgc_clusters.paths.find_one(query) # in paths collection
         suffixes = gmgc_clusters.suffixes.find_one(query) # in suffixes collection
         num_sam = gmgc_clusters.num_sam.find_one(query) # in num_sam collection
-
-        results = [members, paths, suffixes, num_sam]
+        metaG_corr = get_meta_corr(gmgc_clusters.metaG_abs_norm.find(query), 'mG_corr',query)
+        metaT_corr = get_meta_corr(gmgc_clusters.metaT_abs_norm.find(query), 'mT_corr', query)
+        results = [
+            members,
+            paths,
+            suffixes,
+            num_sam,
+            metaG_corr,
+            metaT_corr
+        ]
 
         return results
 
@@ -110,14 +117,21 @@ def get_meta_corr(cursor, key, query):
         output[key] = None
     else:
         output[key] = corr
-    output['u'] = query['u']
+    if 'u' in query:
+        output['u'] = query['u']
+    else:
+        output['cl'] = query['cl']
     return output
 
 def objects_to_array(cursor):
     find_all = []
     for obj in cursor:
         del obj['_id']
-        del obj['u']
+
+        if 'u' in obj:
+            del obj['u'] # if correlation data in unigene
+        else:
+            del obj['cl'] # if correlation data in cluster
         find_all.append(obj)
     return find_all
 
