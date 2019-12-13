@@ -11,6 +11,7 @@ from django.forms.models import model_to_dict
 from .src.mongodb import gmgc_queries
 from .src.neigh import neigh_queries,neigh_start
 from .src.neigh import neigh_mongodb
+from .src.get_tree import tree_queries, tree_mongodb
 
 MONGO_CONFIG = "mongo.cnf"
 
@@ -46,6 +47,8 @@ def cluster(request, cluster_id):
     cluster_data['num_sam'] = cluster_data_raw[3]
     cluster_data['metaG_corr'] = cluster_data_raw[4]
     cluster_data['metaT_corr'] = cluster_data_raw[5]
+
+    cluster_data['tree'] = get_tree(cluster_id)
 
     print("this is cluster data", cluster_data)
 
@@ -154,6 +157,26 @@ def neigh(unigene_id):
     #print("this is neigh data", neigh_data)
     return neigh_data
 
+def get_tree(cluster_id):
+    ## 1. Retrieve parameters
+    if cluster_id != "null":
+        print("cluster ID: " + cluster_id)
+    else:
+        return
 
+    ## 2. init mongo
 
+    # need to obtain full path to open file from django
+    module_dir = os.path.dirname(__file__)  # get current directory
+    MONGO_CONFIG_PATH = os.path.join(module_dir, MONGO_CONFIG)
+    tree_queries.init(MONGO_CONFIG_PATH)
+
+    ## 3. retrieve data
+    MONGO_HOST, MONGO_PORT = tree_queries.load_mongo_config(MONGO_CONFIG_PATH)
+    tree_data = tree_mongodb.tree_run(cluster_id)
+
+    tree_dict = {}
+    tree_dict['nw_path'] = tree_data[0]
+    tree_dict['faa_path'] = tree_data[1]
+    return tree_dict
 ## END

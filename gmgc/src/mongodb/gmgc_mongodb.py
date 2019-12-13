@@ -39,6 +39,8 @@ def gmgcdb_clusters_find_one(query):
         num_sam = gmgc_clusters.num_sam.find_one(query) # in num_sam collection
         metaG_corr = get_meta_corr(gmgc_clusters.metaG_abs_norm.find(query), 'mG_corr',query)
         metaT_corr = get_meta_corr(gmgc_clusters.metaT_abs_norm.find(query), 'mT_corr', query)
+
+        #gmgc_clusters results
         results = [
             members,
             paths,
