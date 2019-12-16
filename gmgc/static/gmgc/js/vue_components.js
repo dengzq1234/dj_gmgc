@@ -384,8 +384,9 @@ var ClusterData = {
         <div id="highlighter"></div>                                                                                                                                                     
 
         <!-- in the new version you could be interested in the get_tree_from_paths function -->
-                                                                                      
-        <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>                                                                                                        
+        <div v-if="cluster_data.tree">                                                                                
+            <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>     
+        </div><div v-else>No tree</div>                                                                                                   
                                                                                                                                                                                
         <!-- ETE PLUGIN -->                                                                                                                                                                                 
         <div class="ete_image" id="img1"></div>          

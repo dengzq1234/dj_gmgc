@@ -176,7 +176,10 @@ def get_tree(cluster_id):
     tree_data = tree_mongodb.tree_run(cluster_id)
 
     tree_dict = {}
-    tree_dict['nw_path'] = tree_data[0]
-    tree_dict['faa_path'] = tree_data[1]
+    if tree_data:
+        tree_dict['nw_path'] = tree_data[0]
+        tree_dict['faa_path'] = tree_data[1]
+    else:
+        return None
     return tree_dict
 ## END

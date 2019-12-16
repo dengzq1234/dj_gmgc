@@ -36,10 +36,11 @@ def tree_run(ID):
                 
                 one_tree = fs_tree.find_one(query)
                 one_alg = fs_alg.find_one(query)
-                
-                tree_result = one_tree.read().decode("utf-8")
-                alignment_result = one_alg.read().decode("utf-8")
-
+                if one_tree and one_alg:
+                        tree_result = one_tree.read().decode("utf-8")
+                        alignment_result = one_alg.read().decode("utf-8")
+                else:
+                        return None
                 # need to obtain full path to open file from django
                 module_dir = os.path.dirname(__file__)  # get current directory
                 TREE_PATH = os.path.join(module_dir, 'tree_log/')
