@@ -1,6 +1,6 @@
 /*  it requires jquery loaded */
-var ete_webplugin_URL = "http://localhost:8989";
-// var ete_webplugin_URL = "http://138.4.138.153:8989";
+// var ete_webplugin_URL = "http://localhost:8989";
+var ete_webplugin_URL = "http://138.4.138.153:8989";
 // var ete_webplugin_URL = "http://eteview.compgenomics.org";
 var loading_img = '<img border=0 src="/static/ete/loader.gif">';
 
@@ -91,7 +91,7 @@ function hide_popup(){
 function highlight_node(treeid, nodeid, faceid, x, y, width, height){
     var img = $('#img_'+treeid);
     var offset = img.offset();
-    
+
     $("#highlighter").show();
     $("#highlighter").css("top", offset.top+y-1);
     $("#highlighter").css("left", offset.left+x-1);

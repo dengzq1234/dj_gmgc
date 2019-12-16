@@ -25,6 +25,9 @@ def tree_run(ID):
         db_alg = None
         if not db_tree or db_alg:
 
+                #db_tree = client.trees
+                #db_alg = client.alignments
+
                 db_tree = client.sample_trees
                 db_alg = client.sample_alignments
 
