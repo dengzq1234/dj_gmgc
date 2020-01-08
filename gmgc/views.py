@@ -177,8 +177,8 @@ def get_tree(cluster_id):
 
     tree_dict = {}
     if tree_data:
-        tree_dict['nw_path'] = tree_data[0]
-        tree_dict['faa_path'] = tree_data[1]
+        tree_dict['nw'] = tree_data[0]
+        tree_dict['faa'] = tree_data[1]
     else:
         return None
     return tree_dict

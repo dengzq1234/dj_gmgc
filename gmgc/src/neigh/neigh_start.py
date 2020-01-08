@@ -78,19 +78,6 @@ def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 				plus2= retrieve_gmgc(gene_list[3],coll_unigenes)
 				gmgc_list = [minus2,minus1,plus1,plus2]
 
-				predicted_neigh = {}
-				predicted_neigh['g'] = query_gene
-				predicted_neigh['p_n'] = [
-					[gene_list[0], minus2],
-					[gene_list[1], minus1],
-					[gene_list[2], plus1],
-					[gene_list[3], plus2]
-				]
-				predicted_neighs.append(predicted_neigh)
-
-				#print gmgc_list
-
-
 				keggs_for_draw = []
 
 				for unigene in gmgc_list: # unigene = cluster de GMGC al que pertenece el unigene
@@ -125,8 +112,20 @@ def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 							parsed_kegg.append(n)
 							unigenes_functions.append(n)
 
-				#print keggs_for_draw		#for neigh visulization
+				predicted_neigh = {}
+				predicted_neigh['g'] = query_gene
 
+				keggs_for_neigh = keggs_for_draw.copy()
+				keggs_for_neigh = ["" if x == 'NA' else x for x in keggs_for_neigh]
+				# 0: orf, 1: gene
+				predicted_neigh['p_n'] = [
+					[gene_list[0], minus2, keggs_for_neigh[0]],
+					[gene_list[1], minus1, keggs_for_neigh[1]],
+					[gene_list[2], plus1, keggs_for_neigh[2]],
+					[gene_list[3], plus2, keggs_for_neigh[3]]
+				]
+				predicted_neighs.append(predicted_neigh)
+				#print keggs_for_draw		#for neigh visulization
 
 ########## with this secetion we retrieve neigh_orf_with_keggs, ###################
 				keggs_for_draw_list.append(keggs_for_draw)

@@ -112,7 +112,7 @@ var ClusterData = {
 
             // let treepath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
             // let msapath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
-            get_tree_image(cluster_data.tree.nw_path, cluster_data.tree.faa_path, "0", "#img1");
+            get_tree_image(cluster_data.tree.nw, cluster_data.tree.faa, "0", "#img1");
         },
     },
     filters: {
@@ -677,11 +677,21 @@ var UnigeneData = {
                 </tr>
                 <li v-for="object in unigene.neigh_data.predict_neighs">
                     <tr style="border-bottom: 1px solid #ccc;">
-                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[0][1]+ '/#eggnog'">{{object.p_n[0][1]}}</a></td>
-                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[1][1]+ '/#eggnog'">{{object.p_n[1][1]}}</a></td>
+                        <td width="200px" >
+                            <a v-bind:href="'/gmgc/unigene/'+ object.p_n[0][1]+ '/#eggnog'">{{object.p_n[0][1]}}</a><li v-for="kegg in object.p_n[0][2]" id="pic_list">{{kegg}}</li>
+                        </td>
+                        <td width="200px" >
+                            <a v-bind:href="'/gmgc/unigene/'+ object.p_n[1][1]+ '/#eggnog'">{{object.p_n[1][1]}}</a><li v-for="kegg in object.p_n[1][2]" >{{kegg}}</li>
+                        </td>
+                        
                         <td width="200px" >{{unigene.clusters.u}}</td>
-                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[2][1]+ '/#eggnog'">{{object.p_n[2][1]}}</a></td>
-                        <td width="200px" ><a v-bind:href="'/gmgc/unigene/'+ object.p_n[3][1]+ '/#eggnog'">{{object.p_n[3][1]}}</a></td>
+                        
+                        <td width="200px" >
+                            <a v-bind:href="'/gmgc/unigene/'+ object.p_n[2][1]+ '/#eggnog'">{{object.p_n[2][1]}}</a><ul v-for="kegg in object.p_n[2][2]"><li>{{kegg}}</li></ul>
+                        </td>
+                        <td width="200px" >
+                            <a v-bind:href="'/gmgc/unigene/'+ object.p_n[3][1]+ '/#eggnog'">{{object.p_n[3][1]}}</a><li v-for="kegg in object.p_n[3][2]" >{{kegg}}</li>
+                        </td>
                     </tr>
                 </li>
             </div>
@@ -690,7 +700,6 @@ var UnigeneData = {
             </table>
         </div><div v-else><font color="blue">No Neighbour Gene Match</font></div>
 
-        
         <a name="orf"></a>
         <div  v-if="unigene.neighbour">
 

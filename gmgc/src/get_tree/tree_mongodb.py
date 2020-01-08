@@ -25,34 +25,36 @@ def tree_run(ID):
         db_alg = None
         if not db_tree or db_alg:
 
-                #db_tree = client.trees
-                #db_alg = client.alignments
+                db_tree = client.trees
+                db_alg = client.alignments
 
-                db_tree = client.sample_trees
-                db_alg = client.sample_alignments
+                #db_tree = client.sample_trees
+                #db_alg = client.sample_alignments
 
                 fs_tree = gridfs.GridFS(db_tree)
                 fs_alg = gridfs.GridFS(db_alg)
                 
                 one_tree = fs_tree.find_one(query)
                 one_alg = fs_alg.find_one(query)
+                
                 if one_tree and one_alg:
                         tree_result = one_tree.read().decode("utf-8")
                         alignment_result = one_alg.read().decode("utf-8")
                 else:
                         return None
+
                 # need to obtain full path to open file from django
-                module_dir = os.path.dirname(__file__)  # get current directory
-                TREE_PATH = os.path.join(module_dir, 'tree_log/')
+                #module_dir = os.path.dirname(__file__)  # get current directory
+                #TREE_PATH = os.path.join(module_dir, 'tree_log/')
 
-                f = open(TREE_PATH + '{}.nw'.format(ID), 'w')
-                f.write(tree_result)
-                f.close()
-                tree_path = os.path.realpath(f.name)
+                #f = open(TREE_PATH + '{}.nw'.format(ID), 'w')
+                #f.write(tree_result)
+                #f.close()
+                #tree_path = os.path.realpath(f.name)
 
-                f = open(TREE_PATH + '{}.faa'.format(ID),'w')
-                f.write(alignment_result)
-                f.close()
-                faa_path = os.path.realpath(f.name)
+                #f = open(TREE_PATH + '{}.faa'.format(ID),'w')
+                #f.write(alignment_result)
+                #f.close()
+                #faa_path = os.path.realpath(f.name)
 
-        return [tree_path, faa_path]
+        return [tree_result, alignment_result]
