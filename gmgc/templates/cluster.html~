@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<cluster-form csrf="{{ csrf_token }}"></cluster-form>
+{% endblock %}
+
+{% block variables %}
+<!-- Variables for Vue components -->
+<script>
+  <!-- var jobslist = {{ jobslist| safe }}; -->
+  <!-- var csrf_token = '{{ csrf_token }}'; -->
+</script>
+{% endblock %}

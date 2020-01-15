@@ -43,7 +43,8 @@ def tree_run(ID):
                 else:
                         return None
 
-                # need to obtain full path to open file from django
+                # need to obtain full path to open file
+
                 #module_dir = os.path.dirname(__file__)  # get current directory
                 #TREE_PATH = os.path.join(module_dir, 'tree_log/')
 

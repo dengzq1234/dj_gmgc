@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% include "gmgc/head.html" %}
+
+<body>
+  <!-- Begin::Vue App -->  
+  <!-- <div id="emapper_app">   -->
+    {% block content %}
+    {% endblock %}
+  <!-- </div> -->
+  <!-- End::Vue App -->
+</body>
+
+{% block variables %}
+{% endblock %}
+
+<!-- <script type="module" src="/static/server_status.js"></script> -->
+<!-- <script type="module" src="/static/eggnog_mapper.js"></script> -->
+
+</html>

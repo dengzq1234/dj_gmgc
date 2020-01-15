@@ -107,9 +107,6 @@ var ClusterData = {
     props: ['csrf'],
     methods: {
         get_tree_image(){
-            // "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw" tree
-            // "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa" alg
-
             // let treepath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
             // let msapath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
             get_tree_image(cluster_data.tree.nw, cluster_data.tree.faa, "0", "#img1");
