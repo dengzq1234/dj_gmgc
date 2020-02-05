@@ -82,6 +82,8 @@ def gmgcdb_unigenes_find_one(query):
         metaG_corr = get_meta_corr(gmgc_unigenes.metaG_abs_norm.find(query), 'mG_corr',query)
         metaT_corr = get_meta_corr(gmgc_unigenes.metaT_abs_norm.find(query), 'mT_corr',query)
 
+        nt_seqs = gmgc_unigenes.nt_seqs.find_one(query)
+        
         # change file type of single result of gene_mgs to list
         if gene_mgs is not None:
             mgs = gene_mgs['mgs']
@@ -105,7 +107,8 @@ def gmgcdb_unigenes_find_one(query):
             gene_mgs,
             antipfam,
             metaG_corr,
-            metaT_corr
+            metaT_corr,
+            nt_seqs
         ]
 
         return results
