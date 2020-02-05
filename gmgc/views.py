@@ -45,8 +45,10 @@ def cluster(request, cluster_id):
     cluster_data['paths'] = cluster_data_raw[1]
     cluster_data['suffixes'] = cluster_data_raw[2]
     cluster_data['num_sam'] = cluster_data_raw[3]
+
     #cluster_data['metaG_corr'] = cluster_data_raw[4]
     #cluster_data['metaT_corr'] = cluster_data_raw[5]
+
     cluster_data['metaG_corr_p'] = cluster_data_raw[6]
     cluster_data['metaG_corr_s'] = cluster_data_raw[7]
     cluster_data['metaT_corr_p'] = cluster_data_raw[8]
@@ -54,7 +56,7 @@ def cluster(request, cluster_id):
 
     cluster_data['tree'] = get_tree(cluster_id)
 
-    print("this is cluster data", cluster_data)
+    print("this is cluster data", cluster_data['metaG_corr_p'])
 
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
@@ -102,7 +104,7 @@ def unigene(request, unigene_id):
     unigene_data['neigh_data']  = neigh(unigene_id)
 
 
-    print("this is unigene data", unigene_data['nt_seqs'])
+    print("this is unigene data", unigene_data)
     return render(request, "unigene.html", {"unigene_data":json.dumps(unigene_data)})
 
 def mgs_gene(request, mgs_id):
