@@ -39,7 +39,10 @@ def gmgcdb_clusters_find_one(query):
         num_sam = gmgc_clusters.num_sam.find_one(query) # in num_sam collection
         metaG_corr = get_meta_corr(gmgc_clusters.metaG_abs_norm.find(query), 'mG_corr',query)
         metaT_corr = get_meta_corr(gmgc_clusters.metaT_abs_norm.find(query), 'mT_corr', query)
-
+        metaG_corr_p = get_meta_corr(gmgc_clusters.metaG_corr_pearson.find(query), 'mG_corr_pearson', query)
+        metaG_corr_s = get_meta_corr(gmgc_clusters.metaG_corr_spearman.find(query), 'mG_corr_spearman', query)
+        metaT_corr_p = get_meta_corr(gmgc_clusters.metaT_corr_pearson.find(query), 'mT_corr_pearson', query)
+        metaT_corr_s = get_meta_corr(gmgc_clusters.metaT_corr_spearman.find(query), 'mT_corr_spearman', query)
         #gmgc_clusters results
         results = [
             members,
@@ -47,7 +50,11 @@ def gmgcdb_clusters_find_one(query):
             suffixes,
             num_sam,
             metaG_corr,
-            metaT_corr
+            metaT_corr,
+            metaG_corr_p,
+            metaG_corr_s,
+            metaT_corr_p,
+            metaT_corr_s
         ]
 
         return results

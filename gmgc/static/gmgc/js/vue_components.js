@@ -197,9 +197,9 @@ var ClusterData = {
     
     <div class="annoBlock col">
     <h3><a name="cluster_correlations">Cluster Correlations</a></h3>
-        <div  v-if="cluster_data.metaG_corr.mG_corr">
+        <div  v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
               <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Correlations</font></th></tr>
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Pearson Correlations</font></th></tr>
               <div>
                 <tr style="border-bottom: 1px solid #ccc;">
                 
@@ -231,7 +231,7 @@ var ClusterData = {
 
                     
                 </tr>
-                <li v-for="object in cluster_data.metaG_corr.mG_corr">
+                <li v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
                 <font face="Arial">
                 <tr style="border-bottom: 1px solid #ccc;">
                     <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
@@ -265,12 +265,11 @@ var ClusterData = {
                </div>
               </table>
         </div>            
-        <div v-else>No MetaG correlations data</div>
-        
+        <div v-else>No MetaG Pearson Correlations data</div>
 
-        <div  v-if="cluster_data.metaT_corr.mT_corr">
+        <div  v-if="cluster_data.metaG_corr_s.mG_corr_spearman">
               <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Correlations</font></th></tr>
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Spearman Correlations</font></th></tr>
               <div>
                 <tr style="border-bottom: 1px solid #ccc;">
                 
@@ -302,7 +301,77 @@ var ClusterData = {
 
                     
                 </tr>
-                <li v-for="object in cluster_data.metaT_corr.mT_corr">
+                <li v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
+                    <td   width="225px" >{{ object.num_c }} </td>
+                    <td   width="225px" >{{ object.mndp }} </td>
+                    
+                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scm |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scme |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+
+                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                    
+                </tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaG Spearman Correlations data</div>
+
+        <div  v-if="cluster_data.metaT_corr_p.mT_corr_pearson">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Pearson Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;">
+                
+                    <th width="150px" height="35px" nowrap>Condition</th>
+                    <th width="150px">num_c</th>
+                    <th width="150px">mndp</th>
+                    
+
+                    <th  width="200px">pcm</th>
+                    <th  width="200px">ppvm</th>
+                    
+                    <th  width="200px">scm</th>
+                    <th  width="200px">spvm</th>
+                    
+                    <th  width="200px">pcme</th>
+                    <th  width="200px">ppvme</th>
+                    
+                    <th  width="200px">scme</th>
+                    <th  width="200px">spvme</th>
+
+                    <th  width="200px">pcmax</th>
+                    <th  width="200px">scmax</th>
+                    
+                    <th  width="200px">pcmin</th>
+                    <th  width="200px">scmin</th>
+                    
+                    <th  width="200px">pcstd</th>
+                    <th  width="200px">scstd</th>
+
+                    
+                </tr>
+                <li v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
                 <font face="Arial">
                 <tr style="border-bottom: 1px solid #ccc;">
                     <td width="225px" height="35px" class="block">{{ object.cond }}</td>
@@ -336,8 +405,77 @@ var ClusterData = {
                </div>
               </table>
         </div>            
-        <div v-else>No MetaT correlations data</div>
+        <div v-else>No MetaT Pearson correlations data</div>
 
+        <div  v-if="cluster_data.metaT_corr_s.mT_corr_spearman">
+              <table width="1250" style="border: 1px solid #ccc">
+              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Spearman Correlations</font></th></tr>
+              <div>
+                <tr style="border-bottom: 1px solid #ccc;">
+                
+                    <th width="150px" height="35px" nowrap>Condition</th>
+                    <th width="150px">num_c</th>
+                    <th width="150px">mndp</th>
+                    
+
+                    <th  width="200px">pcm</th>
+                    <th  width="200px">ppvm</th>
+                    
+                    <th  width="200px">scm</th>
+                    <th  width="200px">spvm</th>
+                    
+                    <th  width="200px">pcme</th>
+                    <th  width="200px">ppvme</th>
+                    
+                    <th  width="200px">scme</th>
+                    <th  width="200px">spvme</th>
+
+                    <th  width="200px">pcmax</th>
+                    <th  width="200px">scmax</th>
+                    
+                    <th  width="200px">pcmin</th>
+                    <th  width="200px">scmin</th>
+                    
+                    <th  width="200px">pcstd</th>
+                    <th  width="200px">scstd</th>
+
+                    
+                </tr>
+                <li v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;">
+                    <td width="225px" height="35px" class="block">{{ object.cond }}</td>
+                    <td   width="225px" >{{ object.num_c }} </td>
+                    <td   width="225px" >{{ object.mndp }} </td>
+                    
+                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scm |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.scme |numFilter}}</td>
+                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+
+                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                    
+                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                    
+                </tr>
+                </font>
+                </li>
+               </div>
+              </table>
+        </div>            
+        <div v-else>No MetaT Spearman correlations data</div>
     </div>
     
     

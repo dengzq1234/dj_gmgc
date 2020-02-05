@@ -47,10 +47,14 @@ def cluster(request, cluster_id):
     cluster_data['num_sam'] = cluster_data_raw[3]
     cluster_data['metaG_corr'] = cluster_data_raw[4]
     cluster_data['metaT_corr'] = cluster_data_raw[5]
+    cluster_data['metaG_corr_p'] = cluster_data_raw[6]
+    cluster_data['metaG_corr_s'] = cluster_data_raw[7]
+    cluster_data['metaT_corr_p'] = cluster_data_raw[8]
+    cluster_data['metaT_corr_s'] = cluster_data_raw[9]
 
     cluster_data['tree'] = get_tree(cluster_id)
 
-    print("this is cluster data", cluster_data)
+    print("this is cluster data", cluster_data['metaG_corr_p'])
 
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
