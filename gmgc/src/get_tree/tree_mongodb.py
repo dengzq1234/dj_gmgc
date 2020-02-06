@@ -3,6 +3,7 @@
 import os, sys
 from pymongo import MongoClient
 import gridfs
+import random
 
 ### globals
 client = None
@@ -44,18 +45,21 @@ def tree_run(ID):
                         return None
 
                 # need to obtain full path to open file
-
-                #module_dir = os.path.dirname(__file__)  # get current directory
-                #TREE_PATH = os.path.join(module_dir, 'tree_log/')
-
+                
+                module_dir = os.path.dirname(os.path.dirname(__file__))  # get current directory
+                TREE_PATH = os.path.join(module_dir, 'tmp/')
+                
+                treeID = random.randint(0,20) #give a ID to tmp files
                 #f = open(TREE_PATH + '{}.nw'.format(ID), 'w')
-                #f.write(tree_result)
-                #f.close()
-                #tree_path = os.path.realpath(f.name)
-
+                f = open(TREE_PATH + 'cluster_{}.nw'.format(treeID), 'w')
+                f.write(tree_result)
+                f.close()
+                tree_path = os.path.realpath(f.name)
+                
                 #f = open(TREE_PATH + '{}.faa'.format(ID),'w')
-                #f.write(alignment_result)
-                #f.close()
-                #faa_path = os.path.realpath(f.name)
+                f = open(TREE_PATH + 'cluster_{}.faa'.format(treeID), 'w')
+                f.write(alignment_result)
+                f.close()
+                faa_path = os.path.realpath(f.name)
 
-        return [tree_result, alignment_result]
+        return [tree_result, alignment_result, tree_path, faa_path]

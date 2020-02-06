@@ -107,9 +107,11 @@ var ClusterData = {
     props: ['csrf'],
     methods: {
         get_tree_image(){
-            // let treepath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
-            // let msapath = "/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
-            get_tree_image(cluster_data.tree.nw, cluster_data.tree.faa, "0", "#img1");
+            // let treepath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
+            // let msapath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
+            // get_tree_image(treepath, msapath, "0", "#img1");
+
+            get_tree_image(cluster_data.tree.nw, cluster_data.tree.faa_path, "1", "#img1"); // load from path
         },
     },
     filters: {
@@ -772,7 +774,22 @@ var UnigeneData = {
           </table>
         </div><div v-else><font color="blue">No Pfam hit</font></div>
         
-        
+        <!-- Issues-->
+        <a name="smart"></a>
+        <div v-if="unigene.smart">
+          <table width="1250" style="border: 1px solid #ccc">
+          <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">SMART annotation</font></th></tr>
+          <div>
+                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">E-value</th><th class="block">Hit score</th></tr>
+                <li v-for="object in unigene.smart.sm">
+                <font face="Arial">
+                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block" >{{ object.ev }}</td><td class="block">{{ object.sc }}</td></tr>
+                </font>
+                </li>
+          </div>
+          </table>
+        </div><div v-else><font color="blue">No SMART hit</font></div>
+
         <a name="neigh"></a>
         <div v-if="unigene.neigh_data">
           <table width="1250" style="border: 1px solid #ccc">

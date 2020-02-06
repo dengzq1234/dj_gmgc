@@ -67,6 +67,7 @@ def gmgcdb_unigenes_find_one(query):
 
         clusters = gmgc_unigenes.clusters.find_one(query)
         sequences = gmgc_unigenes.sequences.find_one(query)
+        
         suffixes = gmgc_unigenes.suffixes.find_one(query)
         emapper_v2 = gmgc_unigenes.emapper_v2.find_one(query)
         pfam = gmgc_unigenes.pfam.find_one(query)
@@ -83,7 +84,10 @@ def gmgcdb_unigenes_find_one(query):
         metaT_corr = get_meta_corr(gmgc_unigenes.metaT_abs_norm.find(query), 'mT_corr',query)
 
         nt_seqs = gmgc_unigenes.nt_seqs.find_one(query)
-        
+
+        smart = gmgc_unigenes.smart.find_one(query)
+        intrinsic = gmgc_unigenes.intrinsic.find_one(query)
+
         # change file type of single result of gene_mgs to list
         if gene_mgs is not None:
             mgs = gene_mgs['mgs']
@@ -108,7 +112,9 @@ def gmgcdb_unigenes_find_one(query):
             antipfam,
             metaG_corr,
             metaT_corr,
-            nt_seqs
+            nt_seqs,
+            smart,
+            intrinsic
         ]
 
         return results

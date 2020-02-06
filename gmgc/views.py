@@ -56,7 +56,7 @@ def cluster(request, cluster_id):
 
     cluster_data['tree'] = get_tree(cluster_id)
 
-    print("this is cluster data", cluster_data['metaG_corr_p'])
+    print("this is cluster data", cluster_data)
 
     return render(request, "cluster.html", {"cluster_data":json.dumps(cluster_data)})
 
@@ -93,7 +93,9 @@ def unigene(request, unigene_id):
         "antipfam",
         'metaG_corr',
         'metaT_corr',
-        'nt_seqs'
+        'nt_seqs',
+        'smart',
+        'intrinsic'
     ]
     unigene_data_raw = gmgc_queries.get_unigene_data(unigene_id)
 
@@ -186,6 +188,8 @@ def get_tree(cluster_id):
     if tree_data:
         tree_dict['nw'] = tree_data[0]
         tree_dict['faa'] = tree_data[1]
+        tree_dict['nw_path'] = tree_data[2]
+        tree_dict['faa_path'] = tree_data[3]
     else:
         return None
     return tree_dict
