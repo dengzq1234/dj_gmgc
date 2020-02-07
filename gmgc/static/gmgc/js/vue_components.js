@@ -110,7 +110,7 @@ var ClusterData = {
             // let treepath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.nw";
             // let msapath = "/home/deng/Projects/ete_webplugin_py3/webplugin/test_data/6055.c100000_g1_i1_m.21185.faa";
             // get_tree_image(treepath, msapath, "0", "#img1");
-            get_tree_image(cluster_data.tree.nw, cluster_data.tree.faa_path, "1", "#img1"); // load from path
+            get_tree_image(cluster_data.tree.nw_path, cluster_data.tree.faa_path, "1", "#img1"); // load from path
         },
     },
     filters: {
@@ -562,7 +562,9 @@ var UnigeneData = {
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else>No</td></tr>
+        <a name="na sequence"></a>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Nucleic acid Sequence</th><td v-if="unigene.nt_seqs"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.nt_seqs.nt_sq }}</font></div></td><td v-else>No item</td></tr>
+        <a name="aa sequence"></a>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Amino acid Sequence</th><td v-if="unigene.sequences"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}</font></div></td><td v-else>No item</td></tr>
         </font>
         </table>
