@@ -5,13 +5,13 @@ import os, sys
 import json
 
 from . import gmgc_mongodb
-        
+from django.conf import settings
+
 #
 def init(config_fn):
         # DB connection                                                                                                                                                                                    
 
         MONGO_HOST, MONGO_PORT = load_mongo_config(config_fn)
-
         sys.stderr.write("gmgc_queries: connecting to db...\n")
 
         gmgc_mongodb.connectdb(MONGO_HOST, MONGO_PORT)
