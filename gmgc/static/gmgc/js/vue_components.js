@@ -133,7 +133,6 @@ var ClusterData = {
     
     <div class="annoBlock col">
         <h3><a name="basic">Basic information</a></h3>
-        
         <table width="1250" style="border: 1px solid #ccc">
 
         <font face="Arial">
@@ -533,12 +532,31 @@ var ClusterData = {
   
 `}
 
+
 var UnigeneData = {
 
     data: function(){
 	return {
-	    unigene:unigene_data,
+      unigene:unigene_data,
+      AAisHidden: true,
+      NAisHidden: true
 	}
+    },
+    methods:{
+      CopyToClipboard: function(containerid){
+        if (document.selection) { 
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select().createTextRange();
+            document.execCommand("copy"); 
+        
+        } else if (window.getSelection) {
+            var range = document.createRange();
+             range.selectNode(document.getElementById(containerid));
+             window.getSelection().addRange(range);
+             document.execCommand("copy");
+             alert("sequence copied") 
+        }}
     },
     filters: {
         numFilter (value) {
@@ -555,17 +573,58 @@ var UnigeneData = {
     </div>
     <div class="annoBlock col">
     <h3><a name="basic">Basic information</a></h3>
-        
+    
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
         <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else>No</td></tr>
-        <a name="na sequence"></a>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Nucleic acid Sequence</th><td v-if="unigene.nt_seqs"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.nt_seqs.nt_sq }}</font></div></td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else class="block">No</td></tr>
+        
         <a name="aa sequence"></a>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Amino acid Sequence</th><td v-if="unigene.sequences"><div style='width: 1000px; word-wrap:break-word;'><font face="monospace" size="3">>GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}</font></div></td><td v-else>No item</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;">
+        <th width="225px" height="30px" nowrap>
+          Protein Sequence <br> 
+          <div v-if="AAisHidden"><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Display sequence</my-button></div>
+          <div v-else><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Hide sequence</my-button></div>
+        </th>
+        
+        <td v-if="unigene.sequences" width="1000px" height="30px">
+          <div v-show='AAisHidden'>
+            GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}
+          </div>
+          <div v-if="!AAisHidden" style='width: 100%; word-break: break-all;'>
+            <my-button style="float:right;" @click="CopyToClipboard('aa')">Copy sequence</my-button><br>
+            <font face="monospace" size="3" id='aa'>
+            >GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}
+            </font>
+          </div>
+        </td>
+        <td v-else>No item</td>
+        </tr>
+
+        <a name="na sequence"></a>
+        <tr style="border-bottom: 1px solid #ccc;">
+        <th width="225px" height="30px" nowrap>
+          Nucleic acid Sequence <br>
+          <div v-if="NAisHidden"><my-button style='float:left;' v-on:click="NAisHidden = !NAisHidden">Display sequence</my-button></div> 
+          <div v-else><my-button style="float:left;" v-on:click="NAisHidden = !NAisHidden">Hide sequence</my-button></div> 
+        </th>  
+          <td v-if="unigene.nt_seqs" width="1000px" height="30px">
+              <div v-show='NAisHidden'>
+                GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}
+              </div>
+
+              <div v-if="!NAisHidden" style='width: 100%; word-break: break-all;'>
+                <my-button style="float:right;" @click="CopyToClipboard('na')">Copy sequence</my-button><br>
+                <font face="monospace" size="3" id='na'>
+                  >GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.nt_seqs.nt_sq }}
+                </font>
+              </div> 
+          </td>
+          <td v-else>No item</td>
+        </tr>
+
         </font>
         </table>
     </div>
@@ -853,7 +912,6 @@ var UnigeneData = {
                         </td>
                         
                         <td width="200px" >{{unigene.clusters.u}}</td>
-                        
                         <td width="200px" >
                             <a v-bind:href="'/gmgc/unigene/'+ object.p_n[2][1]+ '/#eggnog'">{{object.p_n[2][1]}}</a><ul v-for="kegg in object.p_n[2][2]"><li>{{kegg}}</li></ul>
                         </td>
@@ -864,7 +922,6 @@ var UnigeneData = {
                 </li>
             </div>
             </font>
-            
             </table>
         </div><div v-else><font color="blue">No Neighbour Gene Match</font></div>
 
@@ -923,8 +980,8 @@ var app = new Vue({
     components: {
         "cluster-form":ClusterForm,
         "unigene-form":UnigeneForm,
-	"cluster-data":ClusterData,
-	"unigene-data":UnigeneData,
+	      "cluster-data":ClusterData,
+	      "unigene-data":UnigeneData,
         "mgs-data":MgsData,
     },
     data: {

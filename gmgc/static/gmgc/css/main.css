@@ -101,10 +101,29 @@ ul, li {
     content: " | ";
 }
 
-<style>
-        table,table tr th, table tr td {border: 1px solid #151515; padding: 15px; border-top: 1px solid #ddd;}
-        gene_table table{border: 1px solid #151515;}
-</style>
+/*--------------------------------------------
+[ table ]*/
+
+table {
+  overflow: hidden;
+  display: inline-block;
+  border-collapse: collapse; // Prevent double borders
+  width:100%;
+}
+
+tr:hover {
+  background-color: lightgrey;
+}
+
+th {
+  text-align: inherit;
+}
+
+td, th, tr{
+  position: relative;
+  padding-left: 10px;
+}
+
 
 /*---------------------------------------------*/
 input {
@@ -153,6 +172,21 @@ button:hover {
 	cursor: pointer;
 }
 
+my-button {
+  padding: 5px 15px;
+  border: 1px solid #ddd;
+  color: #333;
+  background-color:#fff;
+  border-radius: 4px;
+  font-size: 10px;
+  font-family: '微软雅黑',arail;
+  cursor: pointer;
+  position: relative;
+  &[disabled]{
+    cursor: not-allowed;
+  }
+}
+
 iframe {
 	border: none !important;
 }
@@ -192,7 +226,33 @@ iframe {
 .sidenav a:hover {
   color: blue;
 }
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  left: 0;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
 
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
 [ Contact ]*/
 
 .container-contact100 {
@@ -438,9 +498,16 @@ textarea.input100 {
   opacity: 1;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   .alert-validate::before {
     visibility: visible;
     opacity: 1;
   }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
 }
