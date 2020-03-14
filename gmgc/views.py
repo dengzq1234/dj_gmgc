@@ -16,6 +16,12 @@ from .src.get_tree import tree_queries, tree_mongodb
 MONGO_CONFIG = "mongo.cnf"
 
 # Create your views here.
+# def eggnog(request):
+#     return render(request, "eggnog_index.html", {})
+
+def metronic(request):
+    return render(request, "metronic_template.html", {})
+
 def index(request):
     return render(request, "index.html", {})
 
