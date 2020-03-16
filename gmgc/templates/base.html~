@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include "gmgc/head.html" %}
-
+{% include "head.html" %}
 <body>
-  <!-- Begin::Vue App -->  
-  <!-- <div id="emapper_app">   -->
+  <!-- Begin::Vue App -->
+  <div id="gmgcVueApp" class="container h-100">
     {% block content %}
     {% endblock %}
-  <!-- </div> -->
+  </div>
   <!-- End::Vue App -->
+
 </body>
 
 {% block variables %}
 {% endblock %}
+<!-- Target -->
 
-<!-- <script type="module" src="/static/server_status.js"></script> -->
-<!-- <script type="module" src="/static/eggnog_mapper.js"></script> -->
+<!-- <script type="module" src="/static/cluster_form.js"></script> -->
+<script type="module" src="/static/gmgc/js/vue_components.js"></script>
 
 </html>

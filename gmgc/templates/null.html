@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-{% include "head.html" %}
+{% block content %}
 
-<body>
+{% endblock %}
+
+{% block variables %}
+<!-- Variables for Vue components -->
+<div class='col errorBox'>Please provide a cluster or unigene identifier</div>
 <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="psw">Back <a href="/gmgc/cluster" class="psw">Home</a></button>
+  <button type="button" class="psw">Back <a href="/gmgc/" class="psw">Home</a></button>
 </div>
-<div class='container'><div class='col errorBox'>Please provide a cluster or unigene identifier</div></div>
-<div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="psw">Back <a href="/gmgc/" class="psw">Home</a></button>
-</div>
-  <div class="loading-modal"></div>
-</body></html>
+<div class="loading-modal"></div>
+{% endblock %}
