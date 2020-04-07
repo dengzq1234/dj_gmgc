@@ -511,10 +511,12 @@ var ClusterData = {
         <!-- Server status -->                                                                                                                                                                              
         <h3><a name="tree">Tree visualization</a></h3>
         
+        <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
+        <div id='server_status'></div> 
+        
         <!-- this will be the popup window with actions when the user clicks in the tree -->
         <div id="popup"></div>                                                       
-        <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
-        <div id='server_status'></div>                                             
+                                                    
         <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
         <div id="highlighter"></div>                                                                                                                                                     
 

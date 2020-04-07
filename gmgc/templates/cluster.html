@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container" style="background-color:#f1f1f1">
+<!--
+<div class="container" style="background-color:#f1f1f1"> 
     <button type="button" class="psw">Back <a href="/gmgc/cluster" class="psw">Home</a></button>
 </div>
+-->
+<div class="m-portlet">
 <div class="sidebar">
     <a href="#basic">Basic information</a>
     <a href="#num_sam">Cluster source</a>
@@ -11,10 +14,13 @@
     <a href="#tree">Tree visualization</a>
 </div>
 
+<div>
 <cluster-data></cluster-data>
+</div>
 
 <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="psw">Back <a href="/gmgc/cluster" class="psw">Home</a></button>
+</div>
 </div>
 {% endblock %}
 
