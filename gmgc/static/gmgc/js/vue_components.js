@@ -41,25 +41,48 @@ var ClusterForm = {
     },
     props: ['csrf'],
     template:`
-  <div class="row h-100 justify-content-center align-items-center">
-    <form class="col-5 card" :action='clusterAction' method='post'>
-      <input type="hidden" name="csrfmiddlewaretoken" v-bind:value="csrf">
-      <div class="card-header">
-	<h5>Enter a GMGC cluster identifier (FORM A)</h5>
+    <div class="row">
+      <div class="col-xl-6">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <h3>
+                        Search GMGC Cluster catalog
+                    </h3>
+
+                </div>
+            </div>
+          </div>
+          <form class="m-form" :action='clusterAction' method='post'>
+            <input type="hidden" name="csrfmiddlewaretoken" v-bind:value="csrf">
+            <div class="m-portlet__body">
+              <div class="m-form__section m-form__section--first">
+                <div class="form-group m-form__group">
+                  <label>Enter a GMGC identifier</label>
+                  <div class="form-group">
+                    <input v-model="cluster_id" class="form-control" id="cluster_id" name="cluster_id" placeholder="Cluster ID (xxx_xxx_xxx)"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="m-portlet__foot m-portlet__foot--fit">
+              <div class="m-form__actions m-form__actions">
+                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="reset" class="btn btn-secondary">Cancel</button>
+              </div>
+            </div>
+        
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="card-body">
-	
-	<div class="form-group">
-	  <input v-model="cluster_id" class="form-control" id="cluster_id" name="cluster_id" placeholder="Cluster ID (xxx_xxx_xxx)"/>
-	</div>
-	
-	<div class="text-center">
-	  <button type="submit" class="btn btn-primary">Send</button>
-	</div>
-	
-      </div>
-    </form>
-  </div>
+    </div>
   
 `}
 
@@ -76,23 +99,47 @@ var UnigeneForm = {
     },
     props: ['csrf'],
     template:`
-  <div class="row h-100 justify-content-center align-items-center">
-    <form class="col-5 card" :action='unigeneAction' method='post'>
-      <input type="hidden" name="csrfmiddlewaretoken" v-bind:value="csrf">
-      <div class="card-header">
-	<h5>Enter a GMGC unigene identifier (FORM B)</h5>
+    <div class="row">
+    <div class="col-xl-6">
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+
+                  <span class="m-portlet__head-icon m--hide">
+                      <i class="la la-gear"></i>
+                  </span>
+                  <h3>
+                      Search GMGC Unigene catalog
+                  </h3>
+
+              </div>
+          </div>
+        </div>
+        <form class="m-form" :action='unigeneAction' method='post'>
+          <input type="hidden" name="csrfmiddlewaretoken" v-bind:value="csrf">
+          <div class="m-portlet__body">
+            <div class="m-form__section m-form__section--first">
+              <div class="form-group m-form__group">
+                <label>Enter a GMGC identifier</label>
+                <div class="form-group">
+                <input v-model="unigene_id" class="form-control" id="unigene_id" name="unigene_id" placeholder="Unigene ID (xxx_xxx_xxx)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="m-portlet__foot m-portlet__foot--fit">
+            <div class="m-form__actions m-form__actions">
+              <button type="submit" class="btn btn-primary">Send</button>
+              <button type="reset" class="btn btn-secondary">Cancel</button>
+            </div>
+          </div>
+      
+          </div>
+        </form>
       </div>
-      <div class="card-body">
-	
-	<div class="form-group">
-	  <input v-model="unigene_id" class="form-control" id="unigene_id" name="unigene_id" placeholder="Unigene ID (xxx_xxx_xxx)"/>
-	</div>
-	<div class="text-center">
-	  <button type="submit" class="btn btn-primary">Send</button>
-	</div>
-	
-      </div>
-    </form>
+    </div>
   </div>
 `}
 
@@ -125,12 +172,23 @@ var ClusterData = {
           }
         },
     template:`
-
   <div>
-    <div id='main' class="container">
-        <h2>Cluster data</h2>
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+
+                <span class="m-portlet__head-icon m--hide">
+                    <i class="la la-gear"></i>
+                </span>
+                <h2>
+                    GMGC Cluster Data
+                </h2>
+
+            </div>
+        </div>
     </div>
     
+    <div class="m-portlet__body">
     <div class="annoBlock col">
         <h3><a name="basic">Basic information</a></h3>
         <table width="1250" style="border: 1px solid #ccc">
@@ -529,10 +587,10 @@ var ClusterData = {
         <div class="ete_image" id="img1"></div>          
                                                                                                                             
     </div>
-
+    </div>
   </div>
-  
-`}
+  `
+}
 
 
 var UnigeneData = {
