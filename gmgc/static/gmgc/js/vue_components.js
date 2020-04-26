@@ -147,8 +147,9 @@ var ClusterData = {
 
     data: function(){
 	return {
-	    cluster_data:cluster_data,
-        cluster_features
+      cluster_data:cluster_data,
+      MembersisHidden:true,
+      cluster_features
 	}
     },
     props: ['csrf'],
@@ -172,59 +173,58 @@ var ClusterData = {
           }
         },
     template:`
-  <div class="row">
-    <div class="m-portlet">
-      <div class="m-portlet__head">
-          <div class="m-portlet__head-caption">
-              <div class="m-portlet__head-title">
-                  <span class="m-portlet__head-icon m--hide">
-                      <i class="la la-gear"></i>
-                  </span>
-                  
-                  <h3>
-                      GMGC Cluster Data
-                  </h3>
 
-              </div>
-          </div>
-      </div>
-      
-      <div class="m-portlet__body">
+    <div class="row">
       <div class="annoBlock col">
-          <h3><a name="basic">Basic information</a></h3>
-          <table width="1250" style="border: 1px solid #ccc">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                          <i class="la la-gear"></i>
+                      </span>
+                      
+                      <h3>
+                          Basic information
+                      </h3>
 
-          <font face="Arial">
-          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
-          </font>
-          
-          <div>
-              <tr style="border-bottom: 1px solid #ccc;">
-                  <font face="Arial">
-                  <th width="225px" height="30px" nowrap>Members</th>
-                  <td v-if="cluster_data.members">
-                          {{cluster_data.members.nu}} Members
-                  </td><td v-else>No item</td>
-                  </font>
-                </tr>
-
-                <div v-if="cluster_data.members">
-                  <div v-if="cluster_data.members.clm">
-                      <li v-for="member in cluster_data.members.clm">
-                          <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
-                      </li>
                   </div>
-                  <div v-else>
-                      <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
-                  </div>
-                <tr v-else><th class="block"></th><td class="block">No item</td></tr>
                 </div>
-          </div>
-          </table>
-      </div>
+            </div>
+          
       
+          <div class="m-portlet__body">
+            
+            <table role="grid" class="table">
+            <!--table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline-->
+            <tr ><th >{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
+            <tr ><th >Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
+            <tr ><th >Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
+
+            <tr>
+              <th >Members</th>
+              <td v-if="cluster_data.members">
+                <div v-if="MembersisHidden">
+                    <div v-on:click="MembersisHidden = !MembersisHidden" style="color: blue"> {{cluster_data.members.nu}} Members </div>
+                </div>
+                <div v-if="!MembersisHidden">
+                  <div v-on:click="MembersisHidden = !MembersisHidden"> {{cluster_data.members.nu}} Members </div>
+                  <div v-if="cluster_data.members">
+                    <div v-if="cluster_data.members.clm">
+                      <li v-for="member in cluster_data.members.clm"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></li>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td v-else>No item</td>
+            </tr>
+            </table>
+          </div> <!-- finish portlet__body-->
+        </div> <!-- finish portlet-->
+      </div> <!-- annoBlock col-->    
+    </div> <!-- finish row-->
+    
+    <div class="row">
       <div class="annoBlock col">
           <h3><a name="num_sam">Cluster Source info</a></h3>
           
@@ -232,35 +232,37 @@ var ClusterData = {
           <div v-if="cluster_data.num_sam">
           <table width="1250" style="border: 1px solid #ccc">
           <font face="Arial">
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Cluster ID</th><td class="block">{{ cluster_data.num_sam.cl }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ cluster_data.num_sam.or }}</td></tr>      
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ cluster_data.num_sam.nos }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ cluster_data.num_sam.skin }}</td></tr> 
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ cluster_data.num_sam.vag }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ cluster_data.num_sam.gut }}</td></tr> 
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ cluster_data.num_sam.cat }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th><td class="block">{{ cluster_data.num_sam.dog }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ cluster_data.num_sam.mous }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ cluster_data.num_sam.pig }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ cluster_data.num_sam.bu }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ cluster_data.num_sam.soil }}</td></tr>
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ cluster_data.num_sam.mar }}</td></tr> 
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ cluster_data.num_sam.fw }}</td></tr> 
-          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ cluster_data.num_sam.was }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >Cluster ID</th><td class="block">{{ cluster_data.num_sam.cl }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_ORAL</th><td class="block">{{ cluster_data.num_sam.or }}</td></tr>      
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_NOSE</th><td class="block">{{ cluster_data.num_sam.nos }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_SKIN</th><td class="block">{{ cluster_data.num_sam.skin }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_VAGINA</th><td class="block">{{ cluster_data.num_sam.vag }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_GUT</th><td class="block">{{ cluster_data.num_sam.gut }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >CAT_GUT</th><td class="block">{{ cluster_data.num_sam.cat }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >DOG_GUT</th><td class="block">{{ cluster_data.num_sam.dog }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >MOUSE_GUT</th><td class="block">{{ cluster_data.num_sam.mous }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >PIG_GUT</th><td class="block">{{ cluster_data.num_sam.pig }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >BUILT</th><td class="block">{{ cluster_data.num_sam.bu }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >SOIL</th><td class="block">{{ cluster_data.num_sam.soil }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >MARINE</th><td class="block">{{ cluster_data.num_sam.mar }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >FRESHWATER</th><td class="block">{{ cluster_data.num_sam.fw }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >WASTEWATER</th><td class="block">{{ cluster_data.num_sam.was }}</td></tr>
           <!-- data -->
           </font>
           </div>
           <div v-else>No item</div>
           </table>
       </div>
-      
+    </div>
+
+    <div class="row">
       <div class="annoBlock col">
       <h3><a name="cluster_correlations">Cluster Correlations</a></h3>
           <div  v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
                 <table width="1250" style="border: 1px solid #ccc">
                 <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Pearson Correlations</font></th></tr>
                 <div>
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                   
                       <th width="150px" height="35px" nowrap>Condition</th>
                       <th width="150px">num_c</th>
@@ -292,7 +294,7 @@ var ClusterData = {
                   </tr>
                   <li v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
                   <font face="Arial">
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                       <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
                       <td   width="225px" >{{ object.num_c }} </td>
                       <td   width="225px" >{{ object.mndp }} </td>
@@ -330,7 +332,7 @@ var ClusterData = {
                 <table width="1250" style="border: 1px solid #ccc">
                 <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Spearman Correlations</font></th></tr>
                 <div>
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                   
                       <th width="150px" height="35px" nowrap>Condition</th>
                       <th width="150px">num_c</th>
@@ -362,7 +364,7 @@ var ClusterData = {
                   </tr>
                   <li v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
                   <font face="Arial">
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                       <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
                       <td   width="225px" >{{ object.num_c }} </td>
                       <td   width="225px" >{{ object.mndp }} </td>
@@ -400,7 +402,7 @@ var ClusterData = {
                 <table width="1250" style="border: 1px solid #ccc">
                 <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Pearson Correlations</font></th></tr>
                 <div>
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                   
                       <th width="150px" height="35px" nowrap>Condition</th>
                       <th width="150px">num_c</th>
@@ -432,7 +434,7 @@ var ClusterData = {
                   </tr>
                   <li v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
                   <font face="Arial">
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                       <td width="225px" height="35px" class="block">{{ object.cond }}</td>
                       <td   width="225px" >{{ object.num_c }} </td>
                       <td   width="225px" >{{ object.mndp }} </td>
@@ -470,7 +472,7 @@ var ClusterData = {
                 <table width="1250" style="border: 1px solid #ccc">
                 <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Spearman Correlations</font></th></tr>
                 <div>
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                   
                       <th width="150px" height="35px" nowrap>Condition</th>
                       <th width="150px">num_c</th>
@@ -502,7 +504,7 @@ var ClusterData = {
                   </tr>
                   <li v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
                   <font face="Arial">
-                  <tr style="border-bottom: 1px solid #ccc;">
+                  <tr >
                       <td width="225px" height="35px" class="block">{{ object.cond }}</td>
                       <td   width="225px" >{{ object.num_c }} </td>
                       <td   width="225px" >{{ object.mndp }} </td>
@@ -536,8 +538,9 @@ var ClusterData = {
           </div>            
           <div v-else>No MetaT Spearman correlations data</div>
       </div>
+    </div>
       
-      
+    <div class="row">
       <div class="annoBlock col">
         <h3><a name="stats">Cluster stats</a></h3>
         <table width="1250" style="border: 1px solid #ccc">   
@@ -546,20 +549,20 @@ var ClusterData = {
             <div v-else>
                    
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nup}}</th><td class="block">{{cluster_data.members.nup}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.naa}}</th><td class="block">{{cluster_data.members.naa}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.al}}</th><td class="block">{{cluster_data.members.al}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.avl}}</th><td class="block">{{cluster_data.members.avl}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.lg}}</th><td class="block">{{cluster_data.members.lg}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.sm}}</th><td class="block">{{cluster_data.members.sm}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mds}}</th><td class="block">{{cluster_data.members.mds}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.avi}}</th><td class="block">{{cluster_data.members.avi}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mup}}</th><td class="block">{{cluster_data.members.mup}}</td></tr>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="300px" height="30px" nowrap>{{ cluster_features.members.mrp}}</th><td class="block">{{cluster_data.members.mrp}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.nu}}</th><td class="block">{{cluster_data.members.nu}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.nup}}</th><td class="block">{{cluster_data.members.nup}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.hk}}</th><td class="block">{{cluster_data.members.hk}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.hu}}</th><td class="block">{{cluster_data.members.hu}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.nh}}</th><td class="block">{{cluster_data.members.nh}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.naa}}</th><td class="block">{{cluster_data.members.naa}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.al}}</th><td class="block">{{cluster_data.members.al}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.avl}}</th><td class="block">{{cluster_data.members.avl}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.lg}}</th><td class="block">{{cluster_data.members.lg}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.sm}}</th><td class="block">{{cluster_data.members.sm}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.mds}}</th><td class="block">{{cluster_data.members.mds}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.avi}}</th><td class="block">{{cluster_data.members.avi}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.mup}}</th><td class="block">{{cluster_data.members.mup}}</td></tr>
+                <tr ><th width="300px" height="30px" nowrap>{{ cluster_features.members.mrp}}</th><td class="block">{{cluster_data.members.mrp}}</td></tr>
                 </font>
                 
             </div>
@@ -586,13 +589,11 @@ var ClusterData = {
                                                                                                                                                                                
         <!-- ETE PLUGIN -->                                                                                                                                                                                 
         <div class="ete_image" id="img1"></div>          
-                                                                                                                            
+                                                                                                                    
     </div>
     </div>
     </div>
-  </div>
-  `
-}
+`}
 
 
 var UnigeneData = {
@@ -638,14 +639,14 @@ var UnigeneData = {
     
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else class="block">No</td></tr>
+        <tr ><th >Unigene</th><td v-if="unigene.clusters" class="block">{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
+        <tr ><th >Cluster</th><td v-if="unigene.clusters" class="block"><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
+        <tr ><th >Suffixes</th><td v-if="unigene.suffixes" class="block">{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+        <tr ><th >antiPfam</th><td v-if="unigene.antipfam" class="block">Yes</td><td v-else class="block">No</td></tr>
         
         <a name="aa sequence"></a>
-        <tr style="border-bottom: 1px solid #ccc;">
-        <th width="225px" height="30px" nowrap>
+        <tr >
+        <th >
           Protein Sequence <br> 
           <div v-if="AAisHidden"><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Display sequence</my-button></div>
           <div v-else><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Hide sequence</my-button></div>
@@ -666,8 +667,8 @@ var UnigeneData = {
         </tr>
 
         <a name="na sequence"></a>
-        <tr style="border-bottom: 1px solid #ccc;">
-        <th width="225px" height="30px" nowrap>
+        <tr >
+        <th >
           Nucleic acid Sequence <br>
           <div v-if="NAisHidden"><my-button style='float:left;' v-on:click="NAisHidden = !NAisHidden">Display sequence</my-button></div> 
           <div v-else><my-button style="float:left;" v-on:click="NAisHidden = !NAisHidden">Hide sequence</my-button></div> 
@@ -697,29 +698,29 @@ var UnigeneData = {
         <div v-if="unigene.gene_count">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >UNIGENE </th><td class="block">{{ unigene.gene_count.u }}</td></tr>
         <tr style="border-bottom: 1px solid #ccc;text-align:center;">
-            <th width="225px" height="30px" nowrap>MGS Source</th>
+            <th >MGS Source</th>
             <td v-if="unigene.gene_mgs" class="block"><li v-for="object in unigene.gene_mgs.mgs" class="block"><a v-bind:href="'/gmgc/mgs_gene/'+ object">{{ object }}</a></li></td>
             <td v-else>No item</td></td>
         </tr>
         
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>AMPLICON</th><td class="block">{{ unigene.gene_count.am }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ unigene.gene_count.or }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ unigene.gene_count.nos }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ unigene.gene_count.skin }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ unigene.gene_count.vag }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ unigene.gene_count.gut}}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ unigene.gene_count.cat }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th> <td class="block">{{ unigene.gene_count.dog }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ unigene.gene_count.mous }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ unigene.gene_count.pig }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ unigene.gene_count.bu }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ unigene.gene_count.soil }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ unigene.gene_count.mar }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ unigene.gene_count.fw }}</td></tr> 
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ unigene.gene_count.was }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>ISOLATE</th><td class="block">{{ unigene.gene_count.iso}}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >AMPLICON</th><td class="block">{{ unigene.gene_count.am }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_ORAL</th><td class="block">{{ unigene.gene_count.or }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_NOSE</th><td class="block">{{ unigene.gene_count.nos }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_SKIN</th><td class="block">{{ unigene.gene_count.skin }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_VAGINA</th><td class="block">{{ unigene.gene_count.vag }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >HUMAN_GUT</th><td class="block">{{ unigene.gene_count.gut}}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >CAT_GUT</th><td class="block">{{ unigene.gene_count.cat }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >DOG_GUT</th> <td class="block">{{ unigene.gene_count.dog }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >MOUSE_GUT</th><td class="block">{{ unigene.gene_count.mous }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >PIG_GUT</th><td class="block">{{ unigene.gene_count.pig }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >BUILT</th><td class="block">{{ unigene.gene_count.bu }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >SOIL</th><td class="block">{{ unigene.gene_count.soil }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >MARINE</th><td class="block">{{ unigene.gene_count.mar }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >FRESHWATER</th><td class="block">{{ unigene.gene_count.fw }}</td></tr> 
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >WASTEWATER</th><td class="block">{{ unigene.gene_count.was }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >ISOLATE</th><td class="block">{{ unigene.gene_count.iso}}</td></tr>
         <!-- data -->
         </font>
         </div>
@@ -735,10 +736,10 @@ var UnigeneData = {
         <div v-if="unigene.taxo_map">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>UNIGENE </th><td class="block">{{ unigene.taxo_map.u }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Name </th><td class="block" nowrap>{{ unigene.taxo_map.n }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Rank </th><td class="block">{{ unigene.taxo_map.r }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Taxid </th><td class="block">{{ unigene.taxo_map.txid }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >UNIGENE </th><td class="block">{{ unigene.taxo_map.u }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >Name </th><td class="block" nowrap>{{ unigene.taxo_map.n }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >Rank </th><td class="block">{{ unigene.taxo_map.r }}</td></tr>
+        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th >Taxid </th><td class="block">{{ unigene.taxo_map.txid }}</td></tr>
         <!-- data -->
         </font>
         </table>
@@ -753,7 +754,7 @@ var UnigeneData = {
               <table width="1250" style="border: 1px solid #ccc">
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Correlations</font></th></tr>
               <div>
-                <tr style="border-bottom: 1px solid #ccc;">
+                <tr >
                     <th width="225px" height="35px" nowrap>Condition</th>
                     <th width="150px">Correlations obs_number</th>
                     <th  width="225px">PEARSON</th>
@@ -763,7 +764,7 @@ var UnigeneData = {
                 </tr>
                 <li v-for="object in unigene.metaG_corr.mG_corr">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
+                <tr >
                     <td width="225px" height="35px" nowrap>{{ object.cond }}</td>
                     <td   class="block" >{{ object.num_c }} </td>
                     <td   width="225px" >{{ object.pc }}</td>
@@ -782,7 +783,7 @@ var UnigeneData = {
               <table width="1250" style="border: 1px solid #ccc">
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTranscriptomics Correlations</font></th></tr>
               <div>
-                <tr style="border-bottom: 1px solid #ccc;">
+                <tr >
                     <th width="225px" height="35px" nowrap>Condition</th>
                     <th width="150px">Correlations obs_number</th>
                     <th  width="225px">PEARSON</th>
@@ -792,7 +793,7 @@ var UnigeneData = {
                 </tr>
                 <li v-for="object in unigene.metaT_corr.mT_corr">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
+                <tr >
                     <td width="225px" height="35px" nowrap>{{ object.cond }}</td>
                     <td   class="block" >{{ object.num_c }} </td>
                     <td   width="225px" >{{ object.pc }}</td>
@@ -817,27 +818,27 @@ var UnigeneData = {
               <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">eggNOG_v2 Annotation</font></th></tr>
               <div>    
                   <font face="Arial">
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Seed_ortholog_score</th><td class="block">{{unigene.emapper_v2.s_o_s}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Seed_ortholog_evalue</th><td class="block">{{unigene.emapper_v2.s_o_e}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>seed_eggNOG_ortholog</th><td class="block">{{unigene.emapper_v2.s_e_o}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>COG</th><td class="block">{{unigene.emapper_v2.COG}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_ko</th><td class="block">{{unigene.emapper_v2.K_ko}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Best_tax_level</th><td class="block">{{unigene.emapper_v2.b_tax_l}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Annot_level_max</th><td class="block">{{unigene.emapper_v2.an_l_max}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Pathway</th><td class="block">{{unigene.emapper_v2.K_P}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Reaction</th><td class="block">{{unigene.emapper_v2.K_R}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_rclass</th><td class="block">{{unigene.emapper_v2.K_rc}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>BiGG_Reaction</th><td class="block">{{unigene.emapper_v2.BiGG}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_Module</th><td class="block">{{unigene.emapper_v2.K_M}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>bestOG</th><td class="block">{{unigene.emapper_v2.bOGs}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>KEGG_TC</th><td class="block">{{unigene.emapper_v2.K_TC}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>matching_OGs</th><td class="block">{{unigene.emapper_v2.OGs}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>EC</th><td class="block">{{unigene.emapper_v2.EC}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>BRITE</th><td class="block">{{unigene.emapper_v2.BRITE}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>CAZy</th><td class="block">{{unigene.emapper_v2.CAZy}}</td></tr>
-                  <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>GOs</th><td class="block" style='width: 1000px;word-wrap:break-word;'>{{unigene.emapper_v2.GOs}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>Preferred_name</th><td class="block">{{unigene.emapper_v2.p_n}}</td></tr> 
+                  <tr ><th width="225px" height="35px" nowrap>Seed_ortholog_score</th><td class="block">{{unigene.emapper_v2.s_o_s}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>Seed_ortholog_evalue</th><td class="block">{{unigene.emapper_v2.s_o_e}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>seed_eggNOG_ortholog</th><td class="block">{{unigene.emapper_v2.s_e_o}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>COG</th><td class="block">{{unigene.emapper_v2.COG}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_ko</th><td class="block">{{unigene.emapper_v2.K_ko}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>Best_tax_level</th><td class="block">{{unigene.emapper_v2.b_tax_l}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>Annot_level_max</th><td class="block">{{unigene.emapper_v2.an_l_max}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_Pathway</th><td class="block">{{unigene.emapper_v2.K_P}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_Reaction</th><td class="block">{{unigene.emapper_v2.K_R}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_rclass</th><td class="block">{{unigene.emapper_v2.K_rc}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>BiGG_Reaction</th><td class="block">{{unigene.emapper_v2.BiGG}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_Module</th><td class="block">{{unigene.emapper_v2.K_M}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>bestOG</th><td class="block">{{unigene.emapper_v2.bOGs}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>KEGG_TC</th><td class="block">{{unigene.emapper_v2.K_TC}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>matching_OGs</th><td class="block">{{unigene.emapper_v2.OGs}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>EC</th><td class="block">{{unigene.emapper_v2.EC}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>BRITE</th><td class="block">{{unigene.emapper_v2.BRITE}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>CAZy</th><td class="block">{{unigene.emapper_v2.CAZy}}</td></tr>
+                  <tr ><th width="225px" height="35px" nowrap>GOs</th><td class="block" style='width: 1000px;word-wrap:break-word;'>{{unigene.emapper_v2.GOs}}</td></tr>
                   </font>
                   </table>
               </div>
@@ -850,13 +851,13 @@ var UnigeneData = {
           
           <div> 
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
             </font>
           </div>
           </table>
@@ -870,12 +871,12 @@ var UnigeneData = {
 
           <div> 
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
+            <tr ><th width="225px" height="35px" nowrap>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
             </font>
           </div>
           </table>
@@ -886,10 +887,10 @@ var UnigeneData = {
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Intrinsic features</font></th></tr>
           <div>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Features </th><th class="block">Start</th><th class="block">End</th></tr>
+                <tr ><th width="225px" height="35px" nowrap> Features </th><th class="block">Start</th><th class="block">End</th></tr>
                 <li v-for="object in unigene.intrinsic.intr">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap>{{ object.n }}</td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td></tr>
+                <tr ><td width="225px" height="35px" nowrap>{{ object.n }}</td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td></tr>
                 </font>
                 </li>
           </div>
@@ -901,10 +902,10 @@ var UnigeneData = {
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Pfam annotation</font></th></tr>
           <div>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">Hit score</th><th class="block">E-value</th></tr>
+                <tr ><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">Hit score</th><th class="block">E-value</th></tr>
                 <li v-for="object in unigene.pfam.pf">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block">{{ object.sc }}</td><td class="block" >{{ object.ev }}</td></tr>
+                <tr ><td width="225px" height="35px" nowrap><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block">{{ object.sc }}</td><td class="block" >{{ object.ev }}</td></tr>
                 </font>
                 </li>
           </div>
@@ -916,10 +917,10 @@ var UnigeneData = {
           <table width="1250" style="border: 1px solid #ccc">
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">SMART annotation</font></th></tr>
           <div>
-                <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">Hit score</th><th class="block">E-value</th></tr>
+                <tr ><th width="225px" height="35px" nowrap> Domain </th><th class="block">Start</th><th class="block">End</th><th class="block">Hit score</th><th class="block">E-value</th></tr>
                 <li v-for="object in unigene.smart.sm">
                 <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;"><td width="225px" height="35px" nowrap><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block">{{ object.sc }}</td><td class="block" >{{ object.ev }}</td></tr>
+                <tr ><td width="225px" height="35px" nowrap><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td class="block">{{ object.s }}</td><td class="block">{{ object.e }}</td><td class="block">{{ object.sc }}</td><td class="block" >{{ object.ev }}</td></tr>
                 </font>
                 </li>
           </div>
@@ -934,16 +935,16 @@ var UnigeneData = {
           
           <div> 
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>Unigene</th><td>{{ unigene.neigh_data.u }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>query_keggs</th><td>{{ unigene.neigh_data.q_K }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>subject_keggs</th><td>{{ unigene.neigh_data.s_K }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>analysed_orfs</th><td>{{ unigene.neigh_data.a_orfs }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>neigh_genes</th><td>{{ unigene.neigh_data.n_g }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>neigh_with_keggs</th><td>{{ unigene.neigh_data.n_K }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>kegg_proportion</th><td>{{ unigene.neigh_data.K_p }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>presence_of_kegg</th><td>{{ unigene.neigh_data.p_K }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>hit_kegg_percentage</th><td>{{ unigene.neigh_data.ht_K_p }}</td></tr>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="35px" nowrap>kegg_description</th><td>{{ unigene.neigh_data.K_d }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>Unigene</th><td>{{ unigene.neigh_data.u }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>query_keggs</th><td>{{ unigene.neigh_data.q_K }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>subject_keggs</th><td>{{ unigene.neigh_data.s_K }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>analysed_orfs</th><td>{{ unigene.neigh_data.a_orfs }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>neigh_genes</th><td>{{ unigene.neigh_data.n_g }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>neigh_with_keggs</th><td>{{ unigene.neigh_data.n_K }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>kegg_proportion</th><td>{{ unigene.neigh_data.K_p }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>presence_of_kegg</th><td>{{ unigene.neigh_data.p_K }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>hit_kegg_percentage</th><td>{{ unigene.neigh_data.ht_K_p }}</td></tr>
+            <tr ><th width="225px" height="35px" nowrap>kegg_description</th><td>{{ unigene.neigh_data.K_d }}</td></tr>
             </font>
           </div>
           </table>
@@ -957,7 +958,7 @@ var UnigeneData = {
             <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood genes prediction</font></th></tr>
             <font face="Arial">
             <div>
-                <tr style="border-bottom: 1px solid #ccc;">
+                <tr >
                     <th width="200px" height="35px">-2</th>
                     <th width="200px" height="35px">-1</th>
                     <th width="200px" height="35px">query unigene</th>
@@ -965,7 +966,7 @@ var UnigeneData = {
                     <th width="200px" height="35px">+2</th>
                 </tr>
                 <li v-for="object in unigene.neigh_data.predict_neighs">
-                    <tr style="border-bottom: 1px solid #ccc;">
+                    <tr >
                         <td width="200px" >
                             <a v-bind:href="'/gmgc/unigene/'+ object.p_n[0][1]+ '/#eggnog'">{{object.p_n[0][1]}}</a><li v-for="kegg in object.p_n[0][2]" id="pic_list">{{kegg}}</li>
                         </td>
@@ -994,11 +995,11 @@ var UnigeneData = {
           <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">Neighbourhood ORFs info</font></th></tr>
           
           <div>
-            <tr style="border-bottom: 1px solid #ccc;"><th width="350px" height="35px" nowrap> ORF_name </th><th class="block">start</th><th class="block">end</th><th class="block">strand</th></tr>
+            <tr ><th width="350px" height="35px" nowrap> ORF_name </th><th class="block">start</th><th class="block">end</th><th class="block">strand</th></tr>
           
           <li v-for="object in unigene.neighbour.o">
             <font face="Arial">
-            <tr style="border-bottom: 1px solid #ccc;"><td width="350px" height="35px" nowrap>{{object.g}}</td><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
+            <tr ><td width="350px" height="35px" nowrap>{{object.g}}</td><td class="block">{{object.s[0]}}</td><td class="block">{{object.s[1]}}</td><td class="block">{{object.s[2]}}</td></tr>
             </font>
           </li>
           </div>
@@ -1027,8 +1028,8 @@ var MgsData = {
     <div class="annoBlock col">
         <table width="1250" style="border: 1px solid #ccc">
         <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>MGS ID</th><td v-if="mgs_data">{{ mgs_data.mgs }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Unigene members</th><td v-if="mgs_data"><li v-for="u in mgs_data.u"><a v-bind:href="'/gmgc/unigene/'+ u">{{ u }}</a></li></td><td v-else>No item</td></tr>
+        <tr ><th >MGS ID</th><td v-if="mgs_data">{{ mgs_data.mgs }}</td><td v-else>No item</td></tr>
+        <tr ><th >Unigene members</th><td v-if="mgs_data"><li v-for="u in mgs_data.u"><a v-bind:href="'/gmgc/unigene/'+ u">{{ u }}</a></li></td><td v-else>No item</td></tr>
         </font>
         </table>
     </div>

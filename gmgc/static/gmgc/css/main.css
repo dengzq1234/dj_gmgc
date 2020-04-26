@@ -29,7 +29,6 @@ body, html {
 .row {
   width: 100%;
   display: flex;
-  text-align: center; // center the content of the container
 }
 
 .block {
@@ -72,10 +71,11 @@ p {
 }
 
 ul, li {
-	margin: 0px;
-	list-style-type: none;
+  /* margin: 5px; */
+  margin-top: 3px;
+  list-style-type: none;
+  text-align: left
 }
-
 
 #pic_list li{
     width:40px;
@@ -103,14 +103,14 @@ ul, li {
 
 /*--------------------------------------------
 [ table ]*/
-
+/*
 table {
   overflow: hidden;
   display: inline-block;
   border-collapse: collapse; // Prevent double borders
   width:100%;
 }
-
+*/
 tr:hover {
   background-color: lightgrey;
 }
