@@ -172,372 +172,373 @@ var ClusterData = {
           }
         },
     template:`
-  <div>
-    <div class="m-portlet__head">
-        <div class="m-portlet__head-caption">
-            <div class="m-portlet__head-title">
+  <div class="row">
+    <div class="m-portlet">
+      <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <span class="m-portlet__head-icon m--hide">
+                      <i class="la la-gear"></i>
+                  </span>
+                  
+                  <h3>
+                      GMGC Cluster Data
+                  </h3>
 
-                <span class="m-portlet__head-icon m--hide">
-                    <i class="la la-gear"></i>
-                </span>
-                <h2>
-                    GMGC Cluster Data
-                </h2>
-
-            </div>
-        </div>
-    </div>
-    
-    <div class="m-portlet__body">
-    <div class="annoBlock col">
-        <h3><a name="basic">Basic information</a></h3>
-        <table width="1250" style="border: 1px solid #ccc">
-
-        <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
-        </font>
-        
-        <div>
-             <tr style="border-bottom: 1px solid #ccc;">
-                 <font face="Arial">
-                 <th width="225px" height="30px" nowrap>Members</th>
-                 <td v-if="cluster_data.members">
-                        {{cluster_data.members.nu}} Members
-                 </td><td v-else>No item</td>
-                 </font>
-              </tr>
-
-              <div v-if="cluster_data.members">
-                <div v-if="cluster_data.members.clm">
-                    <li v-for="member in cluster_data.members.clm">
-                         <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
-                    </li>
-                </div>
-                <div v-else>
-                     <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
-                </div>
-              <tr v-else><th class="block"></th><td class="block">No item</td></tr>
               </div>
-        </div>
-        </table>
-    </div>
-    
-    <div class="annoBlock col">
-        <h3><a name="num_sam">Cluster Source info</a></h3>
-        
-        <!-- title -->
-        <div v-if="cluster_data.num_sam">
-        <table width="1250" style="border: 1px solid #ccc">
-        <font face="Arial">
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Cluster ID</th><td class="block">{{ cluster_data.num_sam.cl }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ cluster_data.num_sam.or }}</td></tr>      
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ cluster_data.num_sam.nos }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ cluster_data.num_sam.skin }}</td></tr> 
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ cluster_data.num_sam.vag }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ cluster_data.num_sam.gut }}</td></tr> 
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ cluster_data.num_sam.cat }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th><td class="block">{{ cluster_data.num_sam.dog }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ cluster_data.num_sam.mous }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ cluster_data.num_sam.pig }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ cluster_data.num_sam.bu }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ cluster_data.num_sam.soil }}</td></tr>
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ cluster_data.num_sam.mar }}</td></tr> 
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ cluster_data.num_sam.fw }}</td></tr> 
-        <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ cluster_data.num_sam.was }}</td></tr>
-        <!-- data -->
-        </font>
-        </div>
-        <div v-else>No item</div>
-        </table>
-    </div>
-    
-    <div class="annoBlock col">
-    <h3><a name="cluster_correlations">Cluster Correlations</a></h3>
-        <div  v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
-              <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Pearson Correlations</font></th></tr>
-              <div>
-                <tr style="border-bottom: 1px solid #ccc;">
-                
-                    <th width="150px" height="35px" nowrap>Condition</th>
-                    <th width="150px">num_c</th>
-                    <th width="150px">mndp</th>
-                    
+          </div>
+      </div>
+      
+      <div class="m-portlet__body">
+      <div class="annoBlock col">
+          <h3><a name="basic">Basic information</a></h3>
+          <table width="1250" style="border: 1px solid #ccc">
 
-                    <th  width="200px">pcm</th>
-                    <th  width="200px">ppvm</th>
-                    
-                    <th  width="200px">scm</th>
-                    <th  width="200px">spvm</th>
-                    
-                    <th  width="200px">pcme</th>
-                    <th  width="200px">ppvme</th>
-                    
-                    <th  width="200px">scme</th>
-                    <th  width="200px">spvme</th>
-
-                    <th  width="200px">pcmax</th>
-                    <th  width="200px">scmax</th>
-                    
-                    <th  width="200px">pcmin</th>
-                    <th  width="200px">scmin</th>
-                    
-                    <th  width="200px">pcstd</th>
-                    <th  width="200px">scstd</th>
-
-                    
+          <font face="Arial">
+          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;"><th width="225px" height="30px" nowrap>Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
+          </font>
+          
+          <div>
+              <tr style="border-bottom: 1px solid #ccc;">
+                  <font face="Arial">
+                  <th width="225px" height="30px" nowrap>Members</th>
+                  <td v-if="cluster_data.members">
+                          {{cluster_data.members.nu}} Members
+                  </td><td v-else>No item</td>
+                  </font>
                 </tr>
-                <li v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
-                <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
-                    <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
-                    <td   width="225px" >{{ object.num_c }} </td>
-                    <td   width="225px" >{{ object.mndp }} </td>
-                    
-                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scm |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scme |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
 
-                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
-                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
-                    
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaG Pearson Correlations data</div>
+                <div v-if="cluster_data.members">
+                  <div v-if="cluster_data.members.clm">
+                      <li v-for="member in cluster_data.members.clm">
+                          <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></td></tr>
+                      </li>
+                  </div>
+                  <div v-else>
+                      <tr><th width="225px" nowrap></th><td class="block"><a v-bind:href="'/gmgc/unigene/'+ cluster_data.members.cl"> {{cluster_data.members.cl}}</a></td></tr>
+                  </div>
+                <tr v-else><th class="block"></th><td class="block">No item</td></tr>
+                </div>
+          </div>
+          </table>
+      </div>
+      
+      <div class="annoBlock col">
+          <h3><a name="num_sam">Cluster Source info</a></h3>
+          
+          <!-- title -->
+          <div v-if="cluster_data.num_sam">
+          <table width="1250" style="border: 1px solid #ccc">
+          <font face="Arial">
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>Cluster ID</th><td class="block">{{ cluster_data.num_sam.cl }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_ORAL</th><td class="block">{{ cluster_data.num_sam.or }}</td></tr>      
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_NOSE</th><td class="block">{{ cluster_data.num_sam.nos }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_SKIN</th><td class="block">{{ cluster_data.num_sam.skin }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_VAGINA</th><td class="block">{{ cluster_data.num_sam.vag }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>HUMAN_GUT</th><td class="block">{{ cluster_data.num_sam.gut }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>CAT_GUT</th><td class="block">{{ cluster_data.num_sam.cat }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>DOG_GUT</th><td class="block">{{ cluster_data.num_sam.dog }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MOUSE_GUT</th><td class="block">{{ cluster_data.num_sam.mous }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>PIG_GUT</th><td class="block">{{ cluster_data.num_sam.pig }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>BUILT</th><td class="block">{{ cluster_data.num_sam.bu }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>SOIL</th><td class="block">{{ cluster_data.num_sam.soil }}</td></tr>
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>MARINE</th><td class="block">{{ cluster_data.num_sam.mar }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>FRESHWATER</th><td class="block">{{ cluster_data.num_sam.fw }}</td></tr> 
+          <tr style="border-bottom: 1px solid #ccc;text-align:center;"><th width="225px" height="30px" nowrap>WASTEWATER</th><td class="block">{{ cluster_data.num_sam.was }}</td></tr>
+          <!-- data -->
+          </font>
+          </div>
+          <div v-else>No item</div>
+          </table>
+      </div>
+      
+      <div class="annoBlock col">
+      <h3><a name="cluster_correlations">Cluster Correlations</a></h3>
+          <div  v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
+                <table width="1250" style="border: 1px solid #ccc">
+                <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Pearson Correlations</font></th></tr>
+                <div>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                  
+                      <th width="150px" height="35px" nowrap>Condition</th>
+                      <th width="150px">num_c</th>
+                      <th width="150px">mndp</th>
+                      
 
-        <div  v-if="cluster_data.metaG_corr_s.mG_corr_spearman">
-              <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Spearman Correlations</font></th></tr>
-              <div>
-                <tr style="border-bottom: 1px solid #ccc;">
-                
-                    <th width="150px" height="35px" nowrap>Condition</th>
-                    <th width="150px">num_c</th>
-                    <th width="150px">mndp</th>
-                    
+                      <th  width="200px">pcm</th>
+                      <th  width="200px">ppvm</th>
+                      
+                      <th  width="200px">scm</th>
+                      <th  width="200px">spvm</th>
+                      
+                      <th  width="200px">pcme</th>
+                      <th  width="200px">ppvme</th>
+                      
+                      <th  width="200px">scme</th>
+                      <th  width="200px">spvme</th>
 
-                    <th  width="200px">pcm</th>
-                    <th  width="200px">ppvm</th>
-                    
-                    <th  width="200px">scm</th>
-                    <th  width="200px">spvm</th>
-                    
-                    <th  width="200px">pcme</th>
-                    <th  width="200px">ppvme</th>
-                    
-                    <th  width="200px">scme</th>
-                    <th  width="200px">spvme</th>
+                      <th  width="200px">pcmax</th>
+                      <th  width="200px">scmax</th>
+                      
+                      <th  width="200px">pcmin</th>
+                      <th  width="200px">scmin</th>
+                      
+                      <th  width="200px">pcstd</th>
+                      <th  width="200px">scstd</th>
 
-                    <th  width="200px">pcmax</th>
-                    <th  width="200px">scmax</th>
-                    
-                    <th  width="200px">pcmin</th>
-                    <th  width="200px">scmin</th>
-                    
-                    <th  width="200px">pcstd</th>
-                    <th  width="200px">scstd</th>
+                      
+                  </tr>
+                  <li v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
+                  <font face="Arial">
+                  <tr style="border-bottom: 1px solid #ccc;">
+                      <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
+                      <td   width="225px" >{{ object.num_c }} </td>
+                      <td   width="225px" >{{ object.mndp }} </td>
+                      
+                      <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scm |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scme |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvme |numFilter}}</td>
 
-                    
-                </tr>
-                <li v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
-                <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
-                    <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
-                    <td   width="225px" >{{ object.num_c }} </td>
-                    <td   width="225px" >{{ object.mndp }} </td>
-                    
-                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scm |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scme |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+                      <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                      <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                      
+                  </tr>
+                  </font>
+                  </li>
+                </div>
+                </table>
+          </div>            
+          <div v-else>No MetaG Pearson Correlations data</div>
 
-                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
-                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
-                    
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaG Spearman Correlations data</div>
+          <div  v-if="cluster_data.metaG_corr_s.mG_corr_spearman">
+                <table width="1250" style="border: 1px solid #ccc">
+                <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaGenomic Spearman Correlations</font></th></tr>
+                <div>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                  
+                      <th width="150px" height="35px" nowrap>Condition</th>
+                      <th width="150px">num_c</th>
+                      <th width="150px">mndp</th>
+                      
 
-        <div  v-if="cluster_data.metaT_corr_p.mT_corr_pearson">
-              <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Pearson Correlations</font></th></tr>
-              <div>
-                <tr style="border-bottom: 1px solid #ccc;">
-                
-                    <th width="150px" height="35px" nowrap>Condition</th>
-                    <th width="150px">num_c</th>
-                    <th width="150px">mndp</th>
-                    
+                      <th  width="200px">pcm</th>
+                      <th  width="200px">ppvm</th>
+                      
+                      <th  width="200px">scm</th>
+                      <th  width="200px">spvm</th>
+                      
+                      <th  width="200px">pcme</th>
+                      <th  width="200px">ppvme</th>
+                      
+                      <th  width="200px">scme</th>
+                      <th  width="200px">spvme</th>
 
-                    <th  width="200px">pcm</th>
-                    <th  width="200px">ppvm</th>
-                    
-                    <th  width="200px">scm</th>
-                    <th  width="200px">spvm</th>
-                    
-                    <th  width="200px">pcme</th>
-                    <th  width="200px">ppvme</th>
-                    
-                    <th  width="200px">scme</th>
-                    <th  width="200px">spvme</th>
+                      <th  width="200px">pcmax</th>
+                      <th  width="200px">scmax</th>
+                      
+                      <th  width="200px">pcmin</th>
+                      <th  width="200px">scmin</th>
+                      
+                      <th  width="200px">pcstd</th>
+                      <th  width="200px">scstd</th>
 
-                    <th  width="200px">pcmax</th>
-                    <th  width="200px">scmax</th>
-                    
-                    <th  width="200px">pcmin</th>
-                    <th  width="200px">scmin</th>
-                    
-                    <th  width="200px">pcstd</th>
-                    <th  width="200px">scstd</th>
+                      
+                  </tr>
+                  <li v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
+                  <font face="Arial">
+                  <tr style="border-bottom: 1px solid #ccc;">
+                      <td width="225px" height="35px" nowrap class="block">{{ object.cond }}</td>
+                      <td   width="225px" >{{ object.num_c }} </td>
+                      <td   width="225px" >{{ object.mndp }} </td>
+                      
+                      <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scm |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scme |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvme |numFilter}}</td>
 
-                    
-                </tr>
-                <li v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
-                <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
-                    <td width="225px" height="35px" class="block">{{ object.cond }}</td>
-                    <td   width="225px" >{{ object.num_c }} </td>
-                    <td   width="225px" >{{ object.mndp }} </td>
-                    
-                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scm |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scme |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+                      <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                      <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                      
+                  </tr>
+                  </font>
+                  </li>
+                </div>
+                </table>
+          </div>            
+          <div v-else>No MetaG Spearman Correlations data</div>
 
-                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
-                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
-                    
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaT Pearson correlations data</div>
+          <div  v-if="cluster_data.metaT_corr_p.mT_corr_pearson">
+                <table width="1250" style="border: 1px solid #ccc">
+                <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Pearson Correlations</font></th></tr>
+                <div>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                  
+                      <th width="150px" height="35px" nowrap>Condition</th>
+                      <th width="150px">num_c</th>
+                      <th width="150px">mndp</th>
+                      
 
-        <div  v-if="cluster_data.metaT_corr_s.mT_corr_spearman">
-              <table width="1250" style="border: 1px solid #ccc">
-              <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Spearman Correlations</font></th></tr>
-              <div>
-                <tr style="border-bottom: 1px solid #ccc;">
-                
-                    <th width="150px" height="35px" nowrap>Condition</th>
-                    <th width="150px">num_c</th>
-                    <th width="150px">mndp</th>
-                    
+                      <th  width="200px">pcm</th>
+                      <th  width="200px">ppvm</th>
+                      
+                      <th  width="200px">scm</th>
+                      <th  width="200px">spvm</th>
+                      
+                      <th  width="200px">pcme</th>
+                      <th  width="200px">ppvme</th>
+                      
+                      <th  width="200px">scme</th>
+                      <th  width="200px">spvme</th>
 
-                    <th  width="200px">pcm</th>
-                    <th  width="200px">ppvm</th>
-                    
-                    <th  width="200px">scm</th>
-                    <th  width="200px">spvm</th>
-                    
-                    <th  width="200px">pcme</th>
-                    <th  width="200px">ppvme</th>
-                    
-                    <th  width="200px">scme</th>
-                    <th  width="200px">spvme</th>
+                      <th  width="200px">pcmax</th>
+                      <th  width="200px">scmax</th>
+                      
+                      <th  width="200px">pcmin</th>
+                      <th  width="200px">scmin</th>
+                      
+                      <th  width="200px">pcstd</th>
+                      <th  width="200px">scstd</th>
 
-                    <th  width="200px">pcmax</th>
-                    <th  width="200px">scmax</th>
-                    
-                    <th  width="200px">pcmin</th>
-                    <th  width="200px">scmin</th>
-                    
-                    <th  width="200px">pcstd</th>
-                    <th  width="200px">scstd</th>
+                      
+                  </tr>
+                  <li v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
+                  <font face="Arial">
+                  <tr style="border-bottom: 1px solid #ccc;">
+                      <td width="225px" height="35px" class="block">{{ object.cond }}</td>
+                      <td   width="225px" >{{ object.num_c }} </td>
+                      <td   width="225px" >{{ object.mndp }} </td>
+                      
+                      <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scm |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scme |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvme |numFilter}}</td>
 
-                    
-                </tr>
-                <li v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
-                <font face="Arial">
-                <tr style="border-bottom: 1px solid #ccc;">
-                    <td width="225px" height="35px" class="block">{{ object.cond }}</td>
-                    <td   width="225px" >{{ object.num_c }} </td>
-                    <td   width="225px" >{{ object.mndp }} </td>
-                    
-                    <td   width="225px" >{{ object.pcm |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scm |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvm |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcme |numFilter}}</td>
-                    <td   width="225px" >{{ object.ppvme |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.scme |numFilter}}</td>
-                    <td   width="225px" >{{ object.spvme |numFilter}}</td>
+                      <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                      <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                      
+                  </tr>
+                  </font>
+                  </li>
+                </div>
+                </table>
+          </div>            
+          <div v-else>No MetaT Pearson correlations data</div>
 
-                    <td   width="225px" >{{ object.pcmax |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmax |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcmin |numFilter}}</td>
-                    <td   width="225px" >{{ object.scmin |numFilter}}</td>
-                    
-                    <td   width="225px" >{{ object.pcstd |numFilter}}</td>
-                    <td   width="225px" >{{ object.scstd |numFilter}}</td>
-                    
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaT Spearman correlations data</div>
-    </div>
-    
-    
-    <div class="annoBlock col">
+          <div  v-if="cluster_data.metaT_corr_s.mT_corr_spearman">
+                <table width="1250" style="border: 1px solid #ccc">
+                <tr style="border-bottom: 1px solid #ccc"><th width="225px" height="35px" nowrap><font color="blue">MetaTransciptomics Spearman Correlations</font></th></tr>
+                <div>
+                  <tr style="border-bottom: 1px solid #ccc;">
+                  
+                      <th width="150px" height="35px" nowrap>Condition</th>
+                      <th width="150px">num_c</th>
+                      <th width="150px">mndp</th>
+                      
+
+                      <th  width="200px">pcm</th>
+                      <th  width="200px">ppvm</th>
+                      
+                      <th  width="200px">scm</th>
+                      <th  width="200px">spvm</th>
+                      
+                      <th  width="200px">pcme</th>
+                      <th  width="200px">ppvme</th>
+                      
+                      <th  width="200px">scme</th>
+                      <th  width="200px">spvme</th>
+
+                      <th  width="200px">pcmax</th>
+                      <th  width="200px">scmax</th>
+                      
+                      <th  width="200px">pcmin</th>
+                      <th  width="200px">scmin</th>
+                      
+                      <th  width="200px">pcstd</th>
+                      <th  width="200px">scstd</th>
+
+                      
+                  </tr>
+                  <li v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
+                  <font face="Arial">
+                  <tr style="border-bottom: 1px solid #ccc;">
+                      <td width="225px" height="35px" class="block">{{ object.cond }}</td>
+                      <td   width="225px" >{{ object.num_c }} </td>
+                      <td   width="225px" >{{ object.mndp }} </td>
+                      
+                      <td   width="225px" >{{ object.pcm |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scm |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvm |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcme |numFilter}}</td>
+                      <td   width="225px" >{{ object.ppvme |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.scme |numFilter}}</td>
+                      <td   width="225px" >{{ object.spvme |numFilter}}</td>
+
+                      <td   width="225px" >{{ object.pcmax |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmax |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcmin |numFilter}}</td>
+                      <td   width="225px" >{{ object.scmin |numFilter}}</td>
+                      
+                      <td   width="225px" >{{ object.pcstd |numFilter}}</td>
+                      <td   width="225px" >{{ object.scstd |numFilter}}</td>
+                      
+                  </tr>
+                  </font>
+                  </li>
+                </div>
+                </table>
+          </div>            
+          <div v-else>No MetaT Spearman correlations data</div>
+      </div>
+      
+      
+      <div class="annoBlock col">
         <h3><a name="stats">Cluster stats</a></h3>
         <table width="1250" style="border: 1px solid #ccc">   
             <tr v-if="cluster_data.members" style="border-bottom: 1px solid #ccc"><th width="300px" height="35px" nowrap><font color="blue"">Cluster Members stats</font></th></tr>
@@ -586,6 +587,7 @@ var ClusterData = {
         <!-- ETE PLUGIN -->                                                                                                                                                                                 
         <div class="ete_image" id="img1"></div>          
                                                                                                                             
+    </div>
     </div>
     </div>
   </div>
