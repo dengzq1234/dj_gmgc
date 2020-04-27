@@ -1,0 +1,57 @@
+<!-- Start Gene Source info -->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                          <i class="la la-gear"></i>
+                      </span>
+                      
+                      <h3>
+                          Unigene Source information
+                      </h3>
+
+                  </div>
+              </div>
+            </div>
+
+            <div class="m-portlet__body">
+              <!-- title -->
+              <div v-if="unigene.gene_count">
+              <table role="grid" class="table">
+              
+                <tr ><th >UNIGENE </th><td >{{ unigene.gene_count.u }}</td></tr>
+                <tr >
+                    <th >MGS Source</th>
+                    <td v-if="unigene.gene_mgs" ><li v-for="object in unigene.gene_mgs.mgs" ><a v-bind:href="'/gmgc/mgs_gene/'+ object">{{ object }}</a></li></td>
+                    <td v-else>No item</td></td>
+                </tr>
+                
+                <tr ><th >AMPLICON</th><td >{{ unigene.gene_count.am }}</td></tr>
+                <tr ><th >HUMAN_ORAL</th><td >{{ unigene.gene_count.or }}</td></tr>
+                <tr ><th >HUMAN_NOSE</th><td >{{ unigene.gene_count.nos }}</td></tr>
+                <tr ><th >HUMAN_SKIN</th><td >{{ unigene.gene_count.skin }}</td></tr>
+                <tr ><th >HUMAN_VAGINA</th><td >{{ unigene.gene_count.vag }}</td></tr>
+                <tr ><th >HUMAN_GUT</th><td >{{ unigene.gene_count.gut}}</td></tr>
+                <tr ><th >CAT_GUT</th><td >{{ unigene.gene_count.cat }}</td></tr>
+                <tr ><th >DOG_GUT</th> <td >{{ unigene.gene_count.dog }}</td></tr>
+                <tr ><th >MOUSE_GUT</th><td >{{ unigene.gene_count.mous }}</td></tr>
+                <tr ><th >PIG_GUT</th><td >{{ unigene.gene_count.pig }}</td></tr>
+                <tr ><th >BUILT</th><td >{{ unigene.gene_count.bu }}</td></tr>
+                <tr ><th >SOIL</th><td >{{ unigene.gene_count.soil }}</td></tr>
+                <tr ><th >MARINE</th><td >{{ unigene.gene_count.mar }}</td></tr>
+                <tr ><th >FRESHWATER</th><td >{{ unigene.gene_count.fw }}</td></tr> 
+                <tr ><th >WASTEWATER</th><td >{{ unigene.gene_count.was }}</td></tr>
+                <tr ><th >ISOLATE</th><td >{{ unigene.gene_count.iso}}</td></tr>
+                <!-- data -->
+              
+              </div>
+              <div v-else>No item</div>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- End Gene Source info -->
