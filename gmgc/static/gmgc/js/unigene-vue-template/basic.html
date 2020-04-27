@@ -1,0 +1,78 @@
+<!-- Basic information -->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">
+          <div class="m-portlet__head">
+                  <div class="m-portlet__head-caption">
+                      <div class="m-portlet__head-title">
+                          <span class="m-portlet__head-icon m--hide">
+                              <i class="la la-gear"></i>
+                          </span>
+                          
+                          <h3>
+                              Basic information
+                          </h3>
+
+                      </div>
+                  </div>
+              </div>
+
+          <div class="m-portlet__body">
+          <table role="grid" class="table">
+          
+            <tr ><th >Unigene</th><td v-if="unigene.clusters" >{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
+            <tr ><th >Cluster</th><td v-if="unigene.clusters" ><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
+            <tr ><th >Suffixes</th><td v-if="unigene.suffixes" >{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+            <tr ><th >antiPfam</th><td v-if="unigene.antipfam" >Yes</td><td v-else >No</td></tr>
+            
+            <a name="aa sequence"></a>
+            <tr >
+            <th >
+              Protein Sequence <br> 
+              <div v-if="AAisHidden"><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Display sequence</my-button></div>
+              <div v-else><my-button style="float:left;" v-on:click="AAisHidden = !AAisHidden">Hide sequence</my-button></div>
+            </th>
+            
+            <td v-if="unigene.sequences" width="1000px" height="30px">
+              <div v-show='AAisHidden'>
+                GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}
+              </div>
+              <div v-if="!AAisHidden" style='width: 100%; word-break: break-all;'>
+                <my-button style="float:right;" @click="CopyToClipboard('aa')">Copy sequence</my-button><br>
+                <font face="monospace" size="3" id='aa'>
+                >GMGC10.{{unigene.clusters.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.sequences.sq }}
+                </font>
+              </div>
+            </td>
+            <td v-else>No item</td>
+            </tr>
+
+            <a name="na sequence"></a>
+            <tr >
+            <th >
+              Nucleic acid Sequence <br>
+              <div v-if="NAisHidden"><my-button style='float:left;' v-on:click="NAisHidden = !NAisHidden">Display sequence</my-button></div> 
+              <div v-else><my-button style="float:left;" v-on:click="NAisHidden = !NAisHidden">Hide sequence</my-button></div> 
+            </th>  
+              <td v-if="unigene.nt_seqs" width="1000px" height="30px">
+                  <div v-show='NAisHidden'>
+                    GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}
+                  </div>
+
+                  <div v-if="!NAisHidden" style='width: 100%; word-break: break-all;'>
+                    <my-button style="float:right;" @click="CopyToClipboard('na')">Copy sequence</my-button><br>
+                    <font face="monospace" size="3" id='na'>
+                      >GMGC10.{{unigene.nt_seqs.u}}.{{ unigene.suffixes.sfx }}<br>{{ unigene.nt_seqs.nt_sq }}
+                    </font>
+                  </div> 
+              </td>
+              <td v-else>No item</td>
+            </tr>
+
+          
+          </table>
+          </div>
+        </div>
+    </div>
+    </div>
+    <!-- End Basic information -->
