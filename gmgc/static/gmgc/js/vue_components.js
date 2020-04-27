@@ -856,68 +856,93 @@ var UnigeneData = {
     </div>
     <!-- End Taxonomic rank -->
 
-    <div class="annoBlock col">
-    <h3><a name="correlations">Gene Correlations</a></h3>
-        <div  v-if="unigene.metaG_corr.mG_corr">
-              <table >
-              <tr ><th><font color="blue">MetaGenomic Correlations</font></th></tr>
-              <div>
-                <tr >
-                    <th>Condition</th>
-                    <th >Correlations obs_number</th>
-                    <th  >PEARSON</th>
-                    <th  >PEARSON_PVAL</th>
-                    <th  >SPEARMAN</th>
-                    <th  >SPEARMAN_PVAL</th>
-                </tr>
-                <li v-for="object in unigene.metaG_corr.mG_corr">
-                <font face="Arial">
-                <tr >
-                    <td>{{ object.cond }}</td>
-                    <td    >{{ object.num_c }} </td>
-                    <td    >{{ object.pc }}</td>
-                    <td    >{{ object.ppv }}</td>
-                    <td    >{{ object.sc }}</td>
-                    <td    >{{ object.spv }}</td>
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaG correlations data</div>
+    <!-- Start Gene Correlations -->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                      </span>
+                        
+                    <h3>
+                      Unigene Correlations
+                    </h3>
+  
+                </div>
+              </div>
+            </div>
+
+            <div class="m-portlet__body">
+                <div  v-if="unigene.metaG_corr.mG_corr">
+                  <div class="table-responsive">
+                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                      <caption style="color: blue">MetaGenomic Correlations</caption>
+                      <thead>
+                        <tr >
+                            <th>Condition</th>
+                            <th>Correlations obs_number</th>
+                            <th>PEARSON</th>
+                            <th>PEARSON_PVAL</th>
+                            <th>SPEARMAN</th>
+                            <th>SPEARMAN_PVAL</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr v-for="object in unigene.metaG_corr.mG_corr">
+                            <td>{{ object.cond }}</td>
+                            <td>{{ object.num_c }} </td>
+                            <td>{{ object.pc }}</td>
+                            <td>{{ object.ppv }}</td>
+                            <td>{{ object.sc }}</td>
+                            <td>{{ object.spv }}</td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+              </div>            
+              <div v-else>No MetaG correlations data</div>
         
-        <div  v-if="unigene.metaT_corr.mT_corr">
-              <table >
-              <tr ><th><font color="blue">MetaTranscriptomics Correlations</font></th></tr>
-              <div>
-                <tr >
-                    <th>Condition</th>
-                    <th >Correlations obs_number</th>
-                    <th  >PEARSON</th>
-                    <th  >PEARSON_PVAL</th>
-                    <th  >SPEARMAN</th>
-                    <th  >SPEARMAN_PVAL</th>
-                </tr>
-                <li v-for="object in unigene.metaT_corr.mT_corr">
-                <font face="Arial">
-                <tr >
-                    <td>{{ object.cond }}</td>
-                    <td    >{{ object.num_c }} </td>
-                    <td    >{{ object.pc }}</td>
-                    <td    >{{ object.ppv }}</td>
-                    <td    >{{ object.sc }}</td>
-                    <td    >{{ object.spv }}</td>
-                </tr>
-                </font>
-                </li>
-               </div>
-              </table>
-        </div>            
-        <div v-else>No MetaT correlations data</div>
-        
+              <div  v-if="unigene.metaT_corr.mT_corr">
+                  <div class="table-responsive">
+                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                      <caption style="color: blue">MetaTranscriptomics Correlations</caption>
+                      <thead>
+                        <tr >
+                            <th>Condition</th>
+                            <th>Correlations obs_number</th>
+                            <th>PEARSON</th>
+                            <th>PEARSON_PVAL</th>
+                            <th>SPEARMAN</th>
+                            <th>SPEARMAN_PVAL</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr v-for="object in unigene.metaT_corr.mT_corr">
+                            <td>{{ object.cond }}</td>
+                            <td>{{ object.num_c }} </td>
+                            <td>{{ object.pc }}</td>
+                            <td>{{ object.ppv }}</td>
+                            <td>{{ object.sc }}</td>
+                            <td>{{ object.spv }}</td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+              </div>            
+              <div v-else>No MetaT correlations data</div>
+            </div>
+        </div>
+      </div>
     </div>
-    
+    <!-- End Gene Correlations -->
+
     <div class="annoBlock col">
     <h3>Functional annotation</h3>
           <a name="eggnog"></a>
