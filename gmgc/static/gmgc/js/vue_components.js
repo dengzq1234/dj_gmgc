@@ -273,312 +273,6 @@ var ClusterData = {
         </div> <!-- m-portlet -->
       </div>  <!-- block -->
     </div> <!-- row -->
-
-    <!--Cluster Correlations-->
-    <div class="row">
-      <div class="annoBlock col">
-      <div class="m-portlet">
-        <div class="m-portlet__head">
-              <div class="m-portlet__head-caption">
-                  <div class="m-portlet__head-title">
-                      <span class="m-portlet__head-icon m--hide">
-                          <i class="la la-gear"></i>
-                      </span>
-                      
-                      <h3>
-                          Cluster Correlations
-                      </h3>
-
-                  </div>
-              </div>
-          </div>
-          <div class="m-portlet__body">
-            <div v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
-                  <table role="grid" class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline">
-                  <tr ><th><font color="blue">MetaGenomic Pearson Correlations</font></th></tr>
-                  <div>
-                    <thead>
-                    <tr >
-                    
-                        <th >Condition</th>
-                        <th >num_c</th>
-                        <th >mndp</th>
-                        
-
-                        <th  >pcm</th>
-                        <th  >ppvm</th>
-                        
-                        <th  >scm</th>
-                        <th  >spvm</th>
-                        
-                        <th  >pcme</th>
-                        <th  >ppvme</th>
-                        
-                        <th  >scme</th>
-                        <th  >spvme</th>
-
-                        <th  >pcmax</th>
-                        <th  >scmax</th>
-                        
-                        <th  >pcmin</th>
-                        <th  >scmin</th>
-                        
-                        <th  >pcstd</th>
-                        <th  >scstd</th>
-
-                        
-                    </tr>
-                    </thead>
-                    <li v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
-                    
-                    <tbody>
-                    <tr >
-                        <td ><span>{{ object.cond }}</span></td>
-                        <td ><span>{{ object.num_c }} </td>
-                        <td ><span>{{ object.mndp }} </td>
-                        
-                        <td ><span>{{ object.pcm |numFilter}}</td>
-                        <td ><span>{{ object.ppvm |numFilter}}</td>
-                        
-                        <td ><span>{{ object.scm |numFilter}}</td>
-                        <td ><span>{{ object.spvm |numFilter}}</td>
-                        
-                        <td ><span>{{ object.pcme |numFilter}}</td>
-                        <td ><span>{{ object.ppvme |numFilter}}</td>
-                        
-                        <td ><span>{{ object.scme |numFilter}}</td>
-                        <td ><span>{{ object.spvme |numFilter}}</td>
-
-                        <td ><span>{{ object.pcmax |numFilter}}</td>
-                        <td ><span>{{ object.scmax |numFilter}}</td>
-                        
-                        <td ><span>{{ object.pcmin |numFilter}}</td>
-                        <td ><span>{{ object.scmin |numFilter}}</td>
-                        
-                        <td ><span>{{ object.pcstd |numFilter}}</td>
-                        <td ><span>{{ object.scstd |numFilter}}</td>
-                        
-                    </tr>
-                    </tbody>
-                    </li>
-                  </div>
-                  </table>
-            </div>            
-            <div v-else>No MetaG Pearson Correlations data</div>
-
-            <div v-if="cluster_data.metaG_corr_s.mG_corr_spearman">
-                  <table >
-                  <tr ><th><font color="blue">MetaGenomic Spearman Correlations</font></th></tr>
-                  <div>
-                    <tr >
-                    
-                        <th >Condition</th>
-                        <th >num_c</th>
-                        <th >mndp</th>
-                        
-
-                        <th  >pcm</th>
-                        <th  >ppvm</th>
-                        
-                        <th  >scm</th>
-                        <th  >spvm</th>
-                        
-                        <th  >pcme</th>
-                        <th  >ppvme</th>
-                        
-                        <th  >scme</th>
-                        <th  >spvme</th>
-
-                        <th  >pcmax</th>
-                        <th  >scmax</th>
-                        
-                        <th  >pcmin</th>
-                        <th  >scmin</th>
-                        
-                        <th  >pcstd</th>
-                        <th  >scstd</th>
-
-                        
-                    </tr>
-                    <li v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
-                    
-                    <tr >
-                        <td >{{ object.cond }}</td>
-                        <td    >{{ object.num_c }} </td>
-                        <td    >{{ object.mndp }} </td>
-                        
-                        <td    >{{ object.pcm |numFilter}}</td>
-                        <td    >{{ object.ppvm |numFilter}}</td>
-                        
-                        <td    >{{ object.scm |numFilter}}</td>
-                        <td    >{{ object.spvm |numFilter}}</td>
-                        
-                        <td    >{{ object.pcme |numFilter}}</td>
-                        <td    >{{ object.ppvme |numFilter}}</td>
-                        
-                        <td    >{{ object.scme |numFilter}}</td>
-                        <td    >{{ object.spvme |numFilter}}</td>
-
-                        <td    >{{ object.pcmax |numFilter}}</td>
-                        <td    >{{ object.scmax |numFilter}}</td>
-                        
-                        <td    >{{ object.pcmin |numFilter}}</td>
-                        <td    >{{ object.scmin |numFilter}}</td>
-                        
-                        <td    >{{ object.pcstd |numFilter}}</td>
-                        <td    >{{ object.scstd |numFilter}}</td>
-                        
-                    </tr>
-                    
-                    </li>
-                  </div>
-                  </table>
-            </div>            
-            <div v-else>No MetaG Spearman Correlations data</div>
-
-            <div v-if="cluster_data.metaT_corr_p.mT_corr_pearson">
-                  <table >
-                  <tr ><th><font color="blue">MetaTransciptomics Pearson Correlations</font></th></tr>
-                  <div>
-                    <tr >
-                    
-                        <th >Condition</th>
-                        <th >num_c</th>
-                        <th >mndp</th>
-                        
-
-                        <th  >pcm</th>
-                        <th  >ppvm</th>
-                        
-                        <th  >scm</th>
-                        <th  >spvm</th>
-                        
-                        <th  >pcme</th>
-                        <th  >ppvme</th>
-                        
-                        <th  >scme</th>
-                        <th  >spvme</th>
-
-                        <th  >pcmax</th>
-                        <th  >scmax</th>
-                        
-                        <th  >pcmin</th>
-                        <th  >scmin</th>
-                        
-                        <th  >pcstd</th>
-                        <th  >scstd</th>
-
-                        
-                    </tr>
-                    <li v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
-                    
-                    <tr >
-                        <td  height="35px" >{{ object.cond }}</td>
-                        <td    >{{ object.num_c }} </td>
-                        <td    >{{ object.mndp }} </td>
-                        
-                        <td    >{{ object.pcm |numFilter}}</td>
-                        <td    >{{ object.ppvm |numFilter}}</td>
-                        
-                        <td    >{{ object.scm |numFilter}}</td>
-                        <td    >{{ object.spvm |numFilter}}</td>
-                        
-                        <td    >{{ object.pcme |numFilter}}</td>
-                        <td    >{{ object.ppvme |numFilter}}</td>
-                        
-                        <td    >{{ object.scme |numFilter}}</td>
-                        <td    >{{ object.spvme |numFilter}}</td>
-
-                        <td    >{{ object.pcmax |numFilter}}</td>
-                        <td    >{{ object.scmax |numFilter}}</td>
-                        
-                        <td    >{{ object.pcmin |numFilter}}</td>
-                        <td    >{{ object.scmin |numFilter}}</td>
-                        
-                        <td    >{{ object.pcstd |numFilter}}</td>
-                        <td    >{{ object.scstd |numFilter}}</td>
-                        
-                    </tr>
-                    </font>
-                    </li>
-                  </div>
-                  </table>
-            </div>            
-            <div v-else>No MetaT Pearson correlations data</div>
-
-            <div v-if="cluster_data.metaT_corr_s.mT_corr_spearman">
-                  <table >
-                  <tr ><th><font color="blue">MetaTransciptomics Spearman Correlations</font></th></tr>
-                  <div>
-                    <tr >
-                    
-                        <th >Condition</th>
-                        <th >num_c</th>
-                        <th >mndp</th>
-                        
-
-                        <th  >pcm</th>
-                        <th  >ppvm</th>
-                        
-                        <th  >scm</th>
-                        <th  >spvm</th>
-                        
-                        <th  >pcme</th>
-                        <th  >ppvme</th>
-                        
-                        <th  >scme</th>
-                        <th  >spvme</th>
-
-                        <th  >pcmax</th>
-                        <th  >scmax</th>
-                        
-                        <th  >pcmin</th>
-                        <th  >scmin</th>
-                        
-                        <th  >pcstd</th>
-                        <th  >scstd</th>
-
-                        
-                    </tr>
-                    <li v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
-                    
-                    <tr >
-                        <td  height="35px" >{{ object.cond }}</td>
-                        <td    >{{ object.num_c }} </td>
-                        <td    >{{ object.mndp }} </td>
-                        
-                        <td    >{{ object.pcm |numFilter}}</td>
-                        <td    >{{ object.ppvm |numFilter}}</td>
-                        
-                        <td    >{{ object.scm |numFilter}}</td>
-                        <td    >{{ object.spvm |numFilter}}</td>
-                        
-                        <td    >{{ object.pcme |numFilter}}</td>
-                        <td    >{{ object.ppvme |numFilter}}</td>
-                        
-                        <td    >{{ object.scme |numFilter}}</td>
-                        <td    >{{ object.spvme |numFilter}}</td>
-
-                        <td    >{{ object.pcmax |numFilter}}</td>
-                        <td    >{{ object.scmax |numFilter}}</td>
-                        
-                        <td    >{{ object.pcmin |numFilter}}</td>
-                        <td    >{{ object.scmin |numFilter}}</td>
-                        
-                        <td    >{{ object.pcstd |numFilter}}</td>
-                        <td    >{{ object.scstd |numFilter}}</td>
-                        
-                    </tr>
-                    </font>
-                    </li>
-                  </div>
-                  </table>
-            </div>            
-            <div v-else>No MetaT Spearman correlations data</div>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <!-- Cluster stats -->
     <div class="row">
@@ -625,33 +319,330 @@ var ClusterData = {
         </div>
       </div>
     </div>
-    
-    <div class="row">
-      <div class="annoBlock col">                                                                                                                                                                                                   
-          <!-- Server status -->                                                                                                                                                                              
-          <h3><a name="tree">Tree visualization</a></h3>
-          
-          <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
-          <div id='server_status'></div> 
-          
-          <!-- this will be the popup window with actions when the user clicks in the tree -->
-          <div id="popup"></div>                                                       
-                                                      
-          <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
-          <div id="highlighter"></div>                                                                                                                                                     
 
-          <!-- in the new version you could be interested in the get_tree_from_paths function -->
-          <div v-if="cluster_data.tree">                                                                                
-              <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>     
-          </div><div v-else>No tree</div>                                                                                                   
-                                                                                                                                                                                
-          <!-- ETE PLUGIN -->                                                                                                                                                                                 
-          <div class="ete_image" id="img1"></div>          
-                                                                                                                      
+    <!--Cluster Correlations-->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">
+
+          <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+              <div class="m-portlet__head-title">
+                  <span class="m-portlet__head-icon m--hide">
+                      <i class="la la-gear"></i>
+                    </span>
+                      
+                  <h3>
+                    Cluster Correlations
+                  </h3>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="m-portlet__body">
+            <!-- start MetaGenomic Pearson Correlations -->
+            <div v-if="cluster_data.metaG_corr_p.mG_corr_pearson">
+              <div class="table-responsive">
+                <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                <caption style="color: blue">MetaGenomic Pearson Correlations</caption>
+                  <thead>
+                    <tr>
+                      <th >Condition</th>
+                      <th >num_c</th>
+                      <th >mndp</th>
+                      <th >pcm</th>
+                      <th >ppvm</th>        
+                      <th >scm</th>
+                      <th >spvm</th>               
+                      <th >pcme</th>
+                      <th >ppvme</th>                
+                      <th >scme</th>
+                      <th >spvme</th>
+                      <th >pcmax</th>
+                      <th >scmax</th>               
+                      <th >pcmin</th>
+                      <th >scmin</th>           
+                      <th >pcstd</th>
+                      <th >scstd</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="object in cluster_data.metaG_corr_p.mG_corr_pearson">
+                        
+                        <td >{{ object.cond }}</td>
+                        <td >{{ object.num_c }} </td>
+                        <td >{{ object.mndp }} </td>
+                        
+                        <td >{{ object.pcm |numFilter}}</td>
+                        <td >{{ object.ppvm |numFilter}}</td>
+                        
+                        <td >{{ object.scm |numFilter}}</td>
+                        <td >{{ object.spvm |numFilter}}</td>
+                        
+                        <td >{{ object.pcme |numFilter}}</td>
+                        <td >{{ object.ppvme |numFilter}}</td>
+                        
+                        <td >{{ object.scme |numFilter}}</td>
+                        <td >{{ object.spvme |numFilter}}</td>
+
+                        <td >{{ object.pcmax |numFilter}}</td>
+                        <td >{{ object.scmax |numFilter}}</td>
+                        
+                        <td >{{ object.pcmin |numFilter}}</td>
+                        <td >{{ object.scmin |numFilter}}</td>
+                        
+                        <td >{{ object.pcstd |numFilter}}</td>
+                        <td >{{ object.scstd |numFilter}}</td>
+                        
+                    </tr>
+                  </tbody>
+              </table>
+            </div>            
+          </div>
+            <div v-else>No MetaG Pearson Correlations data</div> 
+          <!-- End MetaGenomic Pearson Correlations -->
+          
+          <!-- Start MetaGenomic Spearman Correlations -->
+          <div v-if="cluster_data.metaG_corr_s.mG_corr_spearman">
+              <div class="table-responsive">
+                <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                <caption style="color: blue">MetaGenomic Spearman Correlations</caption>
+                  <thead>
+                    <tr>
+                      <th >Condition</th>
+                      <th >num_c</th>
+                      <th >mndp</th>
+                      <th >pcm</th>
+                      <th >ppvm</th>        
+                      <th >scm</th>
+                      <th >spvm</th>               
+                      <th >pcme</th>
+                      <th >ppvme</th>                
+                      <th >scme</th>
+                      <th >spvme</th>
+                      <th >pcmax</th>
+                      <th >scmax</th>               
+                      <th >pcmin</th>
+                      <th >scmin</th>           
+                      <th >pcstd</th>
+                      <th >scstd</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="object in cluster_data.metaG_corr_s.mG_corr_spearman">
+                        
+                        <td >{{ object.cond }}</td>
+                        <td >{{ object.num_c }} </td>
+                        <td >{{ object.mndp }} </td>
+                        
+                        <td >{{ object.pcm |numFilter}}</td>
+                        <td >{{ object.ppvm |numFilter}}</td>
+                        
+                        <td >{{ object.scm |numFilter}}</td>
+                        <td >{{ object.spvm |numFilter}}</td>
+                        
+                        <td >{{ object.pcme |numFilter}}</td>
+                        <td >{{ object.ppvme |numFilter}}</td>
+                        
+                        <td >{{ object.scme |numFilter}}</td>
+                        <td >{{ object.spvme |numFilter}}</td>
+
+                        <td >{{ object.pcmax |numFilter}}</td>
+                        <td >{{ object.scmax |numFilter}}</td>
+                        
+                        <td >{{ object.pcmin |numFilter}}</td>
+                        <td >{{ object.scmin |numFilter}}</td>
+                        
+                        <td >{{ object.pcstd |numFilter}}</td>
+                        <td >{{ object.scstd |numFilter}}</td>
+                        
+                    </tr>
+                  </tbody>
+              </table>
+            </div>            
+          </div>
+            <div v-else>No MetaG Spearman Correlations data</div>
+          <!-- End MetaGenomic Spearman Correlations -->
+
+          <!-- Start MetaTransciptomics Pearson Correlations -->
+          <div v-if="cluster_data.metaT_corr_p.mT_corr_pearson">
+              <div class="table-responsive">
+                <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                <caption style="color: blue">MetaTransciptomics Pearson Correlations</caption>
+                  <thead>
+                    <tr>
+                      <th >Condition</th>
+                      <th >num_c</th>
+                      <th >mndp</th>
+                      <th >pcm</th>
+                      <th >ppvm</th>        
+                      <th >scm</th>
+                      <th >spvm</th>               
+                      <th >pcme</th>
+                      <th >ppvme</th>                
+                      <th >scme</th>
+                      <th >spvme</th>
+                      <th >pcmax</th>
+                      <th >scmax</th>               
+                      <th >pcmin</th>
+                      <th >scmin</th>           
+                      <th >pcstd</th>
+                      <th >scstd</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="object in cluster_data.metaT_corr_p.mT_corr_pearson">
+                        
+                        <td >{{ object.cond }}</td>
+                        <td >{{ object.num_c }} </td>
+                        <td >{{ object.mndp }} </td>
+                        
+                        <td >{{ object.pcm |numFilter}}</td>
+                        <td >{{ object.ppvm |numFilter}}</td>
+                        
+                        <td >{{ object.scm |numFilter}}</td>
+                        <td >{{ object.spvm |numFilter}}</td>
+                        
+                        <td >{{ object.pcme |numFilter}}</td>
+                        <td >{{ object.ppvme |numFilter}}</td>
+                        
+                        <td >{{ object.scme |numFilter}}</td>
+                        <td >{{ object.spvme |numFilter}}</td>
+
+                        <td >{{ object.pcmax |numFilter}}</td>
+                        <td >{{ object.scmax |numFilter}}</td>
+                        
+                        <td >{{ object.pcmin |numFilter}}</td>
+                        <td >{{ object.scmin |numFilter}}</td>
+                        
+                        <td >{{ object.pcstd |numFilter}}</td>
+                        <td >{{ object.scstd |numFilter}}</td>
+                        
+                    </tr>
+                  </tbody>
+              </table>
+            </div>            
+          </div>
+            <div v-else>No MetaT Pearson Correlations data</div>
+          <!-- End MetaTransciptomics Pearson Correlations -->
+
+          <!-- Start MetaTransciptomics Spearman Correlations -->
+          <div v-if="cluster_data.metaT_corr_s.mT_corr_spearman">
+              <div class="table-responsive">
+                <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                <caption style="color: blue">MetaTransciptomics Spearman Correlations</caption>
+                  <thead>
+                    <tr>
+                      <th >Condition</th>
+                      <th >num_c</th>
+                      <th >mndp</th>
+                      <th >pcm</th>
+                      <th >ppvm</th>        
+                      <th >scm</th>
+                      <th >spvm</th>               
+                      <th >pcme</th>
+                      <th >ppvme</th>                
+                      <th >scme</th>
+                      <th >spvme</th>
+                      <th >pcmax</th>
+                      <th >scmax</th>               
+                      <th >pcmin</th>
+                      <th >scmin</th>           
+                      <th >pcstd</th>
+                      <th >scstd</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr v-for="object in cluster_data.metaT_corr_s.mT_corr_spearman">
+                        
+                        <td >{{ object.cond }}</td>
+                        <td >{{ object.num_c }} </td>
+                        <td >{{ object.mndp }} </td>
+                        
+                        <td >{{ object.pcm |numFilter}}</td>
+                        <td >{{ object.ppvm |numFilter}}</td>
+                        
+                        <td >{{ object.scm |numFilter}}</td>
+                        <td >{{ object.spvm |numFilter}}</td>
+                        
+                        <td >{{ object.pcme |numFilter}}</td>
+                        <td >{{ object.ppvme |numFilter}}</td>
+                        
+                        <td >{{ object.scme |numFilter}}</td>
+                        <td >{{ object.spvme |numFilter}}</td>
+
+                        <td >{{ object.pcmax |numFilter}}</td>
+                        <td >{{ object.scmax |numFilter}}</td>
+                        
+                        <td >{{ object.pcmin |numFilter}}</td>
+                        <td >{{ object.scmin |numFilter}}</td>
+                        
+                        <td >{{ object.pcstd |numFilter}}</td>
+                        <td >{{ object.scstd |numFilter}}</td>
+                        
+                    </tr>
+                  </tbody>
+              </table>
+            </div>            
+          </div>
+            <div v-else>No MetaT Spearman Correlations data</div>
+          <!-- End MetaTransciptomics Spearman Correlations -->
+
+
+          </div><!-- close m-portlet__body -->
+        </div> <!-- close m-portlet -->
+      </div> <!-- close block -->
+    </div> <!-- close row -->
+    
+    <!-- Tree visualization -->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">                                                                                                                                                                                                
+            <!-- Server status -->
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        
+                        <h3>
+                          Tree visualization
+                        </h3>
+
+                    </div>
+                </div>
+            </div>                                                                                                                                                                              
+            
+            <div class="m-portlet__body">
+              <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
+              <div id='server_status'></div> 
+              
+              <!-- this will be the popup window with actions when the user clicks in the tree -->
+              <div id="popup"></div>                                                       
+                                                          
+              <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
+              <div id="highlighter"></div>                                                                                                                                                     
+
+              <!-- in the new version you could be interested in the get_tree_from_paths function -->
+              <div v-if="cluster_data.tree">                                                                                
+                  <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>     
+              </div><div v-else>No tree</div>                                                                                                   
+                                                                                                                                                                                    
+              <!-- ETE PLUGIN -->                                                                                                                                                                                 
+              <div class="ete_image" id="img1"></div>
+            </div>           
+        </div>                                                                                                                  
       </div>
     </div>
-    </div>
-    </div>
+
+  </div>
+    
 `}
 
 

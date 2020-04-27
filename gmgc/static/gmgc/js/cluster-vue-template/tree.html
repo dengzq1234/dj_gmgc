@@ -1,0 +1,41 @@
+<!-- Tree visualization -->
+    <div class="row">
+      <div class="annoBlock col">
+        <div class="m-portlet">                                                                                                                                                                                                
+            <!-- Server status -->
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        
+                        <h3>
+                          Tree visualization
+                        </h3>
+
+                    </div>
+                </div>
+            </div>                                                                                                                                                                              
+            
+            <div class="m-portlet__body">
+              <!-- this indicates whether you have connection to the plugin ('alive') -->                                                                                                                       
+              <div id='server_status'></div> 
+              
+              <!-- this will be the popup window with actions when the user clicks in the tree -->
+              <div id="popup"></div>                                                       
+                                                          
+              <!-- this is the red rectangle being shown when you hover over a gene name -->                                                                                                                         
+              <div id="highlighter"></div>                                                                                                                                                     
+
+              <!-- in the new version you could be interested in the get_tree_from_paths function -->
+              <div v-if="cluster_data.tree">                                                                                
+                  <button type="button" class="psw" v-on:click='get_tree_image'>Check the Tree</button>     
+              </div><div v-else>No tree</div>                                                                                                   
+                                                                                                                                                                                    
+              <!-- ETE PLUGIN -->                                                                                                                                                                                 
+              <div class="ete_image" id="img1"></div>
+            </div>           
+        </div>                                                                                                                  
+      </div>
+    </div>
