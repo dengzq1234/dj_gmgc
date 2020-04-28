@@ -1225,20 +1225,48 @@ var MgsData = {
     props: ['csrf'],
     template:`
 
-  <div>
-    <div id='main' class="container">
-        <h2>MGS data</h2>
-    </div>
-    
+  <div class="row">
     <div class="annoBlock col">
-        <table >
-        <font face="Arial">
-        <tr ><th >MGS ID</th><td v-if="mgs_data">{{ mgs_data.mgs }}</td><td v-else>No item</td></tr>
-        <tr ><th >Unigene members</th><td v-if="mgs_data"><li v-for="u in mgs_data.u"><a v-bind:href="'/gmgc/unigene/'+ u">{{ u }}</a></li></td><td v-else>No item</td></tr>
-        </font>
-        </table>
-    </div>
-  </div>
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <span class="m-portlet__head-icon m--hide">
+                    <i class="la la-gear"></i>
+                </span>
+                
+                <h3>
+                    Source
+                </h3>
+            </div>
+          </div>
+        </div><!-- m-portlet__head -->
+
+        <div class="m-portlet__body">
+          <div v-if="mgs_data">
+            <div class="table-responsive">
+              <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                <caption>MGS ID: <span style="color: blue">{{ mgs_data.mgs }}</span></caption>
+                <thead>
+                  <tr >
+                      <th>Unigene members</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr v-for="u in mgs_data.u">
+                      <td><a v-bind:href="'/gmgc/unigene/'+ u">{{ u }}</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><div v-else>No mgs data</div>
+
+        </div>
+      </div><!-- m-portlet -->
+    </div><!-- Block -->
+  </div><!-- Row -->
+      
   
 `}
 
