@@ -943,6 +943,7 @@ var UnigeneData = {
     </div>
     <!-- End Gene Correlations -->
 
+    <!-- Start Functional annotation -->
     <div class="row">
       <div class="annoBlock col">
         <div class="m-portlet">
@@ -1083,7 +1084,7 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-smart" role="tabpanel" aria-labelledby="nav-smart-tab">
                   <div v-if="unigene.smart">
                     <div class="table-responsive">
-                      <table >
+                      <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
                         <thead>
                           <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
                         </thead>
@@ -1101,125 +1102,7 @@ var UnigeneData = {
         </div> <!-- m-porlet end -->
       </div>
     </div>
-
-
-    <div class="annoBlock col">
-    <h3>Functional annotation</h3>
-          <a name="eggnog"></a>
-          <div  v-if="unigene.emapper_v2">
-              <table >
-              <tr ><th><font color="blue">eggNOG_v2 Annotation</font></th></tr>
-              <div>    
-                  <font face="Arial">
-                  <tr ><th>Preferred_name</th><td >{{unigene.emapper_v2.p_n}}</td></tr> 
-                  <tr ><th>Seed_ortholog_score</th><td >{{unigene.emapper_v2.s_o_s}}</td></tr>
-                  <tr ><th>Seed_ortholog_evalue</th><td >{{unigene.emapper_v2.s_o_e}}</td></tr>
-                  <tr ><th>seed_eggNOG_ortholog</th><td >{{unigene.emapper_v2.s_e_o}}</td></tr>
-                  <tr ><th>COG</th><td >{{unigene.emapper_v2.COG}}</td></tr>
-                  <tr ><th>KEGG_ko</th><td >{{unigene.emapper_v2.K_ko}}</td></tr>
-                  <tr ><th>Best_tax_level</th><td >{{unigene.emapper_v2.b_tax_l}}</td></tr>
-                  <tr ><th>Annot_level_max</th><td >{{unigene.emapper_v2.an_l_max}}</td></tr>
-                  <tr ><th>KEGG_Pathway</th><td >{{unigene.emapper_v2.K_P}}</td></tr>
-                  <tr ><th>KEGG_Reaction</th><td >{{unigene.emapper_v2.K_R}}</td></tr>
-                  <tr ><th>KEGG_rclass</th><td >{{unigene.emapper_v2.K_rc}}</td></tr>
-                  <tr ><th>BiGG_Reaction</th><td >{{unigene.emapper_v2.BiGG}}</td></tr>
-                  <tr ><th>KEGG_Module</th><td >{{unigene.emapper_v2.K_M}}</td></tr>
-                  <tr ><th>bestOG</th><td >{{unigene.emapper_v2.bOGs}}</td></tr>
-                  <tr ><th>KEGG_TC</th><td >{{unigene.emapper_v2.K_TC}}</td></tr>
-                  <tr ><th>matching_OGs</th><td >{{unigene.emapper_v2.OGs}}</td></tr>
-                  <tr ><th>EC</th><td >{{unigene.emapper_v2.EC}}</td></tr>
-                  <tr ><th>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
-                  <tr ><th>BRITE</th><td >{{unigene.emapper_v2.BRITE}}</td></tr>
-                  <tr ><th>CAZy</th><td >{{unigene.emapper_v2.CAZy}}</td></tr>
-                  <tr ><th>GOs</th><td  style='width: 1000px;word-wrap:break-word;'>{{unigene.emapper_v2.GOs}}</td></tr>
-                  </font>
-                  </table>
-              </div>
-          <div v-else><font color="blue">No emapper hit</font></div> 
-        
-        <a name="sprot"></a>  
-        <div v-if="unigene.sprot_best">
-          <table >
-          <tr ><th><font color="blue">SwissProt best hit</font></th></tr>
-          
-          <div> 
-            <font face="Arial">
-            <tr ><th>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
-            <tr ><th>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
-            <tr ><th>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
-            <tr ><th>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
-            <tr ><th>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
-            <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
-            <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
-            </font>
-          </div>
-          </table>
-          
-        </div><div v-else><font color="blue">No SwissProt hit</font></div>
-        
-        <a name="trembl"></a>
-        <div v-if="unigene.trembl_best">
-          <table >
-          <tr ><th><font color="blue">Trembl best hit</font></th></tr>
-
-          <div> 
-            <font face="Arial">
-            <tr ><th>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
-            <tr ><th>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
-            <tr ><th>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
-            <tr ><th>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
-            <tr ><th>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
-            <tr ><th>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
-            </font>
-          </div>
-          </table>
-        </div><div v-else><font color="blue">No Trembl hit</font></div>
-        
-        <a name="intrinsic"></a>
-        <div v-if="unigene.intrinsic">
-          <table >
-          <tr ><th><font color="blue">Intrinsic features</font></th></tr>
-          <div>
-                <tr ><th> Features </th><th >Start</th><th >End</th></tr>
-                <li v-for="object in unigene.intrinsic.intr">
-                <font face="Arial">
-                <tr ><td>{{ object.n }}</td><td >{{ object.s }}</td><td >{{ object.e }}</td></tr>
-                </font>
-                </li>
-          </div>
-          </table>
-        </div><div v-else><font color="blue">No Intrinsic hit</font></div>
-
-        <a name="pfam"></a>
-        <div v-if="unigene.pfam">
-          <table >
-          <tr ><th><font color="blue">Pfam annotation</font></th></tr>
-          <div>
-                <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
-                <li v-for="object in unigene.pfam.pf">
-                <font face="Arial">
-                <tr ><td><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
-                </font>
-                </li>
-          </div>
-          </table>
-        </div><div v-else><font color="blue">No Pfam hit</font></div>
-        
-        <a name="smart"></a>
-        <div v-if="unigene.smart">
-          <table >
-          <tr ><th><font color="blue">SMART annotation</font></th></tr>
-          <div>
-                <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
-                <li v-for="object in unigene.smart.sm">
-                <font face="Arial">
-                <tr ><td><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
-                </font>
-                </li>
-          </div>
-          </table>
-        </div><div v-else><font color="blue">No SMART hit</font></div>
-
+    <!-- End Functional annotation -->
 
         <a name="neigh"></a>
         <div v-if="unigene.neigh_data">
