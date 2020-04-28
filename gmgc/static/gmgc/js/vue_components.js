@@ -1039,8 +1039,8 @@ var UnigeneData = {
                         
                     </table>
                   
-                    <div v-else><font color="blue">No emapper hit</font></div>
-                  </div>
+                    
+                  </div><div v-else><font color="blue">No emapper hit</font></div>
                 </div>
                 <!--third tab-->
                 

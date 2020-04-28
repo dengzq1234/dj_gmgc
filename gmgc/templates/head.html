@@ -59,8 +59,12 @@
 	<link rel="shortcut icon" href="/static/metronic_src/assets/demo/default/media/img/logo/favicon.ico" />
 
 	<script src="/static/metronic_src/vue-tables-2.min.js"></script>
-  
 
+	<!-- for the pagination table-->
+	<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 	<script>
 	  Vue.use(VueTables.ClientTable, [theme = 'bootstrap3']);
@@ -71,6 +75,10 @@
 			$(this).tab('show');
 		  });
 		});
+		$(document).ready(function() {
+			$('#example').DataTable();
+		} );
+		
 	</script>
 		
 	<style>
