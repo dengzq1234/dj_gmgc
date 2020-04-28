@@ -3436,6 +3436,7 @@ input[type="button"].btn-block {
   flex-grow: 1;
   text-align: center; }
 
+  
 .tab-content > .tab-pane {
   display: none; }
 
@@ -9306,7 +9307,8 @@ a.text-dark:hover, a.text-dark:focus {
     border-radius: 4px; }
 
 .nav.nav-pills, .nav.nav-tabs {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  padding-left:13px; }
 
 .nav.nav-pills .nav-item, .nav.nav-tabs .nav-item {
   margin-left: 5px; }
