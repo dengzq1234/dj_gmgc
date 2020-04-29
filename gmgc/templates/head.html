@@ -7,7 +7,7 @@
 	
 
 	<link rel="icon" type="image/png" href="{% static "gmgc/images/icons/favicon.ico" %}"/>
-	<!--<link rel="stylesheet" type="text/css" href="{% static "gmgc/vendor/bootstrap/css/bootstrap_v3.min.css" %}">-->
+	<!-- <link rel="stylesheet" type="text/css" href="{% static "gmgc/vendor/bootstrap/css/bootstrap_v3.min.css" %}"> -->
 	<!--<link rel="stylesheet" type="text/css" href="{% static "gmgc/css/util.css" %}">-->
 	<link rel="stylesheet" type="text/css" href="{% static "gmgc/css/main.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "ete/ete.css" %} >
@@ -49,22 +49,13 @@
 	  gtag('config', 'UA-783841-20');
 	  console.log("done");
 	</script>
-  <!-- End::Google analytics -->
-  
-  
-
+  	<!-- End::Google analytics -->
 	<script src="/static/metronic_src/vue.min.js"></script>
 	<script src="/static/metronic_src/axios.min.js"></script>
   
 	<link rel="shortcut icon" href="/static/metronic_src/assets/demo/default/media/img/logo/favicon.ico" />
 
 	<script src="/static/metronic_src/vue-tables-2.min.js"></script>
-
-	<!-- for the pagination table-->
-	<!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
-	<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 	<script>
 	  Vue.use(VueTables.ClientTable, [theme = 'bootstrap3']);
@@ -75,10 +66,6 @@
 			$(this).tab('show');
 		  });
 		});
-		$(document).ready(function() {
-			$('#example').DataTable();
-		} );
-		
 	</script>
 		
 	<style>
