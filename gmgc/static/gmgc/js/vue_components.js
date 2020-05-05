@@ -1066,18 +1066,18 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-pfam" role="tabpanel" aria-labelledby="nav-pfam-tab">
                   <div v-if="unigene.pfam">
                     <div class="table-responsive">
-                      
-                      <!--<table id="example" class="horizontal_table VueTables__table table-striped table-bordered table-emapper">-->
-                      <table id="example" class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                          <thead>
-                              <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
-                          </thead>
+                      <div id="kt_datatable">
+                      <!--<table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">-->
+                        <table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                            <thead>
+                                <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
+                            </thead>
 
-                          <tbody v-for="object in unigene.pfam.pf">
-                            <tr ><td><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
-                          </tbody>
-                      </table>
-                      
+                            <tbody v-for="object in unigene.pfam.pf">
+                              <tr ><td><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
+                            </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div><div v-else><font color="blue">No Pfam hit</font></div>
                   </div>
@@ -1212,6 +1212,7 @@ var UnigeneData = {
       </div>
     </div>
     <!-- end Neigh Annotation -->
+
 
     </div>
   </div>
