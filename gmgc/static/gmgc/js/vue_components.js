@@ -646,14 +646,15 @@ var ClusterData = {
 `}
 
 var UnigeneData = {
-
     data: function(){
 	return {
+      limitNumber: 20,
       unigene:unigene_data,
       AAisHidden: true,
       NAisHidden: true
 	}
     },
+
     methods:{
       CopyToClipboard: function(containerid){
         if (document.selection) { 
@@ -692,6 +693,7 @@ var UnigeneData = {
                           </span>
                           
                           <h3>
+                              <a id="basic"></a>
                               Basic information
                           </h3>
 
@@ -771,6 +773,7 @@ var UnigeneData = {
                       </span>
                       
                       <h3>
+                          <a id="source"></a>
                           Unigene Source information
                       </h3>
 
@@ -830,6 +833,7 @@ var UnigeneData = {
                           </span>
                           
                           <h3>
+                          <a id="taxo"></a>
                             Taxonomic rank
                           </h3>
 
@@ -868,6 +872,7 @@ var UnigeneData = {
                       </span>
                         
                     <h3>
+                      <a id="correlation"></a>
                       Unigene Correlations
                     </h3>
   
@@ -954,6 +959,7 @@ var UnigeneData = {
                               <i class="la la-gear"></i>
                           </span>                
                           <h3>
+                              <a id="functional"></a>
                               Functional Annotation
                           </h3>
 
@@ -1047,14 +1053,15 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-intrinsic" role="tabpanel" aria-labelledby="nav-intrinsic-tab">
                   <div v-if="unigene.intrinsic">
                     <div class="table-responsive">
-                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                    <table id="intriTable" class="display table horizontal_table table-striped table-bordered table-sm" style="width:100%">
+                    <!--<table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">-->
                           <thead>
                             <tr ><th> Features </th><th >Start</th><th >End</th></tr>
                           </thead>
 
-                          <tbody v-for="object in unigene.intrinsic.intr">
+                          <tbody>
                             
-                            <tr ><td>{{ object.n }}</td><td >{{ object.s }}</td><td >{{ object.e }}</td></tr>
+                            <tr v-for="object in unigene.intrinsic.intr"><td>{{ object.n }}</td><td >{{ object.s }}</td><td >{{ object.e }}</td></tr>
                             
                           </tbody>
                     </table>
@@ -1066,18 +1073,18 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-pfam" role="tabpanel" aria-labelledby="nav-pfam-tab">
                   <div v-if="unigene.pfam">
                     <div class="table-responsive">
-                      <div id="kt_datatable">
-                      <!--<table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">-->
-                        <table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                      
+                      <table id="pfamTable" class="display table horizontal_table table-striped table-bordered table-sm" style="width:100%">
+                      <!--<table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" style="width:100%">-->
                             <thead>
                                 <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
                             </thead>
 
-                            <tbody v-for="object in unigene.pfam.pf">
-                              <tr ><td><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
+                            <tbody>
+                              <tr v-for="object in unigene.pfam.pf"><td><a v-bind:href="'http://pfam.xfam.org/family/'+ object.n" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
                             </tbody>
                         </table>
-                      </div>
+                      
                     </div>
                   </div><div v-else><font color="blue">No Pfam hit</font></div>
                   </div>
@@ -1086,12 +1093,13 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-smart" role="tabpanel" aria-labelledby="nav-smart-tab">
                   <div v-if="unigene.smart">
                     <div class="table-responsive">
-                      <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                      <table id="smartTable" class="display table horizontal_table table-striped table-bordered table-sm" style="width:100%">
+                      <!--<table class="table horizontal_table table-striped table-bordered table-sm" cellspacing="0" width="100%">-->
                         <thead>
                           <tr ><th> Domain </th><th >Start</th><th >End</th><th >Hit score</th><th >E-value</th></tr>
                         </thead>
-                        <tbody v-for="object in unigene.smart.sm">
-                          <tr ><td><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
+                        <tbody >
+                          <tr v-for="object in unigene.smart.sm"><td><a v-bind:href="'https://smart.embl.de/smart/do_annotation.pl?DOMAIN='+ object.n + '&BLAST=DUMMY'" target="_blank">{{ object.n }}</a></td><td >{{ object.s }}</td><td >{{ object.e }}</td><td >{{ object.sc }}</td><td  >{{ object.ev }}</td></tr>
                         </tbody>
                       </table>
                     </div>
@@ -1118,6 +1126,7 @@ var UnigeneData = {
                           </span>
                           
                           <h3>
+                            <a id="neigh"></a>
                             Neighbour Prediction
                           </h3>
                       </div>
@@ -1211,8 +1220,8 @@ var UnigeneData = {
         </div>
       </div>
     </div>
+    
     <!-- end Neigh Annotation -->
-
 
     </div>
   </div>
