@@ -979,13 +979,13 @@ var UnigeneData = {
                   <div class="tab-pane fade show active" id="nav-sprot" role="tabpanel" aria-labelledby="nav-sprot-tab" >
                     <div v-if="unigene.sprot_best">
                     <table role="grid" class="table">
+                    <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact"><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_exact.spe" target="_blank">{{ unigene.sprot_exact.spe }}</a></td><td v-else>no exact hit</td></tr>
                         <tr ><th>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
                         <tr ><th>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
                         <tr ><th>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
                         <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
-                        <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
 
                     </table>
                       
