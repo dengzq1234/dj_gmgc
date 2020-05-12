@@ -1002,7 +1002,7 @@ var UnigeneData = {
                         <tr ><th>Seed_ortholog_evalue</th><td >{{unigene.emapper_v2.s_o_e}}</td></tr>
                         <tr ><th>seed_eggNOG_ortholog</th><td >{{unigene.emapper_v2.s_e_o}}</td></tr>
                         <tr ><th>COG</th><td >{{unigene.emapper_v2.COG}}</td></tr>
-                        <tr ><th>KEGG_ko</th><td ><a v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?ko'+unigene.emapper_v2.K_ko" target="_blank">{{unigene.emapper_v2.K_ko}}</a></td></tr>
+                        <tr ><th>KEGG_ko</th><td ><a v-for="ko in unigene.emapper_v2.K_ko.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?ko'+ko" target="_blank">{{ko}}&nbsp;</a></td></tr>
                         <tr ><th>Best_tax_level</th><td >{{unigene.emapper_v2.b_tax_l}}</td></tr>
                         <tr ><th>Annot_level_max</th><td >{{unigene.emapper_v2.an_l_max}}</td></tr>
                         <tr ><th>KEGG_Pathway</th><td >{{unigene.emapper_v2.K_P}}</td></tr>
