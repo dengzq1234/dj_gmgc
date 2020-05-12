@@ -1002,7 +1002,7 @@ var UnigeneData = {
                         <tr ><th>Seed_ortholog_evalue</th><td >{{unigene.emapper_v2.s_o_e}}</td></tr>
                         <tr ><th>seed_eggNOG_ortholog</th><td >{{unigene.emapper_v2.s_e_o}}</td></tr>
                         <tr ><th>COG</th><td >{{unigene.emapper_v2.COG}}</td></tr>
-                        <tr ><th>KEGG_ko</th><td >{{unigene.emapper_v2.K_ko}}</td></tr>
+                        <tr ><th>KEGG_ko</th><td ><a v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?ko'+unigene.emapper_v2.K_ko" target="_blank">{{unigene.emapper_v2.K_ko}}</a></td></tr>
                         <tr ><th>Best_tax_level</th><td >{{unigene.emapper_v2.b_tax_l}}</td></tr>
                         <tr ><th>Annot_level_max</th><td >{{unigene.emapper_v2.an_l_max}}</td></tr>
                         <tr ><th>KEGG_Pathway</th><td >{{unigene.emapper_v2.K_P}}</td></tr>
@@ -1012,7 +1012,7 @@ var UnigeneData = {
                         <tr ><th>KEGG_Module</th><td >{{unigene.emapper_v2.K_M}}</td></tr>
                         <tr ><th>bestOG</th><td >{{unigene.emapper_v2.bOGs}}</td></tr>
                         <tr ><th>KEGG_TC</th><td >{{unigene.emapper_v2.K_TC}}</td></tr>
-                        <tr ><th>matching_OGs</th><td >{{unigene.emapper_v2.OGs}}</td></tr>
+                        <tr ><th>matching_OGs</th><td><a v-for="og in unigene.emapper_v2.OGs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?seqid='+unigene.emapper_v2.s_e_o.split('.')[1]+'&target_nogs='+og.split('@',1)" targe="_blank">{{og}}&nbsp;</a></td></tr>
                         <tr ><th>EC</th><td >{{unigene.emapper_v2.EC}}</td></tr>
                         <tr ><th>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
                         <tr ><th>BRITE</th><td >{{unigene.emapper_v2.BRITE}}</td></tr>
