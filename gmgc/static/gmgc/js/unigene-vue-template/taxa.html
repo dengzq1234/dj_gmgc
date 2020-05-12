@@ -1,38 +1,38 @@
-<!-- start Taxonomic rank -->
-    <div class="row">
-      <div class="annoBlock col">
-        <div class="m-portlet">
-          <!-- for the taxo_map -->
-              <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                      <div class="m-portlet__head-title">
-                          <span class="m-portlet__head-icon m--hide">
-                              <i class="la la-gear"></i>
-                          </span>
-                          
-                          <h3>
-                            Taxonomic rank
-                          </h3>
+ <!-- start Taxonomic rank -->
+ <div class="row">
+  <div class="annoBlock col">
+    <div class="m-portlet">
+      <!-- for the taxo_map -->
+          <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                          <i class="la la-gear"></i>
+                      </span>
+                      
+                      <h3>
+                        Taxonomic rank
+                      </h3>
 
-                      </div>
                   </div>
-              </div>
-
-              <!-- title -->
-              <div class="m-portlet__body">
-                <div v-if="unigene.taxo_map">
-                  <table role="grid" class="table">
-                  <tr ><th >UNIGENE </th><td >{{ unigene.taxo_map.u }}</td></tr>
-                  <tr ><th >Name </th><td  nowrap>{{ unigene.taxo_map.n }}</td></tr>
-                  <tr ><th >Rank </th><td >{{ unigene.taxo_map.r }}</td></tr>
-                  <tr ><th >Taxid </th><td >{{ unigene.taxo_map.txid }}</td></tr>
-                  <!-- data -->
-                  <!-- for the taxo_map -->
-                  </div>
-                  </table>
-                <div v-else>No item</div>
               </div>
           </div>
+
+          <!-- title -->
+          <div class="m-portlet__body">
+            <div v-if="unigene.taxo_map">
+              <table role="grid" class="table">
+              <tr ><th >UNIGENE </th><td >{{ unigene.taxo_map.u }}</td></tr>
+              <tr ><th >Name </th><td  nowrap>{{ unigene.taxo_map.n }}</td></tr>
+              <tr ><th >Rank </th><td >{{ unigene.taxo_map.r }}</td></tr>
+              <tr ><th >Taxid </th><td >{{ unigene.taxo_map.txid }}</td></tr>
+              <!-- data -->
+              <!-- for the taxo_map -->
+              </div>
+              </table>
+            <div v-else>No item</div>
+          </div>
       </div>
-    </div>
-    <!-- End Taxonomic rank -->
+  </div>
+</div>
+<!-- End Taxonomic rank -->

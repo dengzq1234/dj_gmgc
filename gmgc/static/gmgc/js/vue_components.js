@@ -675,7 +675,12 @@ var UnigeneData = {
         // 3 digits
         let realVal = parseFloat(value).toFixed(3)
         return realVal
-        }
+        },
+        percentFilter (value) {
+          // 3 digits
+          let realVal = parseFloat(value).toFixed(4)*100
+          return realVal+'%'
+          }
     },
     props: ['csrf'],
     template:`
@@ -771,7 +776,7 @@ var UnigeneData = {
                       </span>
                       
                       <h3>
-                          Unigene Source information
+                          Taxonomic information
                       </h3>
 
                   </div>
@@ -780,10 +785,26 @@ var UnigeneData = {
 
             <div class="m-portlet__body">
               <!-- title -->
-              <div v-if="unigene.gene_count">
-              <table role="grid" class="table">
+              <div v-if="unigene.taxo_map">
+                  
+                  <table role="grid" class="table">
+                  <!--<caption style="color: blue;caption-side: top;">Taxo rank</caption>-->
+                  <tr ><th >UNIGENE </th><td >{{ unigene.taxo_map.u }}</td></tr>
+                  <tr ><th >Name </th><td  nowrap><a v-bind:href="'https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id='+ unigene.taxo_map.txid" target="_blank">{{ unigene.taxo_map.n }}</a></td></tr>
+                  <tr ><th >Rank </th><td >{{ unigene.taxo_map.r }}</td></tr>
+                  <!--<tr ><th >Taxid </th><td >{{ unigene.taxo_map.txid }}</td></tr>-->
+                  <!-- data -->
+                  <!-- for the taxo_map -->
+                  </div>
+                  </table>
+              <div v-else>No item</div>
+
               
-                <tr ><th >UNIGENE </th><td >{{ unigene.gene_count.u }}</td></tr>
+              <div v-if="unigene.gene_count">
+              
+              <table role="grid" class="table">
+                <!-- <caption style="color: blue">Source informarion</caption> --> 
+                <!-- <tr ><th >UNIGENE </th><td >{{ unigene.gene_count.u }}</td></tr> -->
                 <tr >
                     <th >MGS Source</th>
                     <td v-if="unigene.gene_mgs" ><li v-for="object in unigene.gene_mgs.mgs" ><a v-bind:href="'/gmgc/mgs_gene/'+ object">{{ object }}</a></li></td>
@@ -816,45 +837,6 @@ var UnigeneData = {
       </div>
     </div>
     <!-- End Gene Source info -->
-    
-    <!-- start Taxonomic rank -->
-    <div class="row">
-      <div class="annoBlock col">
-        <div class="m-portlet">
-          <!-- for the taxo_map -->
-              <div class="m-portlet__head">
-                  <div class="m-portlet__head-caption">
-                      <div class="m-portlet__head-title">
-                          <span class="m-portlet__head-icon m--hide">
-                              <i class="la la-gear"></i>
-                          </span>
-                          
-                          <h3>
-                            Taxonomic rank
-                          </h3>
-
-                      </div>
-                  </div>
-              </div>
-
-              <!-- title -->
-              <div class="m-portlet__body">
-                <div v-if="unigene.taxo_map">
-                  <table role="grid" class="table">
-                  <tr ><th >UNIGENE </th><td >{{ unigene.taxo_map.u }}</td></tr>
-                  <tr ><th >Name </th><td  nowrap>{{ unigene.taxo_map.n }}</td></tr>
-                  <tr ><th >Rank </th><td >{{ unigene.taxo_map.r }}</td></tr>
-                  <tr ><th >Taxid </th><td >{{ unigene.taxo_map.txid }}</td></tr>
-                  <!-- data -->
-                  <!-- for the taxo_map -->
-                  </div>
-                  </table>
-                <div v-else>No item</div>
-              </div>
-          </div>
-      </div>
-    </div>
-    <!-- End Taxonomic rank -->
 
     <!-- Start Gene Correlations -->
     <div class="row">
@@ -981,11 +963,11 @@ var UnigeneData = {
                     <table role="grid" class="table">
                     <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact"><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_exact.spe" target="_blank">{{ unigene.sprot_exact.spe }}</a></td><td v-else>no exact hit</td></tr>
                         <tr ><th>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
-                        <tr ><th>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
-                        <tr ><th>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
+                        <tr ><th>Query coverage</th><td>{{ unigene.sprot_best.spb.qc|percentFilter }}</td></tr>
+                        <tr ><th>Target coverage</th><td>{{ unigene.sprot_best.spb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
-                        <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
+                        <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi|percentFilter }}</td></tr>
 
                     </table>
                       
@@ -999,11 +981,11 @@ var UnigeneData = {
                       <table role="grid" class="table">
 
                         <tr ><th>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
-                        <tr ><th>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
-                        <tr ><th>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
+                        <tr ><th>Query coverage</th><td>{{ unigene.trembl_best.trb.qc|percentFilter }}</td></tr>
+                        <tr ><th>Target coverage</th><td>{{ unigene.trembl_best.trb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
-                        <tr ><th>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
+                        <tr ><th>Percent identity</th><td>{{ unigene.trembl_best.trb.pi|percentFilter }}</td></tr>
 
                       </table>
                     </div><div v-else><font color="blue">No Trembl hit</font></div>
