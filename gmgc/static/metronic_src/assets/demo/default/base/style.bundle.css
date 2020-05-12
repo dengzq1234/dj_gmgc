@@ -1348,7 +1348,8 @@ pre {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  background-color: transparent; }
+  background-color: transparent;
+  table-layout: fixed; }
 
   .table th {
     width: 25%;
@@ -1360,6 +1361,7 @@ pre {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #f4f5f8;
+    word-wrap: break-word;
    }
   .table thead th {
     vertical-align: bottom;
