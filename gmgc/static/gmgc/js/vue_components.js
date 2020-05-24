@@ -676,7 +676,12 @@ var UnigeneData = {
         // 3 digits
         let realVal = parseFloat(value).toFixed(3)
         return realVal
-        }
+        },
+        percentFilter (value) {
+          // 3 digits
+          let realVal = parseFloat(value).toFixed(4)*100
+          return realVal
+          }
     },
     props: ['csrf'],
     template:`
@@ -960,13 +965,13 @@ var UnigeneData = {
                   <div class="tab-pane fade show active" id="nav-sprot" role="tabpanel" aria-labelledby="nav-sprot-tab" >
                     <div v-if="unigene.sprot_best">
                     <table role="grid" class="table">
+                        <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
                         <tr ><th>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
-                        <tr ><th>Query coverage</th><td>{{ unigene.sprot_best.spb.qc }}</td></tr>
-                        <tr ><th>Target coverage</th><td>{{ unigene.sprot_best.spb.tc }}</td></tr>
+                        <tr ><th>Query coverage(%)</th><td>{{ unigene.sprot_best.spb.qc|percentFilter }}</td></tr>
+                        <tr ><th>Target coverage(%)</th><td>{{ unigene.sprot_best.spb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
                         <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
-                        <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
 
                     </table>
                       
@@ -980,8 +985,8 @@ var UnigeneData = {
                       <table role="grid" class="table">
 
                         <tr ><th>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
-                        <tr ><th>Query coverage</th><td>{{ unigene.trembl_best.trb.qc }}</td></tr>
-                        <tr ><th>Target coverage</th><td>{{ unigene.trembl_best.trb.tc }}</td></tr>
+                        <tr ><th>Query coverage(%)</th><td>{{ unigene.trembl_best.trb.qc|percentFilter }}</td></tr>
+                        <tr ><th>Target coverage(%)</th><td>{{ unigene.trembl_best.trb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
                         <tr ><th>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
