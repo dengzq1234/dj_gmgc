@@ -971,7 +971,7 @@ var UnigeneData = {
                         <tr ><th>Target coverage(%)</th><td>{{ unigene.sprot_best.spb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.sprot_best.spb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.sprot_best.spb.ev }}</td></tr>
-                        <tr ><th>Percent identity</th><td>{{ unigene.sprot_best.spb.pi }}</td></tr>
+                        <tr ><th>Percent identity(%)</th><td>{{ unigene.sprot_best.spb.pi|percentFilter }}</td></tr>
 
                     </table>
                       
@@ -989,7 +989,7 @@ var UnigeneData = {
                         <tr ><th>Target coverage(%)</th><td>{{ unigene.trembl_best.trb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
                         <tr ><th>E-value</th><td>{{ unigene.trembl_best.trb.ev }}</td>
-                        <tr ><th>Percent identity</th><td>{{ unigene.trembl_best.trb.pi }}</td></tr>
+                        <tr ><th>Percent identity(%)</th><td>{{ unigene.trembl_best.trb.pi|percentFilter }}</td></tr>
 
                       </table>
                     </div><div v-else><font color="blue">No Trembl hit</font></div>
