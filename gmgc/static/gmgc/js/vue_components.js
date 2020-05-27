@@ -965,7 +965,7 @@ var UnigeneData = {
                   <div class="tab-pane fade show active" id="nav-sprot" role="tabpanel" aria-labelledby="nav-sprot-tab" >
                     <div v-if="unigene.sprot_best">
                     <table role="grid" class="table">
-                        <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact">{{ unigene.sprot_exact.spe }}</td><td v-else>no exact hit</td></tr>
+                        <tr ><th>Exact hit</th><td v-if="unigene.sprot_exact"><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_exact.spe" target="_blank">{{ unigene.sprot_exact.spe }}</a></td><td v-else>no exact hit</td></tr>
                         <tr ><th>AC</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.sprot_best.spb.n" target="_blank">{{ unigene.sprot_best.spb.n }}</a></td></tr>
                         <tr ><th>Query coverage(%)</th><td>{{ unigene.sprot_best.spb.qc|percentFilter }}</td></tr>
                         <tr ><th>Target coverage(%)</th><td>{{ unigene.sprot_best.spb.tc|percentFilter }}</td></tr>
@@ -984,7 +984,7 @@ var UnigeneData = {
                     <div v-if="unigene.trembl_best">
                       <table role="grid" class="table">
 
-                        <tr ><th>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</td></tr>
+                        <tr ><th>ID</th><td><a v-bind:href="'https://www.uniprot.org/uniprot/'+ unigene.trembl_best.trb.n" target="_blank">{{ unigene.trembl_best.trb.n }}</a></td></tr>
                         <tr ><th>Query coverage(%)</th><td>{{ unigene.trembl_best.trb.qc|percentFilter }}</td></tr>
                         <tr ><th>Target coverage(%)</th><td>{{ unigene.trembl_best.trb.tc|percentFilter }}</td></tr>
                         <tr ><th>Score</th><td>{{ unigene.trembl_best.trb.sc }}</td></tr>
@@ -1000,13 +1000,13 @@ var UnigeneData = {
                   <div class="tab-pane fade" id="nav-emapper" role="tabpanel" aria-labelledby="nav-emapper-tab">
                     <div  v-if="unigene.emapper_v2">
                       <table role="grid" class="table">
-
-                        <tr ><th>Preferred_name</th><td >{{unigene.emapper_v2.p_n}}</td></tr> 
+                      
+                        <tr ><th>Predicted_name</th><td >{{unigene.emapper_v2.p_n}}</td></tr> 
                         <tr ><th>Seed_ortholog_score</th><td >{{unigene.emapper_v2.s_o_s}}</td></tr>
                         <tr ><th>Seed_ortholog_evalue</th><td >{{unigene.emapper_v2.s_o_e}}</td></tr>
-                        <tr ><th>seed_eggNOG_ortholog</th><td >{{unigene.emapper_v2.s_e_o}}</td></tr>
+                        <tr ><th>seed_eggNOG_ortholog</th><td ><a v-bind:href="'http://eggnog5.embl.de/#/app/results?seqid='+ unigene.emapper_v2.s_e_o" target="_blank">{{unigene.emapper_v2.s_e_o}}</a></td></tr>
                         <tr ><th>COG</th><td >{{unigene.emapper_v2.COG}}</td></tr>
-                        <tr ><th>KEGG_ko</th><td >{{unigene.emapper_v2.K_ko}}</td></tr>
+                        <tr ><th>KEGG_ko</th><td ><a v-for="ko in unigene.emapper_v2.K_ko.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?ko'+ko" target="_blank">{{ko}}&nbsp;</a></td></tr>
                         <tr ><th>Best_tax_level</th><td >{{unigene.emapper_v2.b_tax_l}}</td></tr>
                         <tr ><th>Annot_level_max</th><td >{{unigene.emapper_v2.an_l_max}}</td></tr>
                         <tr ><th>KEGG_Pathway</th><td >{{unigene.emapper_v2.K_P}}</td></tr>
@@ -1016,12 +1016,12 @@ var UnigeneData = {
                         <tr ><th>KEGG_Module</th><td >{{unigene.emapper_v2.K_M}}</td></tr>
                         <tr ><th>bestOG</th><td >{{unigene.emapper_v2.bOGs}}</td></tr>
                         <tr ><th>KEGG_TC</th><td >{{unigene.emapper_v2.K_TC}}</td></tr>
-                        <tr ><th>matching_OGs</th><td >{{unigene.emapper_v2.OGs}}</td></tr>
+                        <tr ><th>matching_OGs</th><td ><a v-for="og in unigene.emapper_v2.OGs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?seqid='+unigene.emapper_v2.s_e_o.split('.')[1]+'&target_nogs='+og.split('@',1)" targe="_blank">{{og}}&nbsp;</a></td></tr>
                         <tr ><th>EC</th><td >{{unigene.emapper_v2.EC}}</td></tr>
-                        <tr ><th>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
-                        <tr ><th>BRITE</th><td >{{unigene.emapper_v2.BRITE}}</td></tr>
+                        <tr ><th>Description</th><td style="word-wrap:break-word;">{{unigene.emapper_v2.ds}}</td></tr>
+                        <tr ><th>BRITE</th><td ><a v-for="brite in unigene.emapper_v2.BRITE.split(',')" v-bind:href="'https://www.genome.jp/kegg-bin/search_brite?catalog=brite.list&search_string='+brite" target="_blank">{{brite}}&nbsp;</a></td></tr>
                         <tr ><th>CAZy</th><td >{{unigene.emapper_v2.CAZy}}</td></tr>
-                        <tr ><th>GOs</th><td  style='width: 1000px;word-wrap:break-word;'>{{unigene.emapper_v2.GOs}}</td></tr>
+                        <tr ><th>GOs</th><td  style='word-wrap:break-word;'><a v-for="GO in unigene.emapper_v2.GOs.split(',')" v-bind:href="'http://amigo.geneontology.org/amigo/term/'+unigene.emapper_v2.GOs" target="_blank">{{GO}}&nbsp;</td></tr>
                         
                     </table>
                 
