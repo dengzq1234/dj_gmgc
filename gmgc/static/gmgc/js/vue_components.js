@@ -1018,10 +1018,10 @@ var UnigeneData = {
                         <tr ><th>KEGG_TC</th><td >{{unigene.emapper_v2.K_TC}}</td></tr>
                         <tr ><th>matching_OGs</th><td ><a v-for="og in unigene.emapper_v2.OGs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?seqid='+unigene.emapper_v2.s_e_o.split('.')[1]+'&target_nogs='+og.split('@',1)" targe="_blank">{{og}}&nbsp;</a></td></tr>
                         <tr ><th>EC</th><td >{{unigene.emapper_v2.EC}}</td></tr>
-                        <tr ><th>Description</th><td style="word-wrap:break-word;">{{unigene.emapper_v2.ds}}</td></tr>
+                        <tr ><th>Description</th><td>{{unigene.emapper_v2.ds}}</td></tr>
                         <tr ><th>BRITE</th><td ><a v-for="brite in unigene.emapper_v2.BRITE.split(',')" v-bind:href="'https://www.genome.jp/kegg-bin/search_brite?catalog=brite.list&search_string='+brite" target="_blank">{{brite}}&nbsp;</a></td></tr>
                         <tr ><th>CAZy</th><td >{{unigene.emapper_v2.CAZy}}</td></tr>
-                        <tr ><th>GOs</th><td  style='word-wrap:break-word;'><a v-for="GO in unigene.emapper_v2.GOs.split(',')" v-bind:href="'http://amigo.geneontology.org/amigo/term/'+unigene.emapper_v2.GOs" target="_blank">{{GO}}&nbsp;</td></tr>
+                        <tr ><th>GOs</th><td><a v-for="GO in unigene.emapper_v2.GOs.split(',')" v-bind:href="'http://amigo.geneontology.org/amigo/term/'+unigene.emapper_v2.GOs" target="_blank">{{GO}}&nbsp;</td></tr>
                         
                     </table>
                 
