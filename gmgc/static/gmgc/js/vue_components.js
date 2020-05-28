@@ -861,10 +861,10 @@ var UnigeneData = {
             </div>
 
             <div class="m-portlet__body">
-                <div  v-if="unigene.metaG_corr.mG_corr">
+                <div  v-if="unigene.metaG_corr_p.mG_corr_pearson">
                   <div class="table-responsive">
                     <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
-                      <caption style="color: blue">MetaGenomic Correlations</caption>
+                      <caption style="color: blue">MetaGenomic Pearson Correlations</caption>
                       <thead>
                         <tr >
                             <th>Condition</th>
@@ -877,7 +877,7 @@ var UnigeneData = {
                       </thead>
 
                       <tbody>
-                        <tr v-for="object in unigene.metaG_corr.mG_corr">
+                        <tr v-for="object in unigene.metaG_corr_p.mG_corr_pearson">
                             <td>{{ object.cond }}</td>
                             <td>{{ object.num_c }} </td>
                             <td>{{ object.pc }}</td>
@@ -891,11 +891,11 @@ var UnigeneData = {
                   </div>
               </div>            
               <div v-else>No MetaG correlations data</div>
-        
-              <div  v-if="unigene.metaT_corr.mT_corr">
+
+              <div  v-if="unigene.metaG_corr_s.mG_corr_spearman">
                   <div class="table-responsive">
                     <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
-                      <caption style="color: blue">MetaTranscriptomics Correlations</caption>
+                      <caption style="color: blue">MetaGenomic Spearman Correlations</caption>
                       <thead>
                         <tr >
                             <th>Condition</th>
@@ -908,7 +908,38 @@ var UnigeneData = {
                       </thead>
 
                       <tbody>
-                        <tr v-for="object in unigene.metaT_corr.mT_corr">
+                        <tr v-for="object in unigene.metaG_corr_s.mG_corr_spearman">
+                            <td>{{ object.cond }}</td>
+                            <td>{{ object.num_c }} </td>
+                            <td>{{ object.pc }}</td>
+                            <td>{{ object.ppv }}</td>
+                            <td>{{ object.sc }}</td>
+                            <td>{{ object.spv }}</td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+              </div>            
+              <div v-else>No MetaG correlations data</div>
+
+              <div  v-if="unigene.metaT_corr_p.mT_corr_pearson">
+                  <div class="table-responsive">
+                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                      <caption style="color: blue">MetaTranscriptomics Pearson Correlations</caption>
+                      <thead>
+                        <tr >
+                            <th>Condition</th>
+                            <th>Correlations obs_number</th>
+                            <th>PEARSON</th>
+                            <th>PEARSON_PVAL</th>
+                            <th>SPEARMAN</th>
+                            <th>SPEARMAN_PVAL</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr v-for="object in unigene.metaT_corr_p.mT_corr_pearson">
                             <td>{{ object.cond }}</td>
                             <td>{{ object.num_c }} </td>
                             <td>{{ object.pc }}</td>
@@ -922,6 +953,38 @@ var UnigeneData = {
                   </div>
               </div>            
               <div v-else>No MetaT correlations data</div>
+
+              <div  v-if="unigene.metaT_corr_s.mT_corr_spearman">
+                  <div class="table-responsive">
+                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                      <caption style="color: blue">MetaTranscriptomics Spearman Correlations</caption>
+                      <thead>
+                        <tr >
+                            <th>Condition</th>
+                            <th>Correlations obs_number</th>
+                            <th>PEARSON</th>
+                            <th>PEARSON_PVAL</th>
+                            <th>SPEARMAN</th>
+                            <th>SPEARMAN_PVAL</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr v-for="object in unigene.metaT_corr_s.mT_corr_spearman">
+                            <td>{{ object.cond }}</td>
+                            <td>{{ object.num_c }} </td>
+                            <td>{{ object.pc }}</td>
+                            <td>{{ object.ppv }}</td>
+                            <td>{{ object.sc }}</td>
+                            <td>{{ object.spv }}</td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+              </div>            
+              <div v-else>No MetaT correlations data</div>
+
             </div>
         </div>
       </div>
