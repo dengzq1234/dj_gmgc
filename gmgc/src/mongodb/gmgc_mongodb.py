@@ -79,6 +79,7 @@ def gmgcdb_unigenes_find_one(query):
         taxo_map = gmgc_unigenes.taxo_map.find_one(query)
         gene_mgs = gmgc_unigenes.gene_mgs.find_one(query)
         antipfam = gmgc_unigenes.antipfam.find_one(query)
+        complete = gmgc_unigenes.meta.find_one(query)
 
         #metaG_corr = get_meta_corr(gmgc_unigenes.metaG_abs_norm.find(query), 'mG_corr',query)
         #metaT_corr = get_meta_corr(gmgc_unigenes.metaT_abs_norm.find(query), 'mT_corr',query)
@@ -115,6 +116,7 @@ def gmgcdb_unigenes_find_one(query):
             taxo_map,
             gene_mgs,
             antipfam,
+            complete,
             #metaG_corr,
             #metaT_corr,
             metaG_corr_p,

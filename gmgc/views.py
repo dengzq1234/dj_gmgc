@@ -97,6 +97,7 @@ def unigene(request, unigene_id):
         "taxo_map",
         "gene_mgs",
         "antipfam",
+        "complete",
         #'metaG_corr',
         #'metaT_corr',
         "metaG_corr_p",

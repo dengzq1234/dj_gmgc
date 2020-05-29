@@ -712,6 +712,7 @@ var UnigeneData = {
             <tr ><th >Unigene</th><td v-if="unigene.clusters" >{{ unigene.clusters.u }}</td><td v-else>No item</td></tr>
             <tr ><th >Cluster</th><td v-if="unigene.clusters" ><a v-bind:href="'/gmgc/cluster/'+ unigene.clusters.cl">{{ unigene.clusters.cl }}</a></td><td v-else>No item</td></tr>
             <tr ><th >Suffixes</th><td v-if="unigene.suffixes" >{{ unigene.suffixes.sfx }}</td><td v-else>No item</td></tr>
+            <tr ><th >Complete</th><td v-if="unigene.complete.c === 'True'" >Yes</td><td v-else >No</td></tr>
             <tr ><th >antiPfam</th><td v-if="unigene.antipfam" >Yes</td><td v-else >No</td></tr>
             
             <a name="aa sequence"></a>
@@ -813,7 +814,7 @@ var UnigeneData = {
                   <td v-else>No item</td></td>
               </tr>
               
-              <tr ><th >AMPLICON</th><td >{{ unigene.gene_count.am }}</td></tr>
+              <!--<tr ><th >AMPLICON</th><td >{{ unigene.gene_count.am }}</td></tr> -->
               <tr ><th >HUMAN_ORAL</th><td >{{ unigene.gene_count.or }}</td></tr>
               <tr ><th >HUMAN_NOSE</th><td >{{ unigene.gene_count.nos }}</td></tr>
               <tr ><th >HUMAN_SKIN</th><td >{{ unigene.gene_count.skin }}</td></tr>
@@ -828,7 +829,7 @@ var UnigeneData = {
               <tr ><th >MARINE</th><td >{{ unigene.gene_count.mar }}</td></tr>
               <tr ><th >FRESHWATER</th><td >{{ unigene.gene_count.fw }}</td></tr> 
               <tr ><th >WASTEWATER</th><td >{{ unigene.gene_count.was }}</td></tr>
-              <tr ><th >ISOLATE</th><td >{{ unigene.gene_count.iso}}</td></tr>
+              <!-- <tr ><th >ISOLATE</th><td >{{ unigene.gene_count.iso}}</td></tr> -->
               <!-- data -->
             
             </div>
