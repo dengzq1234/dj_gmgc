@@ -59,14 +59,6 @@ def mongo_orf_find(GMGC,maximum_neighbours_genes,coll_unigenes):
         return GMGC_dict
 
 
-
-
-
-
-
-
-
-
 def retrieve_gmgc(gene, coll_unigenes):
         """ retrieve gmgc for every orf from unigenes db """
         GMGC_function = coll_unigenes.find({ "o.g":gene},{"u":1}).limit(1)

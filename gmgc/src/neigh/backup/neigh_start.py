@@ -2,22 +2,13 @@
 # Joaquin Giner Lamia
 
 from __future__ import division
-from pymongo import MongoClient
 from collections import Counter
-import os,sys
+import os,sys,json
 
 ## self packages
-import mongo_client
-from neigh_functions import *
+from .neigh_functions import *
 
 path = os.getcwd()
-
-coll_unigenes = mongo_client.mongo_connect()[0]
-coll_clusters = mongo_client.mongo_connect()[1]
-
-
-## data input
-list_unigenes = False
 
 """
 if sys.argv[1] == "-f":
@@ -50,7 +41,7 @@ percentage_cut_off = int(25) # percentage of keggs (porcentaje de keggs necesari
 
 ##### neigh analysis ####
 
-def neigh_analysis(gmgc_list):
+def neigh_analysis(gmgc_list, coll_unigenes, coll_clusters):
 
 	result_list = []
 	for gmgc in gmgc_list:
@@ -66,6 +57,7 @@ def neigh_analysis(gmgc_list):
 		keggs_for_draw_list=[] #obtener los stats de los genes con Kegss
 		neigh_with_keggs_real = 0
 
+		predicted_neighs = [] # obtain predicted nighbour genes
 
 		gmgc_cluster = mongo_orf_find(gmgc,maximum_neighbours_genes,coll_unigenes)
 
@@ -80,14 +72,11 @@ def neigh_analysis(gmgc_list):
 				query_gene = k
 				gene_list = v
 
-
 				minus2= retrieve_gmgc(gene_list[0],coll_unigenes)
 				minus1= retrieve_gmgc(gene_list[1],coll_unigenes)
 				plus1= retrieve_gmgc(gene_list[2],coll_unigenes)
 				plus2= retrieve_gmgc(gene_list[3],coll_unigenes)
 				gmgc_list = [minus2,minus1,plus1,plus2]
-				#print gmgc_list
-
 
 				keggs_for_draw = []
 
@@ -97,7 +86,7 @@ def neigh_analysis(gmgc_list):
 					number_neigh +=1
 
 					try:
-						kegg = mongo_functional_find(unigene,coll_clusters)[0]
+						kegg = mongo_functional_find(unigene,coll_clusters)[0] #get the kegg of predicted neigh genes
 						kegg_for_print = mongo_functional_find(unigene,coll_clusters)
 
 					except:
@@ -123,8 +112,20 @@ def neigh_analysis(gmgc_list):
 							parsed_kegg.append(n)
 							unigenes_functions.append(n)
 
-				#print keggs_for_draw		#for neigh visulization
+				predicted_neigh = {}
+				predicted_neigh['g'] = query_gene
 
+				keggs_for_neigh = keggs_for_draw.copy()
+				keggs_for_neigh = ["" if x == 'NA' else x for x in keggs_for_neigh]
+				# 0: orf, 1: gene
+				predicted_neigh['p_n'] = [
+					[gene_list[0], minus2, keggs_for_neigh[0]],
+					[gene_list[1], minus1, keggs_for_neigh[1]],
+					[gene_list[2], plus1, keggs_for_neigh[2]],
+					[gene_list[3], plus2, keggs_for_neigh[3]]
+				]
+				predicted_neighs.append(predicted_neigh)
+				#print keggs_for_draw		#for neigh visulization
 
 ########## with this secetion we retrieve neigh_orf_with_keggs, ###################
 				keggs_for_draw_list.append(keggs_for_draw)
@@ -315,30 +316,52 @@ def neigh_analysis(gmgc_list):
 
 
 
-			print ("unigeneID"+"\t"+"query_keggs"+"\t"+"subject_keggs"+"\t"+"analysed_orfs"+"\t"+"neigh_genes"+"\t"+"neigh_with_keggs"+"\t"+"kegg_proportion"+"\t"+"presence_of_kegg"+"\t"+"hit_kegg_percentage"+"\t"+"kegg_description")
+			#print ("unigeneID"+"\t"+"query_keggs"+"\t"+"subject_keggs"+"\t"+"analysed_orfs"+"\t"+"neigh_genes"+"\t"+"neigh_with_keggs"+"\t"+"kegg_proportion"+"\t"+"presence_of_kegg"+"\t"+"hit_kegg_percentage"+"\t"+"kegg_description")
 			result =[gmgc,",".join(query_kegg_list),",".join(subject_kegg_list),str(analysed_orfs),str(number_neigh),str(neigh_with_keggs),str(kegg_proportion),str(kegg_dispersion),",".join(hit_kegg_percentage),";".join(description_list)]
 			result_list.append(result)
 		else:
-			result =[str(gmgc),"No Match"]
+			result = None
 			result_list.append(result)
 
-	return result_list
+	return result_list, predicted_neighs
 
+def neigh_run(gmgc_list, coll_unigenes, coll_clusters):
+	# list_unigenes = False
+	global kegg_dict
+	module_dir = os.path.dirname(__file__)
 
-
-def neigh_run(gmgc_list):
-	global kegg_dict,coll_unigenes,coll_clusters
-	kegg_pathways = open(path+"/KEGGs_pathways.txt","r")
+	kegg_pathways = open(module_dir + "/KEGGs_pathways.txt","r")
 	kegg_dict = make_kegg_dict(kegg_pathways)
 
 	### connection to mongo client using mongo_client.py ###
-	coll_unigenes = mongo_client.mongo_connect()[0]
-	coll_clusters = mongo_client.mongo_connect()[1]
+
+	result_list, predicted_neighs = neigh_analysis(gmgc_list, coll_unigenes, coll_clusters)
+	result_list = result_list[0]
+	if result_list != None:
+		return neigh_output(result_list, predicted_neighs)
+	else:
+		result_list
 
 
-	result_list = neigh_analysis(gmgc_list)
-	print_results(result_list,list_unigenes)
-	return result_list,list_unigenes
+
+def neigh_output(result_list, p_n):
+	result_output = {}
+	keys = [
+		"u",
+		"q_K",
+		"s_K",
+		"a_orfs",
+		"n_g",
+		"n_K",
+		"K_p",
+		"p_K",
+		"ht_K_p",
+		"K_d"
+	]
+	for index, result in enumerate(result_list):
+		result_output[keys[index]] = result
+	result_output['predict_orfs'] = p_n
+	return result_output
 
 """
 if __name__ == main(kegg_pathways):

@@ -1180,85 +1180,55 @@ var UnigeneData = {
             <div class="m-portlet__body">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-neigh-tab" data-toggle="tab" href="#nav-neigh" role="tab" aria-controls="nav-neigh" aria-selected="true">Neighgene Overview</a>
-                <a class="nav-item nav-link" id="nav-neigh_data-tab" data-toggle="tab" href="#nav-neigh_data" role="tab" aria-controls="nav-neigh_data" aria-selected="false">Neighgene prediction</a>
-                <a class="nav-item nav-link" id="nav-orf-tab" data-toggle="tab" href="#nav-orf" role="tab" aria-controls="nav-orf" aria-selected="false">ORFs</a>
+                <a class="nav-item nav-link active" id="nav-neigh_kegg-tab" data-toggle="tab" href="#nav-neigh_kegg" role="tab" aria-controls="nav-neigh_kegg" aria-selected="true">Neighgene KEGG</a>
+                <a class="nav-item nav-link" id="nav-neigh_egg-tab" data-toggle="tab" href="#nav-neigh_egg" role="tab" aria-controls="nav-neigh_egg" aria-selected="false">Neighgene EGGnog</a>
+                <a class="nav-item nav-link" id="nav-neigh_window-tab" data-toggle="tab" href="#nav-neigh_window" role="tab" aria-controls="nav-neigh_window" aria-selected="false">Neighgene Window</a>
               </div>
             </nav>
+            
             <div class="tab-content" id="nav-tabContent">
-              <div class="tab-pane fade show active" id="nav-neigh" role="tabpanel" aria-labelledby="nav-neigh-tab">
-                  <div v-if="unigene.neigh_data">
+              <div class="tab-pane fade show active" id="nav-neigh_kegg" role="tabpanel" aria-labelledby="nav-neigh_kegg-tab">
+                  <div v-if="unigene.neigh_keggs">
                     <table role="grid" class="table">
                       
-                      <tr ><th>Unigene</th><td>{{ unigene.neigh_data.u }}</td></tr>
-                      <tr ><th>query_keggs</th><td>{{ unigene.neigh_data.q_K }}</td></tr>
-                      <tr ><th>subject_keggs</th><td>{{ unigene.neigh_data.s_K }}</td></tr>
-                      <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_data.a_orfs }}</td></tr>
-                      <tr ><th>neigh_genes</th><td>{{ unigene.neigh_data.n_g }}</td></tr>
-                      <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_data.n_K }}</td></tr>
-                      <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_data.K_p }}</td></tr>
-                      <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_data.p_K }}</td></tr>
-                      <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_data.ht_K_p }}</td></tr>
-                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_data.K_d }}</td></tr>
+                      <tr ><th>Unigene</th><td>{{ unigene.neigh_keggs.u}}</td></tr>
+                      <tr ><th>query_keggs</th><td>{{ unigene.neigh_keggs.q_cogs }}</td></tr>
+                      <tr ><th>subject_keggs</th><td>{{ unigene.neigh_keggs.s_cogs }}</td></tr>
+                      <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_keggs.a_orfs }}</td></tr>
+                      <tr ><th>neigh_genes</th><td>{{ unigene.neigh_keggs.n_n_genes }}</td></tr>
+                      <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_keggs.n_n_cogs }}</td></tr>
+                      <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_keggs.u_cogs }}</td></tr>
+                      <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_keggs.c_cogs }}</td></tr>
+                      <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_keggs.c_con }}</td></tr>
+                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.ht_c_per }}</td></tr>
+                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.c_d }}</td></tr>
+
+                    </table>
+
+                  </div><div v-else><font color="blue">No Neighbour KEGG Match</font></div>
+              </div>
+
+              <div class="tab-pane fade show active" id="nav-neigh_egg" role="tabpanel" aria-labelledby="nav-neigh_egg-tab">
+                  <div v-if="unigene.neigh_eggs">
+                    <table role="grid" class="table">
                       
+                      <tr ><th>Unigene</th><td>{{ unigene.neigh_eggs.u}}</td></tr>
+                      <tr ><th>query_keggs</th><td>{{ unigene.neigh_eggs.q_cogs }}</td></tr>
+                      <tr ><th>subject_keggs</th><td>{{ unigene.neigh_eggs.s_cogs }}</td></tr>
+                      <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_eggs.a_orfs }}</td></tr>
+                      <tr ><th>neigh_genes</th><td>{{ unigene.neigh_eggs.n_n_genes }}</td></tr>
+                      <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_eggs.n_n_cogs }}</td></tr>
+                      <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_eggs.u_cogs }}</td></tr>
+                      <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_eggs.c_cogs }}</td></tr>
+                      <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_eggs.c_con }}</td></tr>
+                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.ht_c_per }}</td></tr>
+                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.c_d }}</td></tr>
+
                     </table>
 
-                  </div><div v-else><font color="blue">No Neighbour Match</font></div>
+                  </div><div v-else><font color="blue">No Neighbour EGGnog Match</font></div>
               </div>
 
-              <div class="tab-pane fade" id="nav-neigh_data" role="tabpanel" aria-labelledby="nav-neigh_data-tab">
-                  <div v-if="unigene.neigh_data">
-                      <div class="table-responsive">
-                        <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
-                          <thead>
-                            <tr >
-                                <th  height="35px">-2</th>
-                                <th  height="35px">-1</th>
-                                <th  height="35px">query unigene</th>
-                                <th  height="35px">+1</th>
-                                <th  height="35px">+2</th>
-                            </tr>
-                          </thead>
-
-                          <tbody v-for="object in unigene.neigh_data.predict_neighs">
-                              <tr >
-                                  <td  >
-                                      <a v-bind:href="'/gmgc/unigene/'+ object.p_n[0][1]+ '/#eggnog'">{{object.p_n[0][1]}}</a><li v-for="kegg in object.p_n[0][2]" id="pic_list">{{kegg}}</li>
-                                  </td>
-                                  <td >
-                                      <a v-bind:href="'/gmgc/unigene/'+ object.p_n[1][1]+ '/#eggnog'">{{object.p_n[1][1]}}</a><li v-for="kegg in object.p_n[1][2]" >{{kegg}}</li>
-                                  </td>
-                                  
-                                  <td >{{unigene.clusters.u}}</td>
-                                  <td >
-                                      <a v-bind:href="'/gmgc/unigene/'+ object.p_n[2][1]+ '/#eggnog'">{{object.p_n[2][1]}}</a><ul v-for="kegg in object.p_n[2][2]"><li>{{kegg}}</li></ul>
-                                  </td>
-                                  <td  >
-                                      <a v-bind:href="'/gmgc/unigene/'+ object.p_n[3][1]+ '/#eggnog'">{{object.p_n[3][1]}}</a><li v-for="kegg in object.p_n[3][2]" >{{kegg}}</li>
-                                  </td>
-                              </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div><div v-else><font color="blue">No Neighbour Gene Match</font></div>
-              </div>
-
-              <div class="tab-pane fade" id="nav-orf" role="tabpanel" aria-labelledby="nav-orf-tab">
-                <div  v-if="unigene.neighbour">
-                  <div class="table-responsive">
-                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
-
-                      <thead>
-                        <tr ><th width="350px" height="35px" nowrap> ORF_name </th><th >start</th><th >end</th><th >strand</th></tr>
-                      </thead>
-                      <tbody v-for="object in unigene.neighbour.o">
-                        <tr><td width="350px" height="35px" nowrap>{{object.g}}</td><td >{{object.s[0]}}</td><td >{{object.s[1]}}</td><td >{{object.s[2]}}</td></tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
-              </div>
-              
             </div>
             </div><!-- m-porlet__body -->
         </div>

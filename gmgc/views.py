@@ -114,7 +114,9 @@ def unigene(request, unigene_id):
         unigene_data[keys[index]] = value
 
     # add neigh annotation data
-    unigene_data['neigh_data']  = neigh(unigene_id)
+    unigene_data['neigh_keggs'] = neigh(unigene_id)[0]
+    unigene_data['neigh_eggs'] = neigh(unigene_id)[1]
+    unigene_data['neigh_window'] = neigh(unigene_id)[2]
 
 
     print("this is unigene data", unigene_data)
@@ -169,11 +171,10 @@ def neigh(unigene_id):
     neigh_query.append(unigene_id)
 
     MONGO_HOST, MONGO_PORT = neigh_queries.load_mongo_config(MONGO_CONFIG_PATH)
-    coll_unigenes = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[0]
-    coll_clusters = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)[1]
+    coll_unigenes, coll_clusters, coll_e5 = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)
 
     # neigh_data = neigh_queries.neigh_run(neigh_query,coll_unigenes,coll_clusters)
-    neigh_data = neigh_start.neigh_run(neigh_query, coll_unigenes, coll_clusters)
+    neigh_data = neigh_start.neigh_run(neigh_query, coll_unigenes, coll_clusters, coll_e5)
     #print("this is neigh data", neigh_data)
     return neigh_data
 
