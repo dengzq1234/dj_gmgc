@@ -1208,7 +1208,7 @@ var UnigeneData = {
                   </div><div v-else><font color="blue">No Neighbour KEGG Match</font></div>
               </div>
 
-              <div class="tab-pane fade show active" id="nav-neigh_egg" role="tabpanel" aria-labelledby="nav-neigh_egg-tab">
+              <div class="tab-pane fade" id="nav-neigh_egg" role="tabpanel" aria-labelledby="nav-neigh_egg-tab">
                   <div v-if="unigene.neigh_eggs">
                     <table role="grid" class="table">
                       
@@ -1227,6 +1227,23 @@ var UnigeneData = {
                     </table>
 
                   </div><div v-else><font color="blue">No Neighbour EGGnog Match</font></div>
+              </div>
+
+              <div class="tab-pane fade" id="nav-neigh_window" role="tabpanel" aria-labelledby="nav-neigh_window-tab">
+                <div  v-if="unigene.neigh_window">
+                  <div class="table-responsive">
+                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+
+                      <thead>
+                        <tr ><th width="350px" height="35px" nowrap> ORF_name </th><th >start</th><th >end</th><th >strand</th></tr>
+                      </thead>
+                      <tbody v-for="object in unigene.neigh_window">
+                        <!--<tr><td width="350px" height="35px" nowrap>{{object.g}}</td><td >{{object.s[0]}}</td><td >{{object.s[1]}}</td><td >{{object.s[2]}}</td></tr>-->
+                        <tr><td>{{object}}</td><tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
               </div>
 
             </div>
