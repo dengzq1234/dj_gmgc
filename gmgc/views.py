@@ -9,7 +9,7 @@ from django.template import loader
 from django.forms.models import model_to_dict
 
 from .src.mongodb import gmgc_queries
-from .src.neigh import neigh_queries,neigh_start
+from .src.neigh import neigh_queries, neigh_start, neigh_graphic 
 from .src.neigh import neigh_mongodb
 from .src.get_tree import tree_queries, tree_mongodb
 
@@ -117,6 +117,7 @@ def unigene(request, unigene_id):
     unigene_data['neigh_keggs'] = neigh(unigene_id)[0]
     unigene_data['neigh_eggs'] = neigh(unigene_id)[1]
     unigene_data['neigh_window'] = neigh(unigene_id)[2]
+    unigene_data['neigh_viz'] = neigh(unigene_id)[3]
 
 
     print("this is unigene data", unigene_data)
@@ -174,7 +175,14 @@ def neigh(unigene_id):
     coll_unigenes, coll_clusters, coll_e5 = neigh_mongodb.connectdb(MONGO_HOST, MONGO_PORT)
 
     # neigh_data = neigh_queries.neigh_run(neigh_query,coll_unigenes,coll_clusters)
-    neigh_data = neigh_start.neigh_run(neigh_query, coll_unigenes, coll_clusters, coll_e5)
+    neigh_data = list(neigh_start.neigh_run(neigh_query, coll_unigenes, coll_clusters, coll_e5))
+
+    # for visualize neigh_data
+    neigh_viz_data = neigh_graphic.neigh_viz(unigene_id, coll_unigenes, coll_clusters, coll_e5)
+
+    # sum up
+    neigh_data.append(neigh_viz_data)
+
     #print("this is neigh data", neigh_data)
     return neigh_data
 

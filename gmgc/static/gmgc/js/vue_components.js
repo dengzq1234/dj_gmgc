@@ -1182,7 +1182,7 @@ var UnigeneData = {
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-neigh_kegg-tab" data-toggle="tab" href="#nav-neigh_kegg" role="tab" aria-controls="nav-neigh_kegg" aria-selected="true">Neighgene KEGG</a>
                 <a class="nav-item nav-link" id="nav-neigh_egg-tab" data-toggle="tab" href="#nav-neigh_egg" role="tab" aria-controls="nav-neigh_egg" aria-selected="false">Neighgene EGGnog</a>
-                <a class="nav-item nav-link" id="nav-neigh_window-tab" data-toggle="tab" href="#nav-neigh_window" role="tab" aria-controls="nav-neigh_window" aria-selected="false">Neighgene Window</a>
+                <a class="nav-item nav-link" id="nav-neigh_viz-tab" data-toggle="tab" href="#nav-neigh_viz" role="tab" aria-controls="nav-neigh_viz" aria-selected="false">Neighgene Visualization</a>
               </div>
             </nav>
             
@@ -1229,18 +1229,43 @@ var UnigeneData = {
                   </div><div v-else><font color="blue">No Neighbour EGGnog Match</font></div>
               </div>
 
-              <div class="tab-pane fade" id="nav-neigh_window" role="tabpanel" aria-labelledby="nav-neigh_window-tab">
-                <div  v-if="unigene.neigh_window">
+              <div class="tab-pane fade" id="nav-neigh_viz" role="tabpanel" aria-labelledby="nav-neigh_viz-tab">
+                <div  v-if="unigene.neigh_viz">
                   <div class="table-responsive">
                     <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
 
                       <thead>
-                        <tr ><th width="350px" height="35px" nowrap> ORF_name </th><th >start</th><th >end</th><th >strand</th></tr>
+                        <tr >
+                            
+                            <th  >-2</th>
+                            <th  >-1</th>
+                            <th  >query unigene</th>
+                            <th  >+1</th>
+                            <th  >+2</th>
+                            <th>KEGG description</th>
+                            <th>eggNOG description</th>
+                        </tr>
                       </thead>
-                      <tbody v-for="object in unigene.neigh_window">
-                        <!--<tr><td width="350px" height="35px" nowrap>{{object.g}}</td><td >{{object.s[0]}}</td><td >{{object.s[1]}}</td><td >{{object.s[2]}}</td></tr>-->
-                        <tr><td>{{object}}</td><tr>
+
+                      <tbody v-for="object in unigene.neigh_viz">
+                        <tr>
+                          <td>{{object.predicted_genes.split('||')[1]}}</td>
+                        
+                        
+                          <td>{{object.predicted_genes.split('||')[2]}}</td>
+                        
+                          <td>{{object.predicted_genes.split('||')[3]}}</td>
+                        
+                          <td>{{object.predicted_genes.split('||')[4]}}</td>
+                        
+                          <td>{{object.predicted_genes.split('||')[5]}}</td>
+
+                          <td >{{object.keggs_description}}</td>
+
+                          <td >{{object.eggs_description}}</td>
+                        </tr>
                       </tbody>
+
                     </table>
                   </div>
                 </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
