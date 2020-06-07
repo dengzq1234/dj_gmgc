@@ -252,21 +252,21 @@ def printing_genes(gmgc_list_func, coll_e5):
 			egg = " ".join(eggnog_list)
 
 			if strand == "+":
-				positive ="[{}]>".format(final_kegg+" "+(egg))
+				positive ="{}:====>".format(final_kegg+" "+(egg))
 				list_for_draw.append(positive)
 			
 			else:
-				negative="<[{}]".format(final_kegg+" "+(egg))
+				negative="{}:<====".format(final_kegg+" "+(egg))
 				list_for_draw.append(negative)
 		else:
-			list_for_draw.append("[X]")
+			list_for_draw.append("NA")
 
 	#printing the line
 	line=""
 	count = 0
 	for element in list_for_draw:
 		count +=1
-		if element != "[X]":
+		if element != "NA":
 			if len(element.split(":")[1]) > 3:
 				if count == 3:
 					line+=("||"+element)	

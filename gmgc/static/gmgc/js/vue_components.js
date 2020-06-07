@@ -1232,14 +1232,16 @@ var UnigeneData = {
               <div class="tab-pane fade" id="nav-neigh_viz" role="tabpanel" aria-labelledby="nav-neigh_viz-tab">
                 <div  v-if="unigene.neigh_viz">
                   <div class="table-responsive">
-                    <table class="horizontal_table VueTables__table table-striped table-bordered table-emapper">
+                  
+                    <table id="neigh_vizTable" class=" display horizontal_table VueTables__table table-striped table-bordered table-emapper">
 
                       <thead>
                         <tr >
-                            
+                            <th  >query unigene</th>
+
                             <th  >-2</th>
                             <th  >-1</th>
-                            <th  >query unigene</th>
+                            
                             <th  >+1</th>
                             <th  >+2</th>
                             <th>KEGG description</th>
@@ -1249,26 +1251,64 @@ var UnigeneData = {
 
                       <tbody v-for="object in unigene.neigh_viz">
                         <tr>
-                          <td>{{object.predicted_genes.split('||')[1]}}</td>
-                        
-                        
-                          <td>{{object.predicted_genes.split('||')[2]}}</td>
-                        
-                          <td>{{object.predicted_genes.split('||')[3]}}</td>
-                        
-                          <td>{{object.predicted_genes.split('||')[4]}}</td>
-                        
-                          <td>{{object.predicted_genes.split('||')[5]}}</td>
+                          <td>
+                              <p style="font-weight: bold">{{object.predicted_genes.split('||')[3].split(':')[0]}}</p>
+                              <li v-for="gg in object.predicted_genes.split('||')[3].split(':')[1].split(' ')">
+                                  {{gg}}
+                              </li><br/>
+                              {{object.predicted_genes.split('||')[3].split(':')[2]}}
+                          </td>
 
-                          <td >{{object.keggs_description}}</td>
+                          <td>
+                            <p style="font-weight: bold">{{object.predicted_genes.split('||')[1].split(':')[0]}}</p>
+                            <div v-if="object.predicted_genes.split('||')[1] != 'NA'">
+                              <li v-for="gg in object.predicted_genes.split('||')[1].split(':')[1].split(' ')">
+                                    {{gg}}
+                              </li><br/>
+                              {{object.predicted_genes.split('||')[1].split(':')[2]}}
+                            </div>
+                            
+                          </td>
+                        
+                          <td>
+                            <p style="font-weight: bold">{{object.predicted_genes.split('||')[2].split(':')[0]}}</p>
+                            <div v-if="object.predicted_genes.split('||')[2] != 'NA'">
+                              <li v-for="gg in object.predicted_genes.split('||')[2].split(':')[1].split(' ')">
+                                    {{gg}}
+                              </li><br/>
+                              {{object.predicted_genes.split('||')[2].split(':')[2]}}
+                            </div>
+                          </td>  
+                        
+                          <td>
+                            <p style="font-weight: bold">{{object.predicted_genes.split('||')[4].split(':')[0]}}</p>
+                            <div v-if="object.predicted_genes.split('||')[4] != 'NA'">
+                              <li v-for="gg in object.predicted_genes.split('||')[4].split(':')[1].split(' ')">
+                                    {{gg}}
+                              </li><br/>
+                              {{object.predicted_genes.split('||')[4].split(':')[2]}}
+                            </div>
+                          </td>
+                        
+                          <td>
+                            <p style="font-weight: bold">{{object.predicted_genes.split('||')[5].split(':')[0]}}
+                            <div v-if="object.predicted_genes.split('||')[5] != 'NA'">
+                              <li v-for="gg in object.predicted_genes.split('||')[5].split(':')[1].split(' ')">
+                                    {{gg}}
+                              </li><br/>
+                              {{object.predicted_genes.split('||')[5].split(':')[2]}}
+                            </div>
+                          </td>
 
-                          <td >{{object.eggs_description}}</td>
+                          <td ><li v-for="kegg in object.keggs_description">{{kegg}}</li></td>
+
+                          <td style="height:20pt"><div style="overflow:auto; height:100%"><li v-for="egg in object.eggs_description">{{egg}}</li></div></td>
                         </tr>
                       </tbody>
 
                     </table>
                   </div>
-                </div><div v-else><font color="blue">No Neighbourhood ORFs hit</font></div>
+                </div><div v-else><font color="blue">No Predict Neighbourhood hit</font></div>
               </div>
 
             </div>

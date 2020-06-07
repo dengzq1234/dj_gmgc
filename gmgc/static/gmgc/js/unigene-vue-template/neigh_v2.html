@@ -1,0 +1,160 @@
+<!-- Neigh Annotation -->
+<div class="row">
+  <div class="annoBlock col">
+    <div class="m-portlet">
+        <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                      <span class="m-portlet__head-icon m--hide">
+                          <i class="la la-gear"></i>
+                      </span>
+                      
+                      <h3>
+                        <a id="neigh"></a>
+                        Neighbour Prediction
+                      </h3>
+                  </div>
+              </div>
+          </div>
+
+        <div class="m-portlet__body">
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-neigh_kegg-tab" data-toggle="tab" href="#nav-neigh_kegg" role="tab" aria-controls="nav-neigh_kegg" aria-selected="true">Neighgene KEGG</a>
+            <a class="nav-item nav-link" id="nav-neigh_egg-tab" data-toggle="tab" href="#nav-neigh_egg" role="tab" aria-controls="nav-neigh_egg" aria-selected="false">Neighgene EGGnog</a>
+            <a class="nav-item nav-link" id="nav-neigh_viz-tab" data-toggle="tab" href="#nav-neigh_viz" role="tab" aria-controls="nav-neigh_viz" aria-selected="false">Neighgene Visualization</a>
+          </div>
+        </nav>
+        
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-neigh_kegg" role="tabpanel" aria-labelledby="nav-neigh_kegg-tab">
+              <div v-if="unigene.neigh_keggs">
+                <table role="grid" class="table">
+                  
+                  <tr ><th>Unigene</th><td>{{ unigene.neigh_keggs.u}}</td></tr>
+                  <tr ><th>query_keggs</th><td>{{ unigene.neigh_keggs.q_cogs }}</td></tr>
+                  <tr ><th>subject_keggs</th><td>{{ unigene.neigh_keggs.s_cogs }}</td></tr>
+                  <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_keggs.a_orfs }}</td></tr>
+                  <tr ><th>neigh_genes</th><td>{{ unigene.neigh_keggs.n_n_genes }}</td></tr>
+                  <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_keggs.n_n_cogs }}</td></tr>
+                  <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_keggs.u_cogs }}</td></tr>
+                  <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_keggs.c_cogs }}</td></tr>
+                  <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_keggs.c_con }}</td></tr>
+                  <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.ht_c_per }}</td></tr>
+                  <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.c_d }}</td></tr>
+
+                </table>
+
+              </div><div v-else><font color="blue">No Neighbour KEGG Match</font></div>
+          </div>
+
+          <div class="tab-pane fade" id="nav-neigh_egg" role="tabpanel" aria-labelledby="nav-neigh_egg-tab">
+              <div v-if="unigene.neigh_eggs">
+                <table role="grid" class="table">
+                  
+                  <tr ><th>Unigene</th><td>{{ unigene.neigh_eggs.u}}</td></tr>
+                  <tr ><th>query_keggs</th><td>{{ unigene.neigh_eggs.q_cogs }}</td></tr>
+                  <tr ><th>subject_keggs</th><td>{{ unigene.neigh_eggs.s_cogs }}</td></tr>
+                  <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_eggs.a_orfs }}</td></tr>
+                  <tr ><th>neigh_genes</th><td>{{ unigene.neigh_eggs.n_n_genes }}</td></tr>
+                  <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_eggs.n_n_cogs }}</td></tr>
+                  <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_eggs.u_cogs }}</td></tr>
+                  <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_eggs.c_cogs }}</td></tr>
+                  <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_eggs.c_con }}</td></tr>
+                  <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.ht_c_per }}</td></tr>
+                  <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.c_d }}</td></tr>
+
+                </table>
+
+              </div><div v-else><font color="blue">No Neighbour EGGnog Match</font></div>
+          </div>
+
+          <div class="tab-pane fade" id="nav-neigh_viz" role="tabpanel" aria-labelledby="nav-neigh_viz-tab">
+            <div  v-if="unigene.neigh_viz">
+              <div class="table-responsive">
+              
+                <table id="neigh_vizTable" class=" display horizontal_table VueTables__table table-striped table-bordered table-emapper">
+
+                  <thead>
+                    <tr >
+                        <th  >query unigene</th>
+
+                        <th  >-2</th>
+                        <th  >-1</th>
+                        
+                        <th  >+1</th>
+                        <th  >+2</th>
+                        <th>KEGG description</th>
+                        <th>eggNOG description</th>
+                    </tr>
+                  </thead>
+
+                  <tbody v-for="object in unigene.neigh_viz">
+                    <tr>
+                      <td>
+                          {{object.predicted_genes.split('||')[3].split(':')[0]}}<br/>
+                          <li v-for="gg in object.predicted_genes.split('||')[3].split(':')[1].split(' ')">
+                              {{gg}}
+                          </li><br/>
+                          {{object.predicted_genes.split('||')[3].split(':')[2]}}
+                      </td>
+
+                      <td>
+                        {{object.predicted_genes.split('||')[1].split(':')[0]}}
+                        <div v-if="object.predicted_genes.split('||')[1] != 'NA'">
+                          <li v-for="gg in object.predicted_genes.split('||')[1].split(':')[1].split(' ')">
+                                {{gg}}
+                          </li><br/>
+                          {{object.predicted_genes.split('||')[1].split(':')[2]}}
+                        </div>
+                        
+                      </td>
+                    
+                      <td>
+                        {{object.predicted_genes.split('||')[2].split(':')[0]}}
+                        <div v-if="object.predicted_genes.split('||')[2] != 'NA'">
+                          <li v-for="gg in object.predicted_genes.split('||')[2].split(':')[1].split(' ')">
+                                {{gg}}
+                          </li><br/>
+                          {{object.predicted_genes.split('||')[2].split(':')[2]}}
+                        </div>
+                      </td>  
+                    
+                      <td>
+                        {{object.predicted_genes.split('||')[4].split(':')[0]}}
+                        <div v-if="object.predicted_genes.split('||')[4] != 'NA'">
+                          <li v-for="gg in object.predicted_genes.split('||')[4].split(':')[1].split(' ')">
+                                {{gg}}
+                          </li><br/>
+                          {{object.predicted_genes.split('||')[4].split(':')[2]}}
+                        </div>
+                      </td>
+                    
+                      <td>
+                        {{object.predicted_genes.split('||')[5].split(':')[0]}}
+                        <div v-if="object.predicted_genes.split('||')[5] != 'NA'">
+                          <li v-for="gg in object.predicted_genes.split('||')[5].split(':')[1].split(' ')">
+                                {{gg}}
+                          </li><br/>
+                          {{object.predicted_genes.split('||')[5].split(':')[2]}}
+                        </div>
+                      </td>
+
+                      <td ><li v-for="kegg in object.keggs_description">{{kegg}}</li></td>
+
+                      <td style="height:20pt"><div style="overflow:auto; height:100%"><li v-for="egg in object.eggs_description">{{egg}}</li></div></td>
+                    </tr>
+                  </tbody>
+
+                </table>
+              </div>
+            </div><div v-else><font color="blue">No Predict Neighbourhood hit</font></div>
+          </div>
+
+        </div>
+        </div><!-- m-porlet__body -->
+    </div>
+  </div>
+</div>
+
+<!-- end Neigh Annotation -->
