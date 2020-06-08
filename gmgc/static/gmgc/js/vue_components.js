@@ -186,6 +186,7 @@ var ClusterData = {
                       </span>
                       
                       <h3>
+                          <a id="basic" href="#href"></a>
                           Basic information
                       </h3>
 
@@ -237,6 +238,7 @@ var ClusterData = {
                         </span>
                         
                         <h3>
+                            <a id="source" href="#source"></a>
                             Cluster Source infomation
                         </h3>
 
@@ -286,6 +288,7 @@ var ClusterData = {
                       </span>
                       
                       <h3>
+                        <a id="stats" href="#stats">
                         Cluster Stats
                       </h3>
 
@@ -333,6 +336,7 @@ var ClusterData = {
                     </span>
                       
                   <h3>
+                    <a id="correlation" href="#correlation"></a>
                     Cluster Correlations
                   </h3>
 
@@ -612,6 +616,7 @@ var ClusterData = {
                         </span>
                         
                         <h3>
+                          <a id="tree_viz" href="#tree"></a>
                           Tree visualization
                         </h3>
 
@@ -698,7 +703,7 @@ var UnigeneData = {
                           </span>
                           
                           <h3>
-                              <a id="basic"></a>
+                              <a id="basic" href="#basic"></a>
                               Basic information
                           </h3>
 
@@ -779,6 +784,7 @@ var UnigeneData = {
                     </span>
                     
                     <h3>
+                        <a id="taxa" href="#taxa"></a>
                         Taxonomic information
                     </h3>
 
@@ -853,7 +859,7 @@ var UnigeneData = {
                       </span>
                         
                     <h3>
-                      <a id="correlation"></a>
+                      <a id="correlation" href="#correlation"></a>
                       Unigene Correlations
                     </h3>
   
@@ -1003,7 +1009,7 @@ var UnigeneData = {
                               <i class="la la-gear"></i>
                           </span>                
                           <h3>
-                              <a id="functional"></a>
+                              <a id="functional" href="#functional"></a>
                               Functional Annotation
                           </h3>
 
@@ -1073,11 +1079,11 @@ var UnigeneData = {
                         <tr ><th>KEGG_ko</th><td ><a v-for="ko in unigene.emapper_v2.K_ko.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?ko'+ko" target="_blank">{{ko}}&nbsp;</a></td></tr>
                         <tr ><th>Best_tax_level</th><td >{{unigene.emapper_v2.b_tax_l}}</td></tr>
                         <tr ><th>Annot_level_max</th><td >{{unigene.emapper_v2.an_l_max}}</td></tr>
-                        <tr ><th>KEGG_Pathway</th><td >{{unigene.emapper_v2.K_P}}</td></tr>
-                        <tr ><th>KEGG_Reaction</th><td >{{unigene.emapper_v2.K_R}}</td></tr>
-                        <tr ><th>KEGG_rclass</th><td >{{unigene.emapper_v2.K_rc}}</td></tr>
-                        <tr ><th>BiGG_Reaction</th><td >{{unigene.emapper_v2.BiGG}}</td></tr>
-                        <tr ><th>KEGG_Module</th><td >{{unigene.emapper_v2.K_M}}</td></tr>
+                        <tr ><th>KEGG_Pathway</th><td ><a v-for="kegg in unigene.emapper_v2.K_P.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?map'+ kegg" target="_blank">{{kegg}}&nbsp;</td></tr>
+                        <tr ><th>KEGG_Reaction</th><td ><a v-for="reaction in unigene.emapper_v2.K_R.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?rn:'+ reaction" target="_blank">{{reaction}}&nbsp;</td></tr>                        
+                        <tr ><th>KEGG_rclass</th><td ><a v-for="rclass in unigene.emapper_v2.K_rc.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?' + rclass" target="_blank">{{rclass}}&nbsp;</td></tr>
+                        <tr ><th>BiGG_Reaction</th><td ><a v-for="bigg in unigene.emapper_v2.BiGG.split(',')" v-bind:href="'http://bigg.ucsd.edu/models/'+ bigg.split('.')[0]+ '/genes/' +bigg.split('.')[1]">{{bigg}}&nbsp;</td></tr>
+                        <tr ><th>KEGG_Module</th><td ><a v-for="module in unigene.emapper_v2.K_M.split(',')" v-bind:href="'http://www.genome.jp/dbget-bin/www_bget?'+ module">{{module}}&nbsp;</td></tr>
                         <tr ><th>bestOG</th><td >{{unigene.emapper_v2.bOGs}}</td></tr>
                         <tr ><th>KEGG_TC</th><td >{{unigene.emapper_v2.K_TC}}</td></tr>
                         <tr ><th>matching_OGs</th><td ><a v-for="og in unigene.emapper_v2.OGs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?seqid='+unigene.emapper_v2.s_e_o.split('.')[1]+'&target_nogs='+og.split('@',1)" targe="_blank">{{og}}&nbsp;</a></td></tr>
@@ -1170,7 +1176,7 @@ var UnigeneData = {
                           </span>
                           
                           <h3>
-                            <a id="neigh"></a>
+                            <a id="neigh" href="#neigh"></a>
                             Neighbour Prediction
                           </h3>
                       </div>
@@ -1190,18 +1196,18 @@ var UnigeneData = {
               <div class="tab-pane fade show active" id="nav-neigh_kegg" role="tabpanel" aria-labelledby="nav-neigh_kegg-tab">
                   <div v-if="unigene.neigh_keggs">
                     <table role="grid" class="table">
-                      
+                    
                       <tr ><th>Unigene</th><td>{{ unigene.neigh_keggs.u}}</td></tr>
-                      <tr ><th>query_keggs</th><td>{{ unigene.neigh_keggs.q_cogs }}</td></tr>
-                      <tr ><th>subject_keggs</th><td>{{ unigene.neigh_keggs.s_cogs }}</td></tr>
+                      <tr ><th>query_cogs</th><td><a v-for="cog in unigene.neigh_keggs.q_cogs.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?map' + cog" target="_blank">{{ cog }}&nbsp;</a></td></tr>
+                      <tr ><th>subject_cogs</th><td><a v-for="cog in unigene.neigh_keggs.s_cogs.split(',')" v-bind:href="'https://www.genome.jp/dbget-bin/www_bget?map' + cog" target="_blank">{{ cog }}&nbsp;</a></td></tr>
                       <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_keggs.a_orfs }}</td></tr>
-                      <tr ><th>neigh_genes</th><td>{{ unigene.neigh_keggs.n_n_genes }}</td></tr>
-                      <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_keggs.n_n_cogs }}</td></tr>
-                      <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_keggs.u_cogs }}</td></tr>
-                      <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_keggs.c_cogs }}</td></tr>
-                      <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_keggs.c_con }}</td></tr>
-                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.ht_c_per }}</td></tr>
-                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_keggs.c_d }}</td></tr>
+                      <tr ><th>number_neigh_genes</th><td>{{ unigene.neigh_keggs.n_n_genes }}</td></tr>
+                      <tr ><th>number_neigh_with_cogs</th><td>{{ unigene.neigh_keggs.n_n_cogs }}</td></tr>
+                      <tr ><th>unique_cogs</th><td>{{ unigene.neigh_keggs.u_cogs }}</td></tr>
+                      <tr ><th>count_of_cogs</th><td>{{ unigene.neigh_keggs.c_cogs }}</td></tr>
+                      <tr ><th>cog_conservation</th><td>{{ unigene.neigh_keggs.c_con }}</td></tr>
+                      <tr ><th>hit_cog_percentage</th><td><li v-for="ht in unigene.neigh_keggs.ht_c_per.split(',')">{{ ht }}</li></td></tr>
+                      <tr ><th>cog_description</th><td><li v-for="d in unigene.neigh_keggs.c_d.split(';')">{{ d }}</li></td></tr>
 
                     </table>
 
@@ -1213,16 +1219,16 @@ var UnigeneData = {
                     <table role="grid" class="table">
                       
                       <tr ><th>Unigene</th><td>{{ unigene.neigh_eggs.u}}</td></tr>
-                      <tr ><th>query_keggs</th><td>{{ unigene.neigh_eggs.q_cogs }}</td></tr>
-                      <tr ><th>subject_keggs</th><td>{{ unigene.neigh_eggs.s_cogs }}</td></tr>
+                      <tr ><th>query_keggs</th><td><a v-for="cog in unigene.neigh_eggs.q_cogs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?target_nogs='+cog.split('@')[0]" target="_blank">{{ cog }}&nbsp;</a></td></tr>
+                      <tr ><th>subject_keggs</th><td><a v-for="cog in unigene.neigh_eggs.s_cogs.split(',')" v-bind:href="'http://eggnog5.embl.de/#/app/results?target_nogs='+cog.split('@')[0]" target="_blank">{{ cog }}&nbsp;</a></td></tr>
                       <tr ><th>analysed_orfs</th><td>{{ unigene.neigh_eggs.a_orfs }}</td></tr>
-                      <tr ><th>neigh_genes</th><td>{{ unigene.neigh_eggs.n_n_genes }}</td></tr>
-                      <tr ><th>neigh_with_keggs</th><td>{{ unigene.neigh_eggs.n_n_cogs }}</td></tr>
-                      <tr ><th>kegg_proportion</th><td>{{ unigene.neigh_eggs.u_cogs }}</td></tr>
-                      <tr ><th>presence_of_kegg</th><td>{{ unigene.neigh_eggs.c_cogs }}</td></tr>
-                      <tr ><th>hit_kegg_percentage</th><td>{{ unigene.neigh_eggs.c_con }}</td></tr>
-                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.ht_c_per }}</td></tr>
-                      <tr ><th>kegg_description</th><td>{{ unigene.neigh_eggs.c_d }}</td></tr>
+                      <tr ><th>number_neigh_genes</th><td>{{ unigene.neigh_eggs.n_n_genes }}</td></tr>
+                      <tr ><th>number_neigh_with_cogs</th><td>{{ unigene.neigh_eggs.n_n_cogs }}</td></tr>
+                      <tr ><th>unique_cogs</th><td>{{ unigene.neigh_eggs.u_cogs }}</td></tr>
+                      <tr ><th>count_of_cogs</th><td>{{ unigene.neigh_eggs.c_cogs }}</td></tr>
+                      <tr ><th>cog_conservation</th><td>{{ unigene.neigh_eggs.c_con }}</td></tr>
+                      <tr ><th>hit_cog_percentage</th><td><li v-for="ht in unigene.neigh_eggs.ht_c_per.split(',')">{{ ht }}</li></td></tr>
+                      <tr ><th>cog_description</th><td><li v-for="d in unigene.neigh_eggs.c_d.split(';')">{{ d }}</li></td></tr>
 
                     </table>
 
@@ -1300,8 +1306,7 @@ var UnigeneData = {
                             </div>
                           </td>
 
-                          <td ><li v-for="kegg in object.keggs_description">{{kegg}}</li></td>
-
+                          <td style="height:20pt"><div style="overflow:auto; height:100%"><li v-for="kegg in object.keggs_description">{{kegg}}</li></div></td>
                           <td style="height:20pt"><div style="overflow:auto; height:100%"><li v-for="egg in object.eggs_description">{{egg}}</li></div></td>
                         </tr>
                       </tbody>
