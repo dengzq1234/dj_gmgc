@@ -1187,7 +1187,7 @@ var UnigeneData = {
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-neigh_kegg-tab" data-toggle="tab" href="#nav-neigh_kegg" role="tab" aria-controls="nav-neigh_kegg" aria-selected="true">Neighgene KEGG</a>
-                <a class="nav-item nav-link" id="nav-neigh_egg-tab" data-toggle="tab" href="#nav-neigh_egg" role="tab" aria-controls="nav-neigh_egg" aria-selected="false">Neighgene EGGnog</a>
+                <a class="nav-item nav-link" id="nav-neigh_egg-tab" data-toggle="tab" href="#nav-neigh_egg" role="tab" aria-controls="nav-neigh_egg" aria-selected="false">Neighgene eggNOG</a>
                 <a class="nav-item nav-link" id="nav-neigh_viz-tab" data-toggle="tab" href="#nav-neigh_viz" role="tab" aria-controls="nav-neigh_viz" aria-selected="false">Neighgene Visualization</a>
               </div>
             </nav>
