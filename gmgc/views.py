@@ -142,7 +142,7 @@ def mgs_gene(request, mgs_id):
     ## 3. retrieve data
 
     mgs_gene_data_raw = gmgc_queries.get_mgs_gene_data(mgs_id)
-    print("this is MGS data", mgs_gene_data_raw)
+    #print("this is MGS data", mgs_gene_data_raw)
     return render(request, "mgs_gene.html", {"mgs_data":json.dumps(mgs_gene_data_raw)})
 
 

@@ -1194,7 +1194,7 @@ var UnigeneData = {
             
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="nav-neigh_kegg" role="tabpanel" aria-labelledby="nav-neigh_kegg-tab">
-                  <div v-if="unigene.neigh_keggs">
+                  <div v-if="unigene.neigh_keggs.q_cogs != 'No Match'">
                     <table role="grid" class="table">
                     
                       <tr ><th>Unigene</th><td>{{ unigene.neigh_keggs.u}}</td></tr>
@@ -1215,7 +1215,7 @@ var UnigeneData = {
               </div>
 
               <div class="tab-pane fade" id="nav-neigh_egg" role="tabpanel" aria-labelledby="nav-neigh_egg-tab">
-                  <div v-if="unigene.neigh_eggs">
+                  <div v-if="unigene.neigh_eggs.q_cogs != 'No Match'">
                     <table role="grid" class="table">
                       
                       <tr ><th>Unigene</th><td>{{ unigene.neigh_eggs.u}}</td></tr>
