@@ -1259,9 +1259,11 @@ var UnigeneData = {
                         <tr>
                           <td>
                               <p style="font-weight: bold">{{object.predicted_genes.split('||')[3].split(':')[0]}}</p>
-                              <li v-for="gg in object.predicted_genes.split('||')[3].split(':')[1].split(' ')">
-                                  {{gg}}
-                              </li><br/>
+                                <div v-if="object.predicted_genes.split('||')[3] != 'NA'">
+                                <li v-for="gg in object.predicted_genes.split('||')[3].split(':')[1].split(' ')">
+                                    {{gg}}
+                                </li></div><div v-else>{{object.predicted_genes.split('||')[3]}}</div>
+                                <br/>
                               {{object.predicted_genes.split('||')[3].split(':')[2]}}
                           </td>
 
