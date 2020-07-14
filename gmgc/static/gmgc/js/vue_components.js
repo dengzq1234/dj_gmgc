@@ -297,28 +297,25 @@ var ClusterData = {
           </div>
 
           <div class="m-portlet__body">
-            <table role="grid" class="table">   
-                <!--<tr v-if="cluster_data.members" ><th ><font color="blue">Cluster Members stats</font></th></tr>-->
-
-                <tr ><th >{{ cluster_features.members.nu}}</th><td >{{cluster_data.members.nu}}</td></tr>
-                <tr ><th >{{ cluster_features.members.nup}}</th><td >{{cluster_data.members.nup}}</td></tr>
-                <tr ><th >{{ cluster_features.members.hk}}</th><td >{{cluster_data.members.hk}}</td></tr>
-                <tr ><th >{{ cluster_features.members.hu}}</th><td >{{cluster_data.members.hu}}</td></tr>
-                <tr ><th >{{ cluster_features.members.nh}}</th><td >{{cluster_data.members.nh}}</td></tr>
-                <tr ><th >{{ cluster_features.members.naa}}</th><td >{{cluster_data.members.naa}}</td></tr>
-                <tr ><th >{{ cluster_features.members.al}}</th><td >{{cluster_data.members.al}}</td></tr>
-                <tr ><th >{{ cluster_features.members.avl}}</th><td >{{cluster_data.members.avl}}</td></tr>
-                <tr ><th >{{ cluster_features.members.lg}}</th><td >{{cluster_data.members.lg}}</td></tr>
-                <tr ><th >{{ cluster_features.members.sm}}</th><td >{{cluster_data.members.sm}}</td></tr>
-                <tr ><th >{{ cluster_features.members.mds}}</th><td >{{cluster_data.members.mds}}</td></tr>
-                <tr ><th >{{ cluster_features.members.avi}}</th><td >{{cluster_data.members.avi}}</td></tr>
-                <tr ><th >{{ cluster_features.members.mup}}</th><td >{{cluster_data.members.mup}}</td></tr>
-                <tr ><th >{{ cluster_features.members.mrp}}</th><td >{{cluster_data.members.mrp}}</td></tr>
-
-                
-                <tr v-if="!cluster_data.members" ><th ><font color="blue">No item</font></th></tr>
-            </table>
-          </div>
+            <div v-if="cluster_data.members">
+              <table role="grid" class="table">   
+                  <!--<tr v-if="cluster_data.members" ><th ><font color="blue">Cluster Members stats</font></th></tr>-->
+                  <tr ><th >{{ cluster_features.members.nu}}</th><td >{{cluster_data.members.nu}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.nup}}</th><td >{{cluster_data.members.nup}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.hk}}</th><td >{{cluster_data.members.hk}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.hu}}</th><td >{{cluster_data.members.hu}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.nh}}</th><td >{{cluster_data.members.nh}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.naa}}</th><td >{{cluster_data.members.naa}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.al}}</th><td >{{cluster_data.members.al}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.avl}}</th><td >{{cluster_data.members.avl}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.lg}}</th><td >{{cluster_data.members.lg}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.sm}}</th><td >{{cluster_data.members.sm}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.mds}}</th><td >{{cluster_data.members.mds}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.avi}}</th><td >{{cluster_data.members.avi}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.mup}}</th><td >{{cluster_data.members.mup}}</td></tr>
+                  <tr ><th >{{ cluster_features.members.mrp}}</th><td >{{cluster_data.members.mrp}}</td></tr>
+              </table>
+          </div><div v-else>No item</div>
         </div>
       </div>
     </div>
