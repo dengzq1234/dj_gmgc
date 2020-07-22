@@ -1,49 +1,52 @@
+<!--basic information-->
 <div class="row">
     <div class="annoBlock col">
-        <div class="m-portlet">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <span class="m-portlet__head-icon m--hide">
-                            <i class="la la-gear"></i>
-                        </span>
-                        
-                        <h3>
-                            Basic information
-                        </h3>
+      <div class="m-portlet">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <span class="m-portlet__head-icon m--hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    
+                    <h3>
+                        <a id="basic" href="#href"></a>
+                        Basic information
+                    </h3>
 
-                    </div>
                 </div>
-            </div>
-            
+              </div>
+          </div>
         
-            <div class="m-portlet__body">
-            
-                <table role="grid" class="table">
-                <!--table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline-->
-                <tr ><th >{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
-                <tr ><th >Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
-                <tr ><th >Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
+    
+        <div class="m-portlet__body">
+          
+          <table role="grid" class="table">
+          <!--table table-striped- table-bordered table-hover table-checkable dataTable no-footer dtr-inline-->
+          <tr ><th >{{cluster_features.members.cl}}</th><td v-if="cluster_data.members">{{ cluster_data.members.cl }}</td><td v-else>No item</td></tr>
+          <tr ><th >Pathway</th><td v-if="cluster_data.paths">{{ cluster_data.paths.psd }}</td><td v-else>No item</td></tr>
+          <tr ><th >Suffixes</th><td v-if="cluster_data.suffixes">{{ cluster_data.suffixes.sfx }}</td><td v-else>No item</td></tr>
 
-                <tr>
-                    <th >Members</th>
-                    <td v-if="cluster_data.members">
-                        <div v-if="MembersisHidden">
-                            <div v-on:click="MembersisHidden = !MembersisHidden" style="color: blue"> {{cluster_data.members.nu}} Members </div>
-                        </div>
-                        <div v-if="!MembersisHidden">
-                            <div v-on:click="MembersisHidden = !MembersisHidden"> {{cluster_data.members.nu}} Members </div>
-                            <div v-if="cluster_data.members">
-                            <div v-if="cluster_data.members.clm">
-                                <li v-for="member in cluster_data.members.clm"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></li>
-                            </div>
-                            </div>
-                        </div>
-                    </td>
-                    <td v-else>No item</td>
-                </tr>
-                </table>
-            </div> <!-- finish portlet__body-->
-        </div> <!-- finish portlet-->
-    </div> <!-- annoBlock col-->
-<!-- </div> finsih row --> 
+          <tr>
+            <th >Members</th>
+            <td v-if="cluster_data.members">
+              <div v-if="MembersisHidden">
+                  <div v-on:click="MembersisHidden = !MembersisHidden" style="color: blue"> {{cluster_data.members.nu}} Members </div>
+              </div>
+              <div v-if="!MembersisHidden">
+                <div v-on:click="MembersisHidden = !MembersisHidden"> {{cluster_data.members.nu}} Members </div>
+                <div v-if="cluster_data.members">
+                  <div v-if="cluster_data.members.clm">
+                    <li v-for="member in cluster_data.members.clm"><a v-bind:href="'/gmgc/unigene/'+ member"> {{member}} </a></li>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td v-else>No item</td>
+          </tr>
+          </table>
+        </div> <!-- finish portlet__body-->
+      </div> <!-- finish portlet-->
+    </div> <!-- annoBlock col-->    
+  </div> <!-- finish row -->
+<!--basic information-->
